@@ -3,7 +3,11 @@ package com.jsonde.gui.dialog.project;
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
-
+/**
+ * 
+ * @author admin
+ *
+ */
 public class FiltersTablePanel extends JPanel {
 
     private JTable filtersTable;

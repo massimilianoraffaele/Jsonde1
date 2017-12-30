@@ -3,7 +3,11 @@ package com.jsonde.client.dao;
 import com.jsonde.client.domain.Clazz;
 
 import javax.sql.DataSource;
-
+/**
+ * 
+ * @author admin
+ *
+ */
 public class ClazzDao extends AbstractEntityDao<Clazz> {
 
     public ClazzDao(DataSource dataSource) throws DaoException {

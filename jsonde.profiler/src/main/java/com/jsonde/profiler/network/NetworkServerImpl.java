@@ -12,7 +12,11 @@ import java.util.Collection;
 import java.util.Vector;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
-
+/**
+ * 
+ * @author admin
+ *
+ */
 public class NetworkServerImpl implements NetworkServer {
 
     private static final Log log = Log.getLog(NetworkServerImpl.class);

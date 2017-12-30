@@ -2,7 +2,11 @@ package com.jsonde.util.log;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
+/**
+ * 
+ * @author admin
+ *
+ */
 public class Log {
 
     private final Class clazz;
@@ -16,8 +20,8 @@ public class Log {
         logger.setLevel(Level.SEVERE);
     }
 
-    public static Log getLog(Class clazz) {
-        return new Log(clazz);
+    public static Log getLog(Class clazz33) {
+        return new Log(clazz33);
     }
 
     public void entering(String methodName, Object... arguments) {

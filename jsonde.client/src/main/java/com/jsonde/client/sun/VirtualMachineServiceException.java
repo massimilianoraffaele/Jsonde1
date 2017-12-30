@@ -1,5 +1,9 @@
 package com.jsonde.client.sun;
-
+/**
+ * 
+ * @author admin
+ *
+ */
 public class VirtualMachineServiceException extends Exception {
 
     public VirtualMachineServiceException() {

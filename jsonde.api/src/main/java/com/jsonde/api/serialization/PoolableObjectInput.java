@@ -2,7 +2,11 @@ package com.jsonde.api.serialization;
 
 import java.io.IOException;
 import java.io.ObjectInput;
-
+/**
+ * 
+ * @author admin
+ *
+ */
 public class PoolableObjectInput extends ObjectInputDecorator {
 
     public PoolableObjectInput(ObjectInput target) {
@@ -10,7 +14,7 @@ public class PoolableObjectInput extends ObjectInputDecorator {
     }
 
     @Override
-    public Object readObject() throws ClassNotFoundException, IOException {
+    public ObjectInput readObject() throws ClassNotFoundException, IOException {
         boolean isPoolableExternalizable = super.readBoolean();
         if (isPoolableExternalizable) {
             String factoryClassName = super.readUTF();
@@ -32,7 +36,7 @@ public class PoolableObjectInput extends ObjectInputDecorator {
 
             poolableExternalizable.readExternal(this);
 
-            return poolableExternalizable;
+            return (ObjectInput) poolableExternalizable;
 
         } else {
             return super.readObject();

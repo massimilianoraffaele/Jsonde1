@@ -2,7 +2,11 @@ package com.jsonde.profiler.network;
 
 import com.jsonde.api.Message;
 import com.jsonde.api.MessageListener;
-
+/**
+ * 
+ * @author admin
+ *
+ */
 public interface NetworkServer {
     void start() throws NetworkServerException;
 

@@ -1,5 +1,9 @@
 package com.jsonde.util.pool;
-
+/**
+ * 
+ * @author admin
+ *
+ */
 public class ObjectPoolException extends Exception {
 
     public ObjectPoolException() {

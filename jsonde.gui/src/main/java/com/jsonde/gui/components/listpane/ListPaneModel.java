@@ -1,7 +1,11 @@
 package com.jsonde.gui.components.listpane;
 
 import javax.swing.*;
-
+/**
+ * 
+ * @author admin
+ *
+ */
 public interface ListPaneModel {
 
     int getSize();

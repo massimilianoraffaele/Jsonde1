@@ -7,7 +7,11 @@ import com.jsonde.api.methodCall.MethodCallSummaryDto;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
-
+/**
+ * 
+ * @author admin
+ *
+ */
 public class ThreadLocalProfiler {
 
     private int maxMethodCallGraphSize = 2000;

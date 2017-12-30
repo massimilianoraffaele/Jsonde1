@@ -8,7 +8,11 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.util.Arrays;
 import java.util.List;
-
+/**
+ * 
+ * @author admin
+ *
+ */
 public class CustomFiltersPanel extends JPanel implements FiltersPanel {
 
     private FiltersTableModel filtersTableModel;

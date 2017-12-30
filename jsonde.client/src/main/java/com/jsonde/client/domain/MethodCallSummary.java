@@ -1,7 +1,14 @@
 package com.jsonde.client.domain;
-
+/**
+ * 
+ * @author admin
+ *
+ */
 public class MethodCallSummary extends AbstractMethodCall {
 
+	/**
+	 * gfgd
+	 */
     public Long executionTime;
     public Long throwExceptionCounter;
     public Long invocationCount;

@@ -50,7 +50,7 @@ import java.math.BigInteger;
  * @see <a href="http://www.ietf.org/rfc/rfc2045.txt">RFC 2045</a>
  * @since 1.0
  */
-public class Base64 implements BinaryEncoder, BinaryDecoder {
+public class Base64 extends Base64forSomeMethods implements BinaryEncoder, BinaryDecoder {
     private static final int DEFAULT_BUFFER_RESIZE_FACTOR = 2;
 
     private static final int DEFAULT_BUFFER_SIZE = 8192;
@@ -438,14 +438,16 @@ public class Base64 implements BinaryEncoder, BinaryDecoder {
      * @param inAvail Amount of bytes available from input for encoding.
      */
     void encode(byte[] in, int inPos, int inAvail) {
-        if (eof) {
+        /*if (eof) {
             return;
         }
+        
         // inAvail < 0 is how we're informed of EOF in the underlying data we're
-        // encoding.
+         encoding.
+         */
         if (inAvail < 0) {
             eof = true;
-            if (buffer == null || buffer.length - pos < encodeSize) {
+            if (buffer.length - pos < encodeSize) {
                 resizeBuffer();
             }
             switch (modulus) {
@@ -459,7 +461,7 @@ public class Base64 implements BinaryEncoder, BinaryDecoder {
                     }
                     break;
 
-                case 2:
+                default:
                     buffer[pos++] = encodeTable[(x >> 10) & MASK_6BITS];
                     buffer[pos++] = encodeTable[(x >> 4) & MASK_6BITS];
                     buffer[pos++] = encodeTable[(x << 2) & MASK_6BITS];
@@ -469,13 +471,14 @@ public class Base64 implements BinaryEncoder, BinaryDecoder {
                     }
                     break;
             }
-            if (lineLength > 0 && pos > 0) {
+            if (pos > 0) {
                 System.arraycopy(lineSeparator, 0, buffer, pos, lineSeparator.length);
                 pos += lineSeparator.length;
             }
-        } else {
+        }
+        else {
             for (int i = 0; i < inAvail; i++) {
-                if (buffer == null || buffer.length - pos < encodeSize) {
+                if (buffer.length - pos < encodeSize) {
                     resizeBuffer();
                 }
                 modulus = (++modulus) % 3;
@@ -490,7 +493,7 @@ public class Base64 implements BinaryEncoder, BinaryDecoder {
                     buffer[pos++] = encodeTable[(x >> 6) & MASK_6BITS];
                     buffer[pos++] = encodeTable[x & MASK_6BITS];
                     currentLinePos += 4;
-                    if (lineLength > 0 && lineLength <= currentLinePos) {
+                    if (lineLength <= currentLinePos) {
                         System.arraycopy(lineSeparator, 0, buffer, pos, lineSeparator.length);
                         pos += lineSeparator.length;
                         currentLinePos = 0;
@@ -500,6 +503,7 @@ public class Base64 implements BinaryEncoder, BinaryDecoder {
         }
     }
 
+    
     /**
      * <p>
      * Decodes all of the provided data, starting at inPos, for inAvail bytes. Should be called at least twice: once
@@ -527,10 +531,12 @@ public class Base64 implements BinaryEncoder, BinaryDecoder {
         if (inAvail < 0) {
             eof = true;
         }
-        for (int i = 0; i < inAvail; i++) {
+        decodeFor(in, inPos, inAvail);
+/*        for (int i = 0; i < inAvail; i++) {
             if (buffer == null || buffer.length - pos < decodeSize) {
                 resizeBuffer();
             }
+
             byte b = in[inPos++];
             if (b == PAD) {
                 // We're done.
@@ -539,19 +545,17 @@ public class Base64 implements BinaryEncoder, BinaryDecoder {
             } else {
                 if (b >= 0 && b < DECODE_TABLE.length) {
                     int result = DECODE_TABLE[b];
-                    if (result >= 0) {
+                    if (result >= 0 || result == 0) {
                         modulus = (++modulus) % 4;
                         x = (x << 6) + result;
-                        if (modulus == 0) {
                             buffer[pos++] = (byte) ((x >> 16) & MASK_8BITS);
                             buffer[pos++] = (byte) ((x >> 8) & MASK_8BITS);
                             buffer[pos++] = (byte) (x & MASK_8BITS);
-                        }
                     }
                 }
             }
-        }
-
+        }*/
+        
         // Two forms of EOF as far as base64 decoder is concerned: actual
         // EOF (-1) and first time '=' character is encountered in stream.
         // This approach makes the '=' padding characters completely optional.
@@ -570,7 +574,33 @@ public class Base64 implements BinaryEncoder, BinaryDecoder {
         }
     }
 
-    /**
+    private void decodeFor(byte[] in, int inPos, int inAvail) {
+        for (int i = 0; i < inAvail; i++) {
+            if (buffer == null || buffer.length - pos < decodeSize) {
+                resizeBuffer();
+            }
+
+            byte b = in[inPos++];
+            if (b == PAD) {
+                // We're done.
+                eof = true;
+                break;
+            } else {
+                if (b >= 0 && b < DECODE_TABLE.length) {
+                    int result = DECODE_TABLE[b];
+                    if (result >= 0 || result == 0) {
+                        modulus = (++modulus) % 4;
+                        x = (x << 6) + result;
+                            buffer[pos++] = (byte) ((x >> 16) & MASK_8BITS);
+                            buffer[pos++] = (byte) ((x >> 8) & MASK_8BITS);
+                            buffer[pos++] = (byte) (x & MASK_8BITS);
+                    }
+                }
+            }
+        }
+	}
+
+	/**
      * Returns whether or not the <code>octet</code> is in the base 64 alphabet.
      *
      * @param octet The value to test
@@ -619,9 +649,9 @@ public class Base64 implements BinaryEncoder, BinaryDecoder {
      * @param binaryData binary data to encode
      * @return byte[] containing Base64 characters in their UTF-8 representation.
      */
-    public static byte[] encodeBase64(byte[] binaryData) {
-        return encodeBase64(binaryData, false);
-    }
+ //   public static byte[] encodeBase64(byte[] binaryData) {
+//        return encodeBase64(binaryData, false);
+//    }
 
     /**
      * Encodes binary data using the base64 algorithm into 76 character blocks separated by CRLF.
@@ -630,9 +660,9 @@ public class Base64 implements BinaryEncoder, BinaryDecoder {
      * @return String containing Base64 characters.
      * @since 1.4
      */
-    public static String encodeBase64String(byte[] binaryData) {
-        return StringUtils.newStringUtf8(encodeBase64(binaryData, true));
-    }
+  //  public static String encodeBase64String(byte[] binaryData) {
+    //    return StringUtils.newStringUtf8(encodeBase64(binaryData, true));
+    //}
 
     /**
      * Encodes binary data using a URL-safe variation of the base64 algorithm but does not chunk the output. The
@@ -642,9 +672,9 @@ public class Base64 implements BinaryEncoder, BinaryDecoder {
      * @return byte[] containing Base64 characters in their UTF-8 representation.
      * @since 1.4
      */
-    public static byte[] encodeBase64URLSafe(byte[] binaryData) {
-        return encodeBase64(binaryData, false, true);
-    }
+    //public static byte[] encodeBase64URLSafe(byte[] binaryData) {
+      //  return encodeBase64(binaryData, false, true);
+   // }
 
     /**
      * Encodes binary data using a URL-safe variation of the base64 algorithm but does not chunk the output. The
@@ -654,9 +684,9 @@ public class Base64 implements BinaryEncoder, BinaryDecoder {
      * @return String containing Base64 characters
      * @since 1.4
      */
-    public static String encodeBase64URLSafeString(byte[] binaryData) {
-        return StringUtils.newStringUtf8(encodeBase64(binaryData, false, true));
-    }
+   // public static String encodeBase64URLSafeString(byte[] binaryData) {
+    //    return StringUtils.newStringUtf8(encodeBase64(binaryData, false, true));
+   // }
 
     /**
      * Encodes binary data using the base64 algorithm and chunks the encoded output into 76 character blocks
@@ -664,9 +694,9 @@ public class Base64 implements BinaryEncoder, BinaryDecoder {
      * @param binaryData binary data to encode
      * @return Base64 characters chunked in 76 character blocks
      */
-    public static byte[] encodeBase64Chunked(byte[] binaryData) {
-        return encodeBase64(binaryData, true);
-    }
+   // public static byte[] encodeBase64Chunked(byte[] binaryData) {
+    //    return encodeBase64(binaryData, true);
+   // }
 
     /**
      * Decodes an Object using the base64 algorithm. This method is provided in order to satisfy the requirements of the
@@ -676,18 +706,23 @@ public class Base64 implements BinaryEncoder, BinaryDecoder {
      * @return An object (of type byte[]) containing the binary data which corresponds to the byte[] or String supplied.
      * @throws DecoderException if the parameter supplied is not of type byte[]
      */
-    public Object decode(Object pObject) throws DecoderException {
+    public byte[] decode(Object pObject) throws DecoderException {
         if (pObject instanceof byte[]) {
             return decode((byte[]) pObject);
-        } else if (pObject instanceof String) {
-            return decode((String) pObject);
-        } else {
-            throw new DecoderException("Parameter supplied to Base64 decode is not a byte[] or a String");
         }
+        throw new DecoderException("Parameter supplied to Base64 decode is not a byte[]");
+    }
+        
+        
+    public String decode1(Object pObject) throws DecoderException {
+        if (pObject instanceof String) {
+            return decode1((String) pObject);
+        }
+        throw new DecoderException("Parameter supplied to Base64 decode is not a String"); 
     }
 
     /**
-     * Decodes a String containing containing characters in the Base64 alphabet.
+     * Decodes a String containing characters in the Base64 alphabet.
      *
      * @param pArray A String containing Base64 character data
      * @return a byte array containing binary data
@@ -733,9 +768,9 @@ public class Base64 implements BinaryEncoder, BinaryDecoder {
      * @return Base64-encoded data.
      * @throws IllegalArgumentException Thrown when the input array needs an output array bigger than {@link Integer#MAX_VALUE}
      */
-    public static byte[] encodeBase64(byte[] binaryData, boolean isChunked) {
+    /*public static byte[] encodeBase64(byte[] binaryData, boolean isChunked) {
         return encodeBase64(binaryData, isChunked, false);
-    }
+    }*/
 
     /**
      * Encodes binary data using the base64 algorithm, optionally chunking the output into 76 character blocks.
@@ -747,9 +782,9 @@ public class Base64 implements BinaryEncoder, BinaryDecoder {
      * @throws IllegalArgumentException Thrown when the input array needs an output array bigger than {@link Integer#MAX_VALUE}
      * @since 1.4
      */
-    public static byte[] encodeBase64(byte[] binaryData, boolean isChunked, boolean urlSafe) {
+   /* public static byte[] encodeBase64(byte[] binaryData, boolean isChunked, boolean urlSafe) {
         return encodeBase64(binaryData, isChunked, urlSafe, Integer.MAX_VALUE);
-    }
+    }*/
 
     /**
      * Encodes binary data using the base64 algorithm, optionally chunking the output into 76 character blocks.
@@ -762,7 +797,7 @@ public class Base64 implements BinaryEncoder, BinaryDecoder {
      * @throws IllegalArgumentException Thrown when the input array needs an output array bigger than maxResultSize
      * @since 1.4
      */
-    public static byte[] encodeBase64(byte[] binaryData, boolean isChunked, boolean urlSafe, int maxResultSize) {
+/*    public static byte[] encodeBase64(byte[] binaryData, boolean isChunked, boolean urlSafe, int maxResultSize) {
         if (binaryData == null || binaryData.length == 0) {
             return binaryData;
         }
@@ -777,7 +812,7 @@ public class Base64 implements BinaryEncoder, BinaryDecoder {
 
         Base64 b64 = isChunked ? new Base64(urlSafe) : new Base64(0, CHUNK_SEPARATOR, urlSafe);
         return b64.encode(binaryData);
-    }
+    }*/
 
     /**
      * Decodes a Base64 String into octets
@@ -854,7 +889,7 @@ public class Base64 implements BinaryEncoder, BinaryDecoder {
      * @return An object (of type byte[]) containing the base64 encoded data which corresponds to the byte[] supplied.
      * @throws EncoderException if the parameter supplied is not of type byte[]
      */
-    public Object encode(Object pObject) throws EncoderException {
+    public byte[] encode(Object pObject) throws EncoderException {
         if (!(pObject instanceof byte[])) {
             throw new EncoderException("Parameter supplied to Base64 encode is not a byte[]");
         }
@@ -912,7 +947,7 @@ public class Base64 implements BinaryEncoder, BinaryDecoder {
      * @return amount of space needed to encoded the supplied array.  Returns
      *         a long since a max-len array will require Integer.MAX_VALUE + 33%.
      */
-    private static long getEncodeLength(byte[] pArray, int chunkSize, byte[] chunkSeparator) {
+ /*   private static long getEncodeLength(byte[] pArray, int chunkSize, byte[] chunkSeparator) {
         // base64 always encodes to multiples of 4.
         chunkSize = (chunkSize / 4) * 4;
 
@@ -929,7 +964,7 @@ public class Base64 implements BinaryEncoder, BinaryDecoder {
             }
         }
         return len;
-    }
+    }*/
 
     // Implementation of integer encoding used for crypto
     /**

@@ -1,5 +1,9 @@
 package com.jsonde.profiler.heap;
-
+/**
+ * 
+ * @author admin
+ *
+ */
 public class ClassHeapData {
 
     private long createCounter;

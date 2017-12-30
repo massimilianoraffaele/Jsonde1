@@ -1,5 +1,9 @@
 package com.jsonde.util;
-
+/**
+ * 
+ * @author admin
+ *
+ */
 public class ObjectIsAbsentException extends Exception {
 
     public ObjectIsAbsentException() {

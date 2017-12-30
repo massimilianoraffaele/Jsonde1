@@ -9,7 +9,11 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.net.Socket;
-
+/**
+ * 
+ * @author admin
+ *
+ */
 public class ServerOutputWorker implements Runnable, Closeable {
 
     private final static Log log = Log.getLog(ServerOutputWorker.class);

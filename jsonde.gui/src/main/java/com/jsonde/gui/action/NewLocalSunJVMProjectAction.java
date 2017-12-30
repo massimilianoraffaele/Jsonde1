@@ -15,7 +15,11 @@ import net.sf.sdedit.icons.Icons;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.io.File;
-
+/**
+ * 
+ * @author admin
+ *
+ */
 public class NewLocalSunJVMProjectAction extends AbstractAction {
 
     private SdEditUIAdapter sdEditUIAdapter;

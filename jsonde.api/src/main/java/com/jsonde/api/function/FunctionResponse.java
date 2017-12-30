@@ -1,7 +1,12 @@
 package com.jsonde.api.function;
 
 import com.jsonde.api.Message;
-
+/**
+ * 
+ * @author admin
+ *
+ * @param <T>
+ */
 public abstract class FunctionResponse<T extends FunctionRequest> extends Message {
 
     private final long requestId;

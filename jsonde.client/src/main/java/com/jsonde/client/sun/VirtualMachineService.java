@@ -3,7 +3,6 @@ package com.jsonde.client.sun;
 import com.jsonde.util.file.FileUtils;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
 import java.lang.reflect.InvocationTargetException;
@@ -13,7 +12,11 @@ import java.net.URL;
 import java.net.URLClassLoader;
 import java.util.LinkedList;
 import java.util.List;
-
+/**
+ * 
+ * @author admin
+ *
+ */
 public class VirtualMachineService {
 
     private URLClassLoader toolsClassLoader;

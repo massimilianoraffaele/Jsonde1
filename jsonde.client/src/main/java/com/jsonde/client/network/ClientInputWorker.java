@@ -10,7 +10,11 @@ import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.net.Socket;
 import java.net.SocketException;
-
+/**
+ * 
+ * @author admin
+ *
+ */
 public class ClientInputWorker implements Runnable {
 
     private final static Log log = Log.getLog(ClientInputWorker.class);

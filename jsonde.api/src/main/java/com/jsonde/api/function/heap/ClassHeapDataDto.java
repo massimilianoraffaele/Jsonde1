@@ -1,7 +1,11 @@
 package com.jsonde.api.function.heap;
 
 import java.io.Serializable;
-
+/**
+ * 
+ * @author admin
+ *
+ */
 public class ClassHeapDataDto implements Serializable {
 
     /**

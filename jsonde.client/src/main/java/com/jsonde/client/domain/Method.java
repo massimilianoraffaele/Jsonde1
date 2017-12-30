@@ -1,5 +1,9 @@
 package com.jsonde.client.domain;
-
+/**
+ * 
+ * @author admin
+ *
+ */
 public class Method extends DomainObject {
 
     private long classId;

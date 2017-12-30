@@ -1,5 +1,9 @@
 package com.jsonde.gui.configuration;
-
+/**
+ * 
+ * @author admin
+ *
+ */
 public class SessionConfigurationException extends Exception {
 
     public SessionConfigurationException() {

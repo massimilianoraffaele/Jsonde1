@@ -1,5 +1,9 @@
 package com.jsonde.client.domain;
-
+/**
+ * 
+ * @author admin
+ *
+ */
 public class Clazz extends DomainObject {
 
     private Long superClassId;

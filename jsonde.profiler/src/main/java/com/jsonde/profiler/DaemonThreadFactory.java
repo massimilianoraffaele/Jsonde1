@@ -2,7 +2,11 @@ package com.jsonde.profiler;
 
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.atomic.AtomicInteger;
-
+/**
+ * 
+ * @author admin
+ *
+ */
 public class DaemonThreadFactory implements ThreadFactory {
 
     private AtomicInteger threadIdGenerator = new AtomicInteger();

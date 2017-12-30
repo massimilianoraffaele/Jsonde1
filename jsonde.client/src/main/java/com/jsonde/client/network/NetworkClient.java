@@ -4,7 +4,11 @@ import com.jsonde.api.Message;
 import com.jsonde.api.MessageListener;
 import com.jsonde.api.function.FunctionRequest;
 import com.jsonde.api.function.FunctionResponse;
-
+/**
+ * 
+ * @author admin
+ *
+ */
 public interface NetworkClient {
 
     void start() throws NetworkClientException;

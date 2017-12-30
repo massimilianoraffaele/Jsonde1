@@ -8,7 +8,11 @@ import java.util.jar.Attributes;
 import java.util.jar.JarFile;
 import java.util.jar.Manifest;
 import java.util.regex.Pattern;
-
+/**
+ * 
+ * @author admin
+ *
+ */
 public class ResolveAgentLibrariesClassLoader extends URLClassLoader {
 
     private static String jSondeLibrariesRegexp;

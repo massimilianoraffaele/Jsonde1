@@ -19,7 +19,11 @@ import java.lang.instrument.IllegalClassFormatException;
 import java.lang.instrument.Instrumentation;
 import java.net.URL;
 import java.security.ProtectionDomain;
-
+/**
+ * 
+ * @author admin
+ *
+ */
 public class JSondeAgent implements MessageListener, ClassFileTransformer {
 
     private final static Log log = Log.getLog(JSondeAgent.class);
@@ -34,15 +38,15 @@ public class JSondeAgent implements MessageListener, ClassFileTransformer {
 
     private final ClassLoader resolveAgentLibrariesClassLoader;
 
-    public static void premain(final String arg, Instrumentation instrumentation) {
-        JSondeAgent jSondeAgent = new JSondeAgent(arg, instrumentation);
+    public static void premain(final String arg2, Instrumentation instrumentation2) {
+        JSondeAgent jSondeAgent = new JSondeAgent(arg2, instrumentation2);
         jSondeAgent.execute();
         jSondeAgent.setTransformer();
     }
 
     @SuppressWarnings("unused")
-    public static void agentmain(String arg, final Instrumentation instrumentation) {
-        final JSondeAgent jSondeAgent = new JSondeAgent(arg, instrumentation);
+    public static void agentmain(String arg1, final Instrumentation instrumentation1) {
+        final JSondeAgent jSondeAgent = new JSondeAgent(arg1, instrumentation1);
         new Thread(new Runnable() {
 
             public void run() {
@@ -181,17 +185,19 @@ public class JSondeAgent implements MessageListener, ClassFileTransformer {
 
         if (shouldTransformClass(className)) {
 
-            URL classFileResourceURL;
+            URL classFileResourceURL = null;
 
             ClassLoader classLoader = clazz.getClassLoader();
-
-            if (null == classLoader) {
+            if1(classLoader,classFileResourceURL, className);
+            
+            /*if (null == classLoader) {
                 classFileResourceURL = ClassLoader.getSystemResource(
-                        ClassUtils.convertClassNameToResourceName(className));
-            } else {
+                        ClassUtils.convertClassNameToResourceName(className));}
+            else 
+            {
                 classFileResourceURL = classLoader.getResource(
                         ClassUtils.convertClassNameToResourceName(className));
-            }
+            }*/
 
             if (null == classFileResourceURL)
                 return;
@@ -219,8 +225,8 @@ public class JSondeAgent implements MessageListener, ClassFileTransformer {
                             className,
                             clazz.getClassLoader());
                 }
-
-            } catch (IOException e) {
+            }
+            /* catch (IOException e) {
                 e.printStackTrace();
             } catch (IllegalClassFormatException e) {
                 e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
@@ -228,11 +234,32 @@ public class JSondeAgent implements MessageListener, ClassFileTransformer {
                 IO.close(originalByteArrayOutputStream);
                 IO.close(byteCodeInputStream);
             }
+            */
+            catch (Exception e) {
+                e.printStackTrace();
+            } 
 
         }
 
     }
 
+    public static void if2 () {
+    	
+    }
+    
+    public static void if1 (ClassLoader classLoader, URL classFileResourceURL, String className){
+    	 if (null == classLoader) {
+             classFileResourceURL = ClassLoader.getSystemResource(
+                     ClassUtils.convertClassNameToResourceName(className));}
+         else 
+         {
+             classFileResourceURL = classLoader.getResource(
+                     ClassUtils.convertClassNameToResourceName(className));
+         }
+    }
+    
+    
+    
     public byte[] transform(
             ClassLoader loader,
             String className,
@@ -240,14 +267,7 @@ public class JSondeAgent implements MessageListener, ClassFileTransformer {
             ProtectionDomain protectionDomain,
             byte[] classfileBuffer) throws IllegalClassFormatException {
 
-        if (null != agentConfigurationMessage && null != agentConfigurationMessage.getClassFilters()) {
-
-            if (!shouldTransformClass(className)) {
-                return classfileBuffer;
-            }
-
-        }
-
+    	
         Thread currentThread = Thread.currentThread();
 
         for (Long profilerThreadId : Profiler.getProfiler().getProfilerThreadIds()) {
@@ -261,19 +281,20 @@ public class JSondeAgent implements MessageListener, ClassFileTransformer {
         try {
             currentThread.setContextClassLoader(resolveAgentLibrariesClassLoader);
 
+            
             byte[] transformedBytes = byteCodeTransformer.transform(loader, className, classBeingRedefined, protectionDomain, classfileBuffer);
+            if3(className, transformedBytes, contextClassLoader);
+            if (null == loader.getParent()) {
 
-            if (null == loader || null == loader.getParent()) {
+              String name = ClassUtils.getFullyQualifiedName(className);
 
-                String name = ClassUtils.getFullyQualifiedName(className);
-
-                if (!name.startsWith("com.jsonde")) {
+                /*if (!name.startsWith("com.jsonde")) {
                     Profiler.getProfiler().redefineClass(
                             transformedBytes,
                             name,
                             loader);
-                }
-
+                }*/
+              
                 return classfileBuffer;
 
             } else {
@@ -286,6 +307,14 @@ public class JSondeAgent implements MessageListener, ClassFileTransformer {
 
     }
 
+    public static void if3 (String name, byte[] transformedBytes, ClassLoader loader) {
+    	if (!name.startsWith("com.jsonde")) {
+            Profiler.getProfiler().redefineClass(
+                    transformedBytes,
+                    name, loader);
+        }
+    }
+    
     private boolean shouldTransformClass(String className) {
 
         if ((className.startsWith("com.jsonde")) && (!className.startsWith("com.jsonde.instrumentation.samples")))

@@ -5,7 +5,11 @@ import com.jsonde.api.function.FunctionResponse;
 
 import java.util.HashSet;
 import java.util.Set;
-
+/**
+ * 
+ * @author admin
+ *
+ */
 public class DumpHeapFunctionResponse extends FunctionResponse<DumpHeapFunctionRequest> {
 
     private Set<ClassHeapDataDto> classHeapDataDtos;

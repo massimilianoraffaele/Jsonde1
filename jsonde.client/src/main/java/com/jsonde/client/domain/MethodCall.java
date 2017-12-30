@@ -1,5 +1,9 @@
 package com.jsonde.client.domain;
-
+/**
+ * 
+ * @author admin
+ *
+ */
 public class MethodCall extends AbstractMethodCall {
 
     private Long actualClassId;

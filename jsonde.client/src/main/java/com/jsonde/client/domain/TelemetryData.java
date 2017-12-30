@@ -1,5 +1,9 @@
 package com.jsonde.client.domain;
-
+/**
+ * 
+ * @author admin
+ *
+ */
 public class TelemetryData extends DomainObject {
 
     private long time;

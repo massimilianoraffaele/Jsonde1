@@ -1,5 +1,9 @@
 package com.jsonde.util;
-
+/**
+ * 
+ * @author admin
+ *
+ */
 public class StringUtils {
 
     public static String wildcardToRegex(String wildcard) {
@@ -17,15 +21,16 @@ public class StringUtils {
                 // escape special regexp-characters
                 case '(':
                 case ')':
-                case '[':
+               /* 	 escape special regexp - characters
+               case '[':
                 case ']':
                 case '$':
-                case '^':
                 case '.':
                 case '{':
                 case '}':
                 case '|':
                 case '\\':
+                */
                     s.append("\\");
                     s.append(c);
                     break;

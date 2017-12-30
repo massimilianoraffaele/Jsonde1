@@ -3,12 +3,16 @@ package com.jsonde.api.methodCall;
 import com.jsonde.api.Message;
 
 import java.util.Arrays;
-
+/**
+ * 
+ * @author admin
+ *
+ */
 public class RegisterMethodMessage extends Message {
 
-    private long methodId;
-    private long classId;
-    private int access;
+    private static long methodId;
+    private static long classId;
+    private static int access;
     private String name;
     private String desc;
     private String signature;
@@ -92,19 +96,22 @@ public class RegisterMethodMessage extends Message {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (getClass() != o.getClass()) return false;
 
         RegisterMethodMessage that = (RegisterMethodMessage) o;
 
-        if (access != that.access) return false;
-        if (classId != that.classId) return false;
-        if (methodId != that.methodId) return false;
-        if (desc != null ? !desc.equals(that.desc) : that.desc != null) return false;
+        if (desc.equals(that.desc)) return false;
         if (!Arrays.equals(exceptions, that.exceptions)) return false;
-        if (name != null ? !name.equals(that.name) : that.name != null) return false;
-        if (signature != null ? !signature.equals(that.signature) : that.signature != null) return false;
+        if (name.equals(that.name)) return false;
+        if (!signature.equals(that.signature)) return false;
 
+        return true;
+    }
+    
+    public static boolean if2() {
+    	if (access != access) return false;
+        if (classId != classId) return false;
+        if (methodId != methodId) return false;
         return true;
     }
 

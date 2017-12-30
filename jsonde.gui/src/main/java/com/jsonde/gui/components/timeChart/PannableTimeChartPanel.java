@@ -14,7 +14,11 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.util.Date;
-
+/**
+ * 
+ * @author admin
+ *
+ */
 public class PannableTimeChartPanel extends JPanel  implements ChangeListener {
 
     private XYPlot plot;

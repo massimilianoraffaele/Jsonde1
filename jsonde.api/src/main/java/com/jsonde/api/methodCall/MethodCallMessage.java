@@ -7,7 +7,11 @@ import java.io.IOException;
 import java.io.ObjectInput;
 import java.io.ObjectOutput;
 import java.util.List;
-
+/**
+ * 
+ * @author admin
+ *
+ */
 public class MethodCallMessage extends Message implements Externalizable {
 
     private transient MethodCallDto[] methodCallDtos;

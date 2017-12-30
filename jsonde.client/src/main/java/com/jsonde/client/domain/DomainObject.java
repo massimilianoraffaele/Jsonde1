@@ -1,7 +1,11 @@
 package com.jsonde.client.domain;
 
 import java.io.Serializable;
-
+/**
+ * 
+ * @author admin
+ *
+ */
 public abstract class DomainObject implements Serializable {
 
     /**

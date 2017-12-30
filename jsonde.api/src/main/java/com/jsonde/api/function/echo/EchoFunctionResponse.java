@@ -1,7 +1,11 @@
 package com.jsonde.api.function.echo;
 
 import com.jsonde.api.function.FunctionResponse;
-
+/**
+ * 
+ * @author admin
+ *
+ */
 public class EchoFunctionResponse extends FunctionResponse<EchoFunctionRequest> {
 
     private String message;

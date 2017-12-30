@@ -1,7 +1,11 @@
 package com.jsonde.api.methodCall;
 
 import com.jsonde.api.Message;
-
+/**
+ * 
+ * @author admin
+ *
+ */
 public class DescribeClassMessage extends Message {
 
     private long methodId;

@@ -6,7 +6,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.Arrays;
 import java.util.List;
-
+/**
+ * 
+ * @author admin
+ *
+ */
 public class SimpleFiltersPanel extends JPanel implements FiltersPanel {
 
     private JTextField packageFilter;

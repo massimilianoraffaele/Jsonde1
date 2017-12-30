@@ -1,5 +1,9 @@
 package com.jsonde.client.dao;
-
+/**
+ * 
+ * @author admin
+ *
+ */
 public class DaoException extends Exception {
 
     public DaoException() {

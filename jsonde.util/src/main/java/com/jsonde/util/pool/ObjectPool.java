@@ -5,7 +5,12 @@ import java.lang.reflect.ParameterizedType;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.concurrent.ArrayBlockingQueue;
-
+/**
+ * 
+ * @author admin
+ *
+ * @param <T>
+ */
 public class ObjectPool<T> {
 
     private final Class<T> elementsClass;

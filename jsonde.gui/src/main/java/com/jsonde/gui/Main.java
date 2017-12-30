@@ -9,11 +9,18 @@ import java.awt.*;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Calendar;
 import java.util.Date;
-
+/**
+ * 
+ * @author admin
+ *
+ */
 public class Main {
 
     private static Main instance;
-
+/**
+ * 
+ * @return
+ */
     public static Main getInstance() {
         if (null == instance) {
             instance = new Main();
@@ -108,11 +115,11 @@ public class Main {
 
     }
 
-    public static void main(String... arguments) {
+    public static void main(String... arguments33) {
 
         Main main = Main.getInstance();
 
-        main.arguments = arguments;
+        main.arguments = arguments33;
 
         //main.checkLicense();
 

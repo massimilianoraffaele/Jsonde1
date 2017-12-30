@@ -6,7 +6,11 @@ import com.jsonde.gui.components.composite.CompositeComponentProvider;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-
+/**
+ * 
+ * @author admin
+ *
+ */
 public class CreateCompositeComponentTabAction extends AbstractAction implements Runnable {
 
     private ApplicationUserInterface applicationUserInterface;

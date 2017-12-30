@@ -3,7 +3,12 @@ package com.jsonde.util;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicLong;
-
+/**
+ * 
+ * @author admin
+ *
+ * @param <T>
+ */
 public class ObjectIdGenerator<T> {
 
     private AtomicLong sequence = new AtomicLong();
@@ -41,7 +46,12 @@ public class ObjectIdGenerator<T> {
             return new ObjectWrapper<T>(object);
         }
     }
-
+/**
+ * 
+ * @param m
+ * @param n
+ * @return
+ */
     public static <M, N> Pair<M, N> pair(M m, N n) {
         return new Pair<M, N>(m, n);
     }

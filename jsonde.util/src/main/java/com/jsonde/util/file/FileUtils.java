@@ -2,9 +2,16 @@ package com.jsonde.util.file;
 
 import java.io.File;
 import java.io.IOException;
-
+/**
+ * 
+ * @author admin
+ *
+ */
 public class FileUtils {
 
+	/**
+	 * fdfs
+	 */
     public static final String LINE_SEPARATOR = System.getProperty("line.separator");
     public static final String FILE_SEPARATOR = System.getProperty("file.separator");
     public static final String PATH_SEPARATOR = System.getProperty("path.separator");

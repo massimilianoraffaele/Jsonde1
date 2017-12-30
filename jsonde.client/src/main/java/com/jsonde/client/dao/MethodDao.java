@@ -3,7 +3,11 @@ package com.jsonde.client.dao;
 import com.jsonde.client.domain.Method;
 
 import javax.sql.DataSource;
-
+/**
+ * 
+ * @author admin
+ *
+ */
 public class MethodDao extends AbstractEntityDao<Method> {
 
     public MethodDao(DataSource dataSource) throws DaoException {

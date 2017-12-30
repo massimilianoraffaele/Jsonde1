@@ -3,7 +3,11 @@ package com.jsonde.api.configuration;
 import com.jsonde.api.Message;
 
 import java.util.List;
-
+/**
+ * 
+ * @author admin
+ *
+ */
 public class AgentConfigurationMessage extends Message {
 
     private String version;

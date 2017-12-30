@@ -11,7 +11,11 @@ import java.net.Socket;
 import java.util.Collection;
 import java.util.Vector;
 import java.util.concurrent.*;
-
+/**
+ * 
+ * @author admin
+ *
+ */
 public class NetworkClientImpl implements NetworkClient {
 
     private static final Log log = Log.getLog(NetworkClientImpl.class);

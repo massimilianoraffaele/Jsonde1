@@ -4,7 +4,11 @@ import java.io.Serializable;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
-
+/**
+ * 
+ * @author admin
+ *
+ */
 public class MethodCallSummaryDto implements Serializable {
 
     /**
@@ -12,6 +16,9 @@ public class MethodCallSummaryDto implements Serializable {
 	 */
 	private static final long serialVersionUID = -2641838939246875047L;
 	private Map<Long, MethodCallSummaryDto> callees = new HashMap<Long, MethodCallSummaryDto>();
+	/**
+	 * gffdg
+	 */
     public MethodCallSummaryDto caller;
 
     public long methodId;
@@ -25,7 +32,7 @@ public class MethodCallSummaryDto implements Serializable {
         callees.put(callee.methodId, callee);
     }
 
-    public MethodCallSummaryDto getCallee(long methodId) {
+    public MethodCallSummaryDto getCallee(long methodId3) {
 
         if (!callees.containsKey(methodId)) {
             MethodCallSummaryDto callee = new MethodCallSummaryDto();

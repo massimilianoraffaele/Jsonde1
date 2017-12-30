@@ -9,7 +9,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Types;
-
+/**
+ * 
+ * @author admin
+ *
+ */
 public class MethodCallDao extends AbstractEntityDao<MethodCall> {
 
     public MethodCallDao(DataSource dataSource) throws DaoException {

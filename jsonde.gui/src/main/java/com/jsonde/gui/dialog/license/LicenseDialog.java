@@ -6,7 +6,11 @@ import com.jsonde.gui.license.LicenseManager;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-
+/**
+ * 
+ * @author admin
+ *
+ */
 public class LicenseDialog extends JSondeDialog {
 
     private boolean evaluate;

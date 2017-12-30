@@ -12,7 +12,11 @@ import javax.swing.*;
 import javax.swing.filechooser.FileFilter;
 import java.awt.event.ActionEvent;
 import java.io.File;
-
+/**
+ * 
+ * @author admin
+ *
+ */
 public class OpenProjectAction extends AbstractAction {
 
     private ApplicationUserInterface applicationUserInterface;

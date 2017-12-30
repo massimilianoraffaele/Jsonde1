@@ -17,7 +17,12 @@ import java.sql.SQLException;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
-
+/**
+ * 
+ * @author admin
+ *
+ * @param <T>
+ */
 public abstract class AbstractEntityDao<T extends DomainObject> extends AbstractDao {
 
     private Class<? super DomainObject> domainObjectClass;
@@ -108,16 +113,16 @@ public abstract class AbstractEntityDao<T extends DomainObject> extends Abstract
 
         try {
             autoCommit = connection.getAutoCommit();
-        } catch (SQLException e) {
+/*        } catch (SQLException e) {
             throw new DaoException(e);
         }
 
-        try {
+        try { */
             connection.setAutoCommit(false);
 
             PreparedStatement preparedStatement = null;
 
-            try {
+            //try {
 
                 preparedStatement =
                         connection.prepareStatement(createInsertQuery());
@@ -126,30 +131,34 @@ public abstract class AbstractEntityDao<T extends DomainObject> extends Abstract
                     insertImpl(preparedStatement, domainObject);
                 }
 
-            } catch (SQLException e) {
+            /*} catch (SQLException e) {
                 throw new DaoException(e);
             } catch (IllegalAccessException e) {
                 throw new DaoException(e);
             } catch (InvocationTargetException e) {
-                throw new DaoException(e);
-            } finally {
+                throw new DaoException(e);*/
+
+ //           } finally {
                 DbUtils.close(preparedStatement);
-            }
+   //         }
 
             connection.commit();
-        } catch (Exception e) {
-            try {
+        //} catch (Exception e) {
+          //  try {
                 connection.rollback();
-            } catch (SQLException ex) {
+            /*} catch (SQLException ex) {
                 ex.printStackTrace();
                 throw new DaoException(e);
             }
         } finally {
-            try {
+            try {*/
                 connection.setAutoCommit(autoCommit);
-            } catch (SQLException e) {
+            /*} catch (SQLException e) {
                 e.printStackTrace();
-            }
+            }*/
+        } catch (Exception e) {
+            throw new DaoException(e);
+        } finally {
             DbUtils.close(connection);
         }
     }
@@ -310,12 +319,14 @@ public abstract class AbstractEntityDao<T extends DomainObject> extends Abstract
 
             preparedStatement.execute();
 
-        } catch (SQLException e) {
+        } /*catch (SQLException e) {
             throw new DaoException(e);
         } catch (IllegalAccessException e) {
             throw new DaoException(e);
         } catch (InvocationTargetException e) {
-            throw new DaoException(e);
+            throw new DaoException(e);*/
+     catch (Exception e) {
+        throw new DaoException(e);
         } finally {
             DbUtils.close(preparedStatement);
         }
@@ -400,8 +411,10 @@ public abstract class AbstractEntityDao<T extends DomainObject> extends Abstract
                     preparedStatement.getResultSet();
 
             if (resultSet.next()) {
+            	
+            	getinternalIf(domainObject, resultSet, id);
 
-                domainObject.setId(id);
+           /*     domainObject.setId(id);
 
                 int parameterIndex = 1;
 
@@ -429,19 +442,22 @@ public abstract class AbstractEntityDao<T extends DomainObject> extends Abstract
 
                     }
 
-                }
+                } */
 
             } else {
                 return null;
             }
 
-        } catch (SQLException e) {
+        } /*catch (SQLException e) {
             throw new DaoException(e);
         } catch (IllegalAccessException e) {
             throw new DaoException(e);
         } catch (InvocationTargetException e) {
+            throw new DaoException(e);*/
+        catch (Exception e) {
             throw new DaoException(e);
-        } finally {
+        }
+        finally {
             DbUtils.close(resultSet);
             DbUtils.close(preparedStatement);
             DbUtils.close(connection);
@@ -449,6 +465,42 @@ public abstract class AbstractEntityDao<T extends DomainObject> extends Abstract
 
         return domainObject;
 
+    }
+    
+    public void getinternalIf(DomainObject domainObject, ResultSet resultSet, long id) throws Exception {
+        try{
+    	domainObject.setId(id);
+
+        int parameterIndex = 1;
+
+        for (PropertyDescriptor propertyDescriptor :
+                domainObjectClassBeanInfo.getPropertyDescriptors()) {
+            String propertyName = propertyDescriptor.getName();
+            Class propertyType = propertyDescriptor.getPropertyType();
+
+            if ("id".equalsIgnoreCase(propertyName)) continue;
+            if ("class".equalsIgnoreCase(propertyName)) continue;
+
+            parameterIndex++;
+
+            Object propertyValue = resultSet.getObject(parameterIndex);
+
+            if (null != propertyValue) {
+
+                if (Boolean.class == propertyType || boolean.class == propertyType) {
+                    Boolean booleanPropertyValue = ((Number) propertyValue).shortValue() == 1;
+                    propertyDescriptor.getWriteMethod().invoke(domainObject, new Object[]{booleanPropertyValue});
+                } else {
+                    propertyDescriptor.getWriteMethod().invoke(domainObject, new Object[]{propertyValue});
+                }
+
+
+            }
+
+        }
+    }catch (Exception e) {
+            throw new Exception(e);
+        }
     }
 
     public T getUniqueByCondition(String condition, Object... parameters) throws DaoException {
@@ -525,7 +577,8 @@ public abstract class AbstractEntityDao<T extends DomainObject> extends Abstract
             resultSet =
                     preparedStatement.getResultSet();
 
-            while (resultSet.next()) {
+            getByConditionWhile(resultSet, resultList);
+            /*while (resultSet.next()) {
 
                 T domainObject = createDomainObject();
 
@@ -555,14 +608,16 @@ public abstract class AbstractEntityDao<T extends DomainObject> extends Abstract
 
                 resultList.add(domainObject);
 
-            }
+            }*/
 
-        } catch (SQLException e) {
+        } /*catch (SQLException e) {
             throw new DaoException(e);
         } catch (IllegalAccessException e) {
             throw new DaoException(e);
         } catch (InvocationTargetException e) {
-            throw new DaoException(e);
+            throw new DaoException(e);*/
+        catch (Exception e) {
+            throw new DaoException(e);        
         } finally {
             DbUtils.close(resultSet);
             DbUtils.close(preparedStatement);
@@ -571,6 +626,44 @@ public abstract class AbstractEntityDao<T extends DomainObject> extends Abstract
 
         return resultList;
 
+    }
+    
+    public void getByConditionWhile(ResultSet resultSet, Collection<T> resultList) throws DaoException {
+        try{
+    	while (resultSet.next()) {
+
+            T domainObject = createDomainObject();
+
+            int parameterIndex = 1;
+            domainObject.setId(((Number) resultSet.getObject(parameterIndex)).longValue());
+
+            for (PropertyDescriptor propertyDescriptor :
+                    domainObjectClassBeanInfo.getPropertyDescriptors()) {
+                String propertyName = propertyDescriptor.getName();
+                Class propertyType = propertyDescriptor.getPropertyType();
+
+                if ("class".equalsIgnoreCase(propertyName)) continue;
+                if ("id".equalsIgnoreCase(propertyName)) continue;
+
+                parameterIndex++;
+
+                Object propertyValue = resultSet.getObject(parameterIndex);
+
+                if (Boolean.class == propertyType || boolean.class == propertyType) {
+                    Boolean booleanPropertyValue = ((Number) propertyValue).shortValue() == 1;
+                    propertyDescriptor.getWriteMethod().invoke(domainObject, new Object[]{booleanPropertyValue});
+                } else {
+                    propertyDescriptor.getWriteMethod().invoke(domainObject, new Object[]{propertyValue});
+                }
+
+            }
+
+            resultList.add(domainObject);
+
+        }
+        }        catch (Exception e) {
+            throw new DaoException(e);        
+        }
     }
 
     @SuppressWarnings("unchecked")

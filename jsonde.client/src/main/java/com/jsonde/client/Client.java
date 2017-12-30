@@ -17,16 +17,24 @@ import org.h2.jdbcx.JdbcConnectionPool;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Vector;
 import java.util.concurrent.atomic.AtomicLong;
-
+/**
+ * 
+ * @author admin
+ *
+ */
 public class Client implements MessageListener {
+	
+	
 
-    private NetworkClient networkClient;
+    public NetworkClient networkClient;
 
-    private Vector<MethodCallListener> methodCallListeners = new Vector<MethodCallListener>();
-    private Vector<ClassListener> classListeners = new Vector<ClassListener>();
+    public Vector<MethodCallListener> methodCallListeners = new Vector<MethodCallListener>();
+    public static Vector<ClassListener> classListeners = new Vector<ClassListener>();
 
     public void addMethodCallListener(MethodCallListener methodCallListener) {
         methodCallListeners.add(methodCallListener);
@@ -36,7 +44,7 @@ public class Client implements MessageListener {
         classListeners.add(classListener);
     }
 
-    private void fireMethodCallEvent(MethodCall methodCall) {
+    public void fireMethodCallEvent(MethodCall methodCall) {
 
         for (MethodCallListener listener : methodCallListeners) {
             listener.onMethodCall(methodCall);
@@ -44,7 +52,7 @@ public class Client implements MessageListener {
 
     }
 
-    private void fireRegisterClassEvent(Clazz clazz) {
+    public static void fireRegisterClassEvent(Clazz clazz) {
 
         for (ClassListener classListener : classListeners) {
             classListener.onRegisterClass(clazz);
@@ -100,11 +108,11 @@ public class Client implements MessageListener {
 
     }
 
-    private final boolean online;
+    public final boolean online;
 
-    private final JdbcConnectionPool jdbcConnectionPool;
+    public final JdbcConnectionPool jdbcConnectionPool;
 
-    private final static String DB_CONNECTION_MODIFIERS = "LOCK_MODE=0;LOG=0;UNDO_LOG=0;CACHE_SIZE=65536";
+    public final static String DB_CONNECTION_MODIFIERS = "LOCK_MODE=0;LOG=0;UNDO_LOG=0;CACHE_SIZE=65536";
 
     public Client(String databaseFileName, String address, int port) {
 
@@ -199,8 +207,14 @@ public class Client implements MessageListener {
     }
 
     public void onMessage(Message message) {
-
-
+    	
+    		Map<Class, MessageHandler> handlers = new HashMap<Class, MessageHandler>();
+    		handlers.put(RegisterClassMessage.class, new RegisterClassMessageHandler());
+    	
+    	  MessageHandler h = handlers.get(message.getClass());
+    	  if(h != null) ((MessageListener) h).onMessage(message);
+    	
+/*
         if (message instanceof RegisterClassMessage) {
 
             RegisterClassMessage registerClassMessage = (RegisterClassMessage) message;
@@ -256,15 +270,14 @@ public class Client implements MessageListener {
 
             try {
                 DaoFactory.getMethodCallSummaryDao().processMethodCallSummaryDto(methodCallSummaryDto);
+           
             } catch (DaoException e) {
                 e.printStackTrace();
             }
 
-            if (complete) {
+            if (complete || message instanceof TelemetryDataMessage) {
                 createTopMethodCall(methodCall);
             }
-
-        } else if (message instanceof TelemetryDataMessage) {
 
             TelemetryDataMessage telemetryDataMessage =
                     (TelemetryDataMessage) message;
@@ -375,7 +388,7 @@ public class Client implements MessageListener {
             }
 
         }
-
+*/
     }
 
     private void createTopMethodCall(MethodCall methodCall) {
@@ -484,7 +497,7 @@ public class Client implements MessageListener {
         }
     }
 
-    private AtomicLong codeSourceIdGenerator = new AtomicLong();
+    public static AtomicLong codeSourceIdGenerator = new AtomicLong();
     private AtomicLong topMethodCallIdGenerator = new AtomicLong();
     private AtomicLong telemetryDataIdGenerator = new AtomicLong();
 

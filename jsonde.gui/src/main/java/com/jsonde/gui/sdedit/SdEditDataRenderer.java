@@ -14,7 +14,11 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
-
+/**
+ * 
+ * @author admin
+ *
+ */
 public class SdEditDataRenderer {
 
     private final Set<Integer> addedClassNames = new HashSet<Integer>();

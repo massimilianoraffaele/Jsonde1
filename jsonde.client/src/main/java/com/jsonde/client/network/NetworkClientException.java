@@ -1,5 +1,9 @@
 package com.jsonde.client.network;
-
+/**
+ * 
+ * @author admin
+ *
+ */
 public class NetworkClientException extends Exception {
 
     public NetworkClientException() {

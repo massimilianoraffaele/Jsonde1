@@ -5,7 +5,11 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
-
+/**
+ * 
+ * @author admin
+ *
+ */
 public class DaoFactory {
 
     private static DaoFactory instance;
@@ -24,8 +28,8 @@ public class DaoFactory {
     private final ReportDao reportDao;
     private final TelemetryDataDao telemetryDataDao;
 
-    public static void initialize(DataSource dataSource) throws DaoException {
-        instance = new DaoFactory(dataSource);
+    public static void initialize(DataSource dataSource12) throws DaoException {
+        instance = new DaoFactory(dataSource12);
     }
 
     private DaoFactory(DataSource dataSource) throws DaoException {

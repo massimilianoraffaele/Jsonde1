@@ -7,9 +7,16 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
-
+/**
+ * 
+ * @author admin
+ *
+ */
 public class ClassUtils {
 
+	/**
+	 * fdfds
+	 */
     public static final String CONSTRUCTOR_METHOD_NAME = "<init>";
     public static final String STATIC_CONSTRUCTOR_METHOD_NAME = "<clinit>";
     private static final String EMPTY_STRING = "";
@@ -54,13 +61,10 @@ public class ClassUtils {
                     while (jarEntryEnumeration.hasMoreElements()) {
 
                         JarEntry jarEntry = jarEntryEnumeration.nextElement();
-
-
                         String jarEntryName = jarEntry.getName();
-
-                        if (jarEntryName.endsWith(".class")) {
-
-                            if (jarEntryName.contains("/")) {
+                        
+                        
+                        if (jarEntryName.endsWith(".class") || jarEntryName.contains("/")) {
 
                                 String packageName =
                                         jarEntryName.
@@ -88,7 +92,7 @@ public class ClassUtils {
 
             }
 
-        }
+       
 
         return packages;
 

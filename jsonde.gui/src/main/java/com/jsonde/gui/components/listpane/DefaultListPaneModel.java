@@ -3,7 +3,11 @@ package com.jsonde.gui.components.listpane;
 import javax.swing.*;
 import java.util.LinkedList;
 import java.util.List;
-
+/**
+ * 
+ * @author admin
+ *
+ */
 public class DefaultListPaneModel implements ListPaneModel {
 
     private List<String> labelsList;

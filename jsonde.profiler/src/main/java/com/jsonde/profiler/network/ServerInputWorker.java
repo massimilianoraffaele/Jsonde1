@@ -7,7 +7,11 @@ import com.jsonde.util.log.Log;
 import java.io.*;
 import java.net.Socket;
 import java.net.SocketException;
-
+/**
+ * 
+ * @author admin
+ *
+ */
 public class ServerInputWorker implements Runnable, Closeable {
 
     private final static Log log = Log.getLog(ServerInputWorker.class);

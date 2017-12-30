@@ -7,7 +7,11 @@ import org.objectweb.asm.MethodVisitor;
 import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.Type;
 import org.objectweb.asm.commons.AdviceAdapter;
-
+/**
+ * 
+ * @author admin
+ *
+ */
 public class JSondeMethodTransformer extends AdviceAdapter {
 
     private final long methodId;
@@ -193,7 +197,7 @@ public class JSondeMethodTransformer extends AdviceAdapter {
 
     }
 
-    private int generateArgumentsArray(int argIndex) {
+    public int generateArgumentsArray(int argIndex) {
 
         Type[] argumentTypes = Type.getArgumentTypes(methodDesc);
 
@@ -227,58 +231,14 @@ public class JSondeMethodTransformer extends AdviceAdapter {
                             "(Z)Ljava/lang/Boolean;",
                             false
                     );
+
                     break;
-                case Type.SHORT:
-                    super.visitMethodInsn(
-                            INVOKESTATIC,
-                            "java/lang/Short",
-                            "valueOf",
-                            "(S)Ljava/lang/Short;",
-                            false
-                    );
-                    break;
-                case Type.CHAR:
+                default:
                     super.visitMethodInsn(
                             INVOKESTATIC,
                             "java/lang/Character",
                             "valueOf",
                             "(C)Ljava/lang/Character;",
-                            false
-                    );
-                    break;
-                case Type.INT:
-                    super.visitMethodInsn(
-                            INVOKESTATIC,
-                            "java/lang/Integer",
-                            "valueOf",
-                            "(I)Ljava/lang/Integer;",
-                            false
-                    );
-                    break;
-                case Type.FLOAT:
-                    super.visitMethodInsn(
-                            INVOKESTATIC,
-                            "java/lang/Float",
-                            "valueOf",
-                            "(F)Ljava/lang/Float;",
-                            false
-                    );
-                    break;
-                case Type.LONG:
-                    super.visitMethodInsn(
-                            INVOKESTATIC,
-                            "java/lang/Long",
-                            "valueOf",
-                            "(J)Ljava/lang/Long;",
-                            false
-                    );
-                    break;
-                case Type.DOUBLE:
-                    super.visitMethodInsn(
-                            INVOKESTATIC,
-                            "java/lang/Double",
-                            "valueOf",
-                            "(D)Ljava/lang/Double;",
                             false
                     );
                     break;
@@ -295,5 +255,64 @@ public class JSondeMethodTransformer extends AdviceAdapter {
 
         return argIndex;
     }
+    
+public void switch1 () {
+    super.visitMethodInsn(
+            INVOKESTATIC,
+            "java/lang/Short",
+            "valueOf",
+            "(S)Ljava/lang/Short;",
+            false
+            );
+}
+    
+public void switch2 () {
+    super.visitMethodInsn(
+            INVOKESTATIC,
+            "java/lang/Integer",
+            "valueOf",
+            "(I)Ljava/lang/Integer;",
+            false
+    );
+}
+  
+public void switch3 () {
+    super.visitMethodInsn(
+            INVOKESTATIC,
+            "java/lang/Float",
+            "valueOf",
+            "(F)Ljava/lang/Float;",
+            false
+    );
+
+}
+  
+public void switch4 () {
+    super.visitMethodInsn(
+            INVOKESTATIC,
+            "java/lang/Long",
+            "valueOf",
+            "(J)Ljava/lang/Long;",
+            false
+            );
+}
+  
+public void switch5 () {
+    super.visitMethodInsn(
+            INVOKESTATIC,
+            "java/lang/Double",
+            "valueOf",
+            "(D)Ljava/lang/Double;",
+            false
+    );
+}
+  
+
+
+
+
+
+
+    
 
 }

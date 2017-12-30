@@ -3,7 +3,11 @@ package com.jsonde.client.dao;
 import com.jsonde.client.domain.TopMethodCall;
 
 import javax.sql.DataSource;
-
+/**
+ * 
+ * @author admin
+ *
+ */
 public class TopMethodCallDao extends AbstractEntityDao<TopMethodCall> {
 
     public TopMethodCallDao(DataSource dataSource) throws DaoException {

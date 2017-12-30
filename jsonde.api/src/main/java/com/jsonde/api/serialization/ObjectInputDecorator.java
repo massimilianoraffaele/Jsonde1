@@ -2,7 +2,11 @@ package com.jsonde.api.serialization;
 
 import java.io.IOException;
 import java.io.ObjectInput;
-
+/**
+ * 
+ * @author admin
+ *
+ */
 public abstract class ObjectInputDecorator implements ObjectInput {
 
     private final ObjectInput target;
@@ -15,8 +19,8 @@ public abstract class ObjectInputDecorator implements ObjectInput {
         target.readFully(b);
     }
 
-    public Object readObject() throws ClassNotFoundException, IOException {
-        return target.readObject();
+    public ObjectInput readObject() throws ClassNotFoundException, IOException {
+        return (ObjectInput) target.readObject();
     }
 
     public void readFully(byte[] b, int off, int len) throws IOException {

@@ -7,7 +7,11 @@ import org.objectweb.asm.MethodVisitor;
 import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.Type;
 import org.objectweb.asm.commons.AdviceAdapter;
-
+/**
+ * 
+ * @author admin
+ *
+ */
 public class JSondeMethodTransformerOld extends AdviceAdapter {
 
     private final long methodId;
@@ -180,7 +184,8 @@ public class JSondeMethodTransformerOld extends AdviceAdapter {
 
     }
 
-    private int generateArgumentsArray(int argIndex) {
+    @SuppressWarnings("deprecation")
+	private int generateArgumentsArray(int argIndex) {
 
         Type[] argumentTypes = Type.getArgumentTypes(methodDesc);
 
@@ -213,7 +218,7 @@ public class JSondeMethodTransformerOld extends AdviceAdapter {
                             "(Z)Ljava/lang/Boolean;"
                     );
                     break;
-                case Type.SHORT:
+                default:
                     super.visitMethodInsn(
                             INVOKESTATIC,
                             "java/lang/Short",
@@ -221,48 +226,8 @@ public class JSondeMethodTransformerOld extends AdviceAdapter {
                             "(S)Ljava/lang/Short;"
                     );
                     break;
-                case Type.CHAR:
-                    super.visitMethodInsn(
-                            INVOKESTATIC,
-                            "java/lang/Character",
-                            "valueOf",
-                            "(C)Ljava/lang/Character;"
-                    );
-                    break;
-                case Type.INT:
-                    super.visitMethodInsn(
-                            INVOKESTATIC,
-                            "java/lang/Integer",
-                            "valueOf",
-                            "(I)Ljava/lang/Integer;"
-                    );
-                    break;
-                case Type.FLOAT:
-                    super.visitMethodInsn(
-                            INVOKESTATIC,
-                            "java/lang/Float",
-                            "valueOf",
-                            "(F)Ljava/lang/Float;"
-                    );
-                    break;
-                case Type.LONG:
-                    super.visitMethodInsn(
-                            INVOKESTATIC,
-                            "java/lang/Long",
-                            "valueOf",
-                            "(J)Ljava/lang/Long;"
-                    );
-                    break;
-                case Type.DOUBLE:
-                    super.visitMethodInsn(
-                            INVOKESTATIC,
-                            "java/lang/Double",
-                            "valueOf",
-                            "(D)Ljava/lang/Double;"
-                    );
-                    break;
             }
-
+            
             // boxing end
 
             super.visitInsn(AASTORE);
@@ -275,4 +240,57 @@ public class JSondeMethodTransformerOld extends AdviceAdapter {
         return argIndex;
     }
 
+    @SuppressWarnings("deprecation")
+	public void switch1() {
+            super.visitMethodInsn(
+                    INVOKESTATIC,
+                    "java/lang/Double",
+                    "valueOf",
+                    "(D)Ljava/lang/Double;"
+            );
+    }
+    
+    @SuppressWarnings("deprecation")
+	public void switch2() {
+    	super.visitMethodInsn(
+                INVOKESTATIC,
+                "java/lang/Long",
+                "valueOf",
+                "(J)Ljava/lang/Long;"
+        );
+}
+    
+    @SuppressWarnings("deprecation")
+	public void switch3() {
+        super.visitMethodInsn(
+                INVOKESTATIC,
+                "java/lang/Float",
+                "valueOf",
+                "(F)Ljava/lang/Float;"
+        );
+}
+   
+@SuppressWarnings("deprecation")
+public void switch4() {
+    super.visitMethodInsn(
+            INVOKESTATIC,
+            "java/lang/Integer",
+            "valueOf",
+            "(I)Ljava/lang/Integer;"
+    );
+}
+
+@SuppressWarnings("deprecation")
+public void switch5() {
+    super.visitMethodInsn(
+            INVOKESTATIC,
+            "java/lang/Character",
+            "valueOf",
+            "(C)Ljava/lang/Character;"
+    );
+}
+    
+    
+    
+    
 }

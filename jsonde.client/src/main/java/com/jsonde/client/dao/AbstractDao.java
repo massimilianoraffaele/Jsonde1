@@ -6,7 +6,11 @@ import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-
+/**
+ * 
+ * @author admin
+ *
+ */
 public class AbstractDao {
 
     protected DataSource dataSource;

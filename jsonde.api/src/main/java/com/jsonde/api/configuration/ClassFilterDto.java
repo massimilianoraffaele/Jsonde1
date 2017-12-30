@@ -1,7 +1,11 @@
 package com.jsonde.api.configuration;
 
 import java.io.Serializable;
-
+/**
+ * 
+ * @author admin
+ *
+ */
 public class ClassFilterDto implements Serializable {
 
     /**

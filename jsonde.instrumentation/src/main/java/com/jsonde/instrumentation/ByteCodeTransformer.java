@@ -8,7 +8,11 @@ import org.objectweb.asm.ClassWriter;
 import java.lang.instrument.ClassFileTransformer;
 import java.lang.instrument.IllegalClassFormatException;
 import java.security.ProtectionDomain;
-
+/**
+ * 
+ * @author admin
+ *
+ */
 public class ByteCodeTransformer implements ClassFileTransformer {
 
     public byte[] transform(ClassLoader loader, String className, Class<?> classBeingRedefined, ProtectionDomain protectionDomain, byte[] classfileBuffer) throws IllegalClassFormatException {
@@ -31,9 +35,6 @@ public class ByteCodeTransformer implements ClassFileTransformer {
 
         try {
             return transform(classfileBuffer, true, loader, classBeingRedefined);
-        } catch (SkipClassException e) {
-            e.printStackTrace();
-            return classfileBuffer;
         } catch (ByteCodeTransformException e) {
             e.printStackTrace();
             throw new IllegalClassFormatException(e.getMessage());
@@ -54,29 +55,21 @@ public class ByteCodeTransformer implements ClassFileTransformer {
 
     public byte[] transform(byte[] originalBytes, int offset, int length, boolean instrumentClass, ClassLoader classLoader, Class<?> classBeingRedefined) throws ByteCodeTransformException {
 
-        try {
+        ClassReader classReader = new ClassReader(originalBytes, offset, length);
 
-            ClassReader classReader = new ClassReader(originalBytes, offset, length);
+		ClassWriter classWriter = new ClassWriter(classReader, ClassWriter.COMPUTE_MAXS | ClassWriter.COMPUTE_FRAMES);
 
-            ClassWriter classWriter = new ClassWriter(classReader, ClassWriter.COMPUTE_MAXS | ClassWriter.COMPUTE_FRAMES);
+		ClassVisitor classVisitor;
+		classVisitor = new JSondeClassTransformer(classWriter, instrumentClass, classLoader, classBeingRedefined);
 
-            ClassVisitor classVisitor;
-            classVisitor = new JSondeClassTransformer(classWriter, instrumentClass, classLoader, classBeingRedefined);
-
-            classReader.accept(classVisitor, ClassReader.EXPAND_FRAMES);
+		classReader.accept(classVisitor, ClassReader.EXPAND_FRAMES);
 
 
-            final byte[] bytes = classWriter.toByteArray();
-            /*dumpBytes(originalBytes);
-            dumpBytes(bytes);*/
+		final byte[] bytes = classWriter.toByteArray();
+		/*dumpBytes(originalBytes);
+		dumpBytes(bytes);*/
 
-            return bytes;
-
-        } catch (SkipClassException e) {
-            e.printStackTrace();
-            return originalBytes;
-            //throw new ByteCodeTransformException(e); // todo fix
-        }
+		return bytes;
 
     }
 

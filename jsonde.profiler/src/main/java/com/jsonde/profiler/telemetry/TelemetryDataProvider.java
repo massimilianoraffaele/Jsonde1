@@ -7,7 +7,11 @@ import com.jsonde.profiler.Profiler;
 import java.lang.management.ClassLoadingMXBean;
 import java.lang.management.CompilationMXBean;
 import java.lang.management.ManagementFactory;
-
+/**
+ * 
+ * @author admin
+ *
+ */
 public class TelemetryDataProvider implements Runnable {
 
     private Profiler profiler;

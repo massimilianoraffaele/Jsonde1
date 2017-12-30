@@ -5,7 +5,11 @@ import com.jsonde.util.ClassUtils;
 import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.MethodVisitor;
 import org.objectweb.asm.Opcodes;
-
+/**
+ * 
+ * @author admin
+ *
+ */
 public class JSondeClassTransformer extends ClassVisitor {
 
     private String className;

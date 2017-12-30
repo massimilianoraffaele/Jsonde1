@@ -1,13 +1,20 @@
 package com.jsonde.api.methodCall;
 
 import java.io.Serializable;
-
+/**
+ * 
+ * @author admin
+ *
+ */
 public class MethodCallDto implements Serializable {
 
     /**
 	 * 
 	 */
 	private static final long serialVersionUID = 6140934579333095367L;
+	/**
+	 * dsad
+	 */
 	public static final byte RETURN_VALUE_FLAG = 0;
     public static final byte THROW_EXCEPTION_FLAG = 1;
     public static final byte CALLER_ID_SET_FLAG = 2;

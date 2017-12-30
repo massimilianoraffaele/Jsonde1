@@ -3,11 +3,15 @@ package com.jsonde.api.methodCall;
 import com.jsonde.api.Message;
 
 import java.util.Arrays;
-
+/**
+ * 
+ * @author admin
+ *
+ */
 public class RegisterClassMessage extends Message {
 
-    private long classId;
-    private int version;
+    private static long classId;
+    private static int version;
     private int access;
     private String name;
     private String signature;
@@ -97,22 +101,26 @@ public class RegisterClassMessage extends Message {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (getClass() != o.getClass()) return false;
 
-        RegisterClassMessage that = (RegisterClassMessage) o;
+       RegisterClassMessage that = (RegisterClassMessage) o;
 
-        if (access != that.access) return false;
-        if (classId != that.classId) return false;
-        if (version != that.version) return false;
         if (!Arrays.equals(interfaces, that.interfaces)) return false;
-        if (name != null ? !name.equals(that.name) : that.name != null) return false;
-        if (signature != null ? !signature.equals(that.signature) : that.signature != null) return false;
-        if (superName != null ? !superName.equals(that.superName) : that.superName != null) return false;
+        if (name.equals(that.name)) return false;
+        if (signature.equals(that.signature)) return false;
+        if (superName.equals(that.superName)) return false;
 
         return true;
     }
 
+    public static boolean if1() {
+        if (classId != classId) return false;
+        if (version != version) return false;
+       return true; 
+    }
+    
+    
+    
     @Override
     public int hashCode() {
         int result = (int) (classId ^ (classId >>> 32));

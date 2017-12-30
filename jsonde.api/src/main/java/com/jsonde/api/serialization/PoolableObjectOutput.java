@@ -2,7 +2,11 @@ package com.jsonde.api.serialization;
 
 import java.io.IOException;
 import java.io.ObjectOutput;
-
+/**
+ * 
+ * @author admin
+ *
+ */
 public class PoolableObjectOutput extends ObjectOutputDecorator {
 
     public PoolableObjectOutput(ObjectOutput target) {

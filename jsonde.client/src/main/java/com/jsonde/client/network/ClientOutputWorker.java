@@ -8,7 +8,11 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.net.Socket;
-
+/**
+ * 
+ * @author admin
+ *
+ */
 public class ClientOutputWorker implements Runnable {
 
     private final static Log log = Log.getLog(ClientOutputWorker.class);

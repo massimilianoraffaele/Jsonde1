@@ -6,7 +6,11 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-
+/**
+ * 
+ * @author admin
+ *
+ */
 public class DbUtils {
 
     private static final Log log = Log.getLog(DbUtils.class);

@@ -15,7 +15,11 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Random;
-
+/**
+ * 
+ * @author admin
+ *
+ */
 public class LicenseManager {
 
     private byte SALT_SIZE = 8;
@@ -48,7 +52,7 @@ public class LicenseManager {
 
     }
 
-    private byte[] createLicenseCode(byte[] licenseData) throws InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeySpecException, IllegalBlockSizeException, BadPaddingException {
+    public byte[] createLicenseCode(byte[] licenseData) throws InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeySpecException, IllegalBlockSizeException, BadPaddingException {
 
         byte[] salt = new byte[SALT_SIZE];
 
@@ -87,7 +91,7 @@ public class LicenseManager {
         return Arrays.equals(license, licenseData);
     }
 
-    public void saveLicense(String license) {
+    public void saveLicense(String license12) {
 
         String licenseFileName =
                 FileUtils.USER_HOME +
@@ -106,7 +110,7 @@ public class LicenseManager {
 
         try {
             fileWriter = new FileWriter(licenseFile);
-            fileWriter.write(license);
+            fileWriter.write(license12);
         } catch (IOException e) {
             Main.getInstance().processException(e);
         } finally {

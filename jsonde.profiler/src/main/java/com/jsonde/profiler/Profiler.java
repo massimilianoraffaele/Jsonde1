@@ -11,9 +11,16 @@ import com.jsonde.util.log.Log;
 import java.lang.instrument.Instrumentation;
 import java.util.Collection;
 import java.util.List;
+/**
+ * 
+ * @author admin
+ *
+ */
+public abstract class Profiler extends ProfilerAbstractClassForSomeMethods {
 
-public abstract class Profiler {
-
+	/**
+	 * fgfdgd
+	 */
     public static final String CLASS_CANONICAL_NAME = Profiler.class.getCanonicalName();
 
     private static final Log log = Log.getLog(Profiler.class);
@@ -28,8 +35,8 @@ public abstract class Profiler {
         return profiler;
     }
 
-    public static void initializeProfiler(Profiler profiler) {
-        Profiler.profiler = profiler;
+    public static void initializeProfiler(Profiler profiler12) {
+        Profiler.profiler = profiler12;
     }
 
     public static Profiler getProfiler() {
@@ -273,37 +280,21 @@ public abstract class Profiler {
                         Thread[] threads = new Thread[threadsCount];
                         Thread.enumerate(threads);
 
-                        try {
+                        for (Thread thread : threads) {
 
-                            for (int i = 0; i < 1000; i++) {
-                                //Thread.yield();
-                            }
+						    if (Thread.currentThread() == thread)
+						        continue;
+						    
+						}
 
-                            for (Thread thread : threads) {
-
-                                if (Thread.currentThread() == thread || null == thread)
-                                    continue;
-
-                                if (thread.isAlive()) {
-                                    thread.join(250);
-                                }
-
-                            }
-
-                            if (Thread.activeCount() > 1) {
-                                Thread.sleep(500);
-                            }
-
-                        } catch (InterruptedException e) {
-                            Thread.currentThread().interrupt();
-                            log.error("Profiler Shutdown Hook", e);
-                        }
-
-                        try {
-                            stop();
-                        } catch (NetworkServerException e) {
-                            log.error("Profiler Shutdown Hook", e);
-                        }
+						if (Thread.activeCount() > 1) {
+						    try {
+								Thread.sleep(500);
+							} catch (InterruptedException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+						}
                     }
                 }
         ));
@@ -317,7 +308,7 @@ public abstract class Profiler {
 
     protected abstract void describeClassImpl(long methodId, Class clazz);
 
-    public abstract void describeRedefinableClass(long classId, Class clazz);
+//    public abstract void describeRedefinableClass(long classId, Class clazz);
 
     protected abstract void enterMethodImpl(long methodId, Object object, Object[] arguments);
 
@@ -327,7 +318,7 @@ public abstract class Profiler {
 
     protected abstract void leaveMethodImpl(boolean isVoid, boolean isThrowsException, Object result);
 
-    public abstract void sendMessage(Message registerMethodMessage);
+//    public abstract void sendMessage(Message registerMethodMessage);
 
     protected abstract void processMethodCall(
             List<MethodCallDto> methodCallDtos,
@@ -342,9 +333,9 @@ public abstract class Profiler {
             String signature,
             String[] exceptions);
 
-    public abstract long generateClassId(ClassLoader classLoader, String className);
+ //   public abstract long generateClassId(ClassLoader classLoader, String className);
 
-    public abstract long generateClassIdAndRegisterIfAbsent(Class clazz);
+ //   public abstract long generateClassIdAndRegisterIfAbsent(Class clazz);
 
     public abstract long registerClass(
             int version,

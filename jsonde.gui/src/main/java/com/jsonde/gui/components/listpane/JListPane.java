@@ -7,7 +7,11 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.LinkedList;
 import java.util.List;
-
+/**
+ * 
+ * @author admin
+ *
+ */
 public class JListPane extends JList {
 
     private List<ActionListener> actionListeners = new LinkedList<ActionListener>();
@@ -117,7 +121,7 @@ public class JListPane extends JList {
             return listPaneModel.getSize();
         }
 
-        public Object getElementAt(int index) {
+        public String getElementAt(int index) {
             return listPaneModel.getLabelAt(index);
         }
 
