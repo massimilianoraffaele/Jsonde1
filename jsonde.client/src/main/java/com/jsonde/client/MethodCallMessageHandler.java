@@ -10,7 +10,7 @@ import com.jsonde.client.domain.TelemetryData;
 /**
  * 
  * @author admin
- *
+ *massimo
  */
 public class MethodCallMessageHandler implements MessageHandler<MethodCallMessage> {
 	
