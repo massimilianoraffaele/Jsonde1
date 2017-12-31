@@ -18,7 +18,13 @@ public class ClassUtils {
 	 * fdfds
 	 */
     public static final String CONSTRUCTOR_METHOD_NAME = "<init>";
+    /**
+     * string
+     */
     public static final String STATIC_CONSTRUCTOR_METHOD_NAME = "<clinit>";
+    /**
+     * string
+     */
     private static final String EMPTY_STRING = "";
 
     public static String getFullyQualifiedName(String className) {

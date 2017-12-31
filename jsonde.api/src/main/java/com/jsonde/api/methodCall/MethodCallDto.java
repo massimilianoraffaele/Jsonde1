@@ -16,8 +16,17 @@ public class MethodCallDto implements Serializable {
 	 * dsad
 	 */
 	public static final byte RETURN_VALUE_FLAG = 0;
+	/**
+	 * throw
+	 */
     public static final byte THROW_EXCEPTION_FLAG = 1;
+    /**
+     * caller
+     */
     public static final byte CALLER_ID_SET_FLAG = 2;
+    /**
+     * actual
+     */
     public static final byte ACTUAL_CLASS_ID_SET_FLAG = 3;
 
     public byte flags;

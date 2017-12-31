@@ -13,6 +13,11 @@ import com.jsonde.client.domain.ClazzLoader;
 import com.jsonde.client.domain.CodeSource;
 import com.jsonde.client.domain.Method;
 
+/**
+ * 
+ * @author admin
+ *
+ */
 public class DescribeClassMessageHandler implements MessageHandler<DescribeClassMessage>{
 
 	

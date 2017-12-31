@@ -56,6 +56,13 @@ public class ObjectIdGenerator<T> {
         return new Pair<M, N>(m, n);
     }
 
+    /**
+     * 
+     * @author admin
+     *
+     * @param <M>
+     * @param <N>
+     */
     public static class Pair<M, N> extends ObjectWrapper<Pair<M, N>> {
 
         private final M m;

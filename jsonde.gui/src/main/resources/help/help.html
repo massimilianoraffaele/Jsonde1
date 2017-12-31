@@ -46,7 +46,7 @@
 <p>This is the simplest way to attach jSonde agent to your application</p>
 
 <p>Select "File" \ "Attach to Sun JVM" menu item, and you'll see the dialog like shown below:</p>
-<img src="attachToJvm.png" width = "10" height = "10">
+<img src="attachToJvm.png" width = "20" height = "20">
 
 <p>In this dialog there's a list of all java applications running on your computer</p>
 
@@ -153,8 +153,8 @@ emulator -Xnoagent -Xdebug -Xrunjdwp:transport=dt_socket,address=10000,server=y,
 
 <p>After that you'll see a dialog like shown below. It's pretty similar to one, we've described in chapter "Attaching
     agent dynamically" above. Hence the meaning of the similar fields in these two dialogs is the same</p>
-<img src="newProjectDialog.png" width = "10" height = "10">
-<table border="0" width = "10" height = "10">
+<img src="newProjectDialog.png" width = "20" height = "20">
+<table border="1" width = "20" height = "20">
     <tr>
         <td>Project name</td>
         <td>The name of your project. It will be used for creating jSonde project files</td>
@@ -211,7 +211,7 @@ emulator -Xnoagent -Xdebug -Xrunjdwp:transport=dt_socket,address=10000,server=y,
 
 <p>You can use buttons in toolbar for tuning the diagram view; mouse drag is also supported for scrolling the
     diagram</p>
-<img src="sequenceDiagram.png" width = "10" height = "10">
+<img src="sequenceDiagram.png" width = "20" height = "20">
 
 <h3>Viewing reports</h3>
 
@@ -222,35 +222,29 @@ emulator -Xnoagent -Xdebug -Xrunjdwp:transport=dt_socket,address=10000,server=y,
 <p>This report allows you to browse the dependencies of code sources (.jar files for example) inside your project</p>
 
 <p>Sometimes it can be very useful to find missing or redundant dependency</p>
-<img src="dependencyReport.png" width = "10" height = "10">
+<img src="dependencyReport.png" width = "20" height = "20">
 
 <h4>Top Code Sources by Execution Time report</h4>
 
 <p>This report shows the top code sources by execution time.</p>
 
 <p>It allows you to find the most "slow" or rather most "used" method grouped by jar files</p>
-<img src="topCodeSources.png" width = "10" height = "10">
+<img src="topCodeSources.png" width = "20" height = "20">
 
 
 <h4>Top Methods throwing exception</h4>
 
-<p>This report shows you the top method throwing any exceptions</p>
-
-<p>If a method throws an exception a lot of time, it could be a good idea to review it's interface</p>
+<p>This report shows you the top method throwing any exceptions If a method throws an exception a lot of time, it could be a good idea to review it's interface</p>
 <img src="topExceptions.png" width = "10" height = "10">
 
 <h3>jSonde Profiler</h3>
 
 <p>jSonde supports both cpu and memory profiling, and allows you to find most executed methods, most created objects and
-    so on</p>
-
-<p>Click on "Profiler" in accordion panel on the left, and select appropriate profiling view</p>
+    so on Click on "Profiler" in accordion panel on the left, and select appropriate profiling view</p>
 
 <h4>CPU Profiler</h4>
 
-<p>CPU profiler shows you method invocation counters and total execution time of the methods</p>
-
-<p>For convenient browsing, this data is shown as a tree</p>
+<p>CPU profiler shows you method invocation counters and total execution time of the methods For convenient browsing, this data is shown as a tree</p>
 <img src="cpuProfiler.png" width = "10" height = "10">
 
 <h4>Heap analyzer</h4>

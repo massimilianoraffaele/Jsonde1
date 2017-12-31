@@ -10,7 +10,13 @@ public class MethodCallSummary extends AbstractMethodCall {
 	 * gfgd
 	 */
     public Long executionTime;
+    /**
+     * long
+     */
     public Long throwExceptionCounter;
+    /**
+     * long
+     */
     public Long invocationCount;
 
     public Long getExecutionTime() {

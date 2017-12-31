@@ -5,6 +5,7 @@ import java.util.List;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement(name = "report-group")
+
 /**
  * 
  * @author admin

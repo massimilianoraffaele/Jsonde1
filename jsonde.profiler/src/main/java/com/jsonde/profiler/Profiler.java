@@ -1,6 +1,5 @@
 package com.jsonde.profiler;
 
-import com.jsonde.api.Message;
 import com.jsonde.api.MessageListener;
 import com.jsonde.api.methodCall.MethodCallDto;
 import com.jsonde.api.methodCall.MethodCallSummaryDto;
@@ -25,7 +24,13 @@ public abstract class Profiler extends ProfilerAbstractClassForSomeMethods {
 
     private static final Log log = Log.getLog(Profiler.class);
 
+    /**
+     * long
+     */
     public static final long UNDEFINED_CLASS_ID = -1;
+    /**
+     * long
+     */
     public static final long UNDEFINED_METHOD_ID = -1;
 
     private static volatile Profiler profiler;

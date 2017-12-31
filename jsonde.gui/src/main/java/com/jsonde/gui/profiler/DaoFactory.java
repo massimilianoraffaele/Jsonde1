@@ -1,5 +1,9 @@
 package com.jsonde.gui.profiler;
-
+/**
+ * 
+ * @author admin
+ *
+ */
 public class DaoFactory {
 
 	public static Object getMethodCallSummaryDao() {

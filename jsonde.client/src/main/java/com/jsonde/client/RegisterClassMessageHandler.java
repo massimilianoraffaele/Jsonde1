@@ -5,7 +5,11 @@ import com.jsonde.client.dao.DaoException;
 import com.jsonde.client.dao.DaoFactory;
 import com.jsonde.client.domain.Clazz;
 import com.jsonde.client.Client;
-
+/**
+ * 
+ * @author admin
+ *
+ */
 public class RegisterClassMessageHandler implements MessageHandler<RegisterClassMessage> {
 
 	public void onMessage(RegisterClassMessage message){

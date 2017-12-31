@@ -2,6 +2,11 @@ package com.jsonde.profiler;
 
 import com.jsonde.api.Message;
 
+/**
+ * 
+ * @author admin
+ *
+ */
 public abstract class ProfilerAbstractClassForSomeMethods {
 
     public abstract void describeRedefinableClass(long classId, Class clazz);

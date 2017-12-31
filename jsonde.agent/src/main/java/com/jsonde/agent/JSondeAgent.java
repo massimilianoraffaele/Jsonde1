@@ -8,7 +8,6 @@ import com.jsonde.profiler.Profiler;
 import com.jsonde.profiler.network.NetworkServerException;
 import com.jsonde.util.ClassUtils;
 import com.jsonde.util.StringUtils;
-import com.jsonde.util.io.IO;
 import com.jsonde.util.log.Log;
 
 import java.io.ByteArrayOutputStream;

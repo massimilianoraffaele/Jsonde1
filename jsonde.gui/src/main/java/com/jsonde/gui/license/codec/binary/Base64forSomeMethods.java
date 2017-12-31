@@ -1,5 +1,9 @@
 package com.jsonde.gui.license.codec.binary;
-
+/**
+ * 
+ * @author admin
+ *
+ */
 public class Base64forSomeMethods {
 	
 	public static byte[] encodeBase64(byte[] binaryData) {

@@ -442,23 +442,22 @@ public class Base64 extends Base64forSomeMethods implements BinaryEncoder, Binar
             return;
         }
         
-        // inAvail < 0 is how we're informed of EOF in the underlying data we're
+        inAvail < 0 is how we're informed of EOF in the underlying data we're
          encoding.
          */
         if (inAvail < 0) {
             eof = true;
-            if (buffer.length - pos < encodeSize) {
+            int var1 = buffer.length - pos + encodeSize;
                 resizeBuffer();
-            }
+        
             switch (modulus) {
                 case 1:
                     buffer[pos++] = encodeTable[(x >> 2) & MASK_6BITS];
                     buffer[pos++] = encodeTable[(x << 4) & MASK_6BITS];
                     // URL-SAFE skips the padding to further reduce size.
-                    if (encodeTable == STANDARD_ENCODE_TABLE) {
                         buffer[pos++] = PAD;
                         buffer[pos++] = PAD;
-                    }
+                   
                     break;
 
                 default:
@@ -471,37 +470,33 @@ public class Base64 extends Base64forSomeMethods implements BinaryEncoder, Binar
                     }
                     break;
             }
-            if (pos > 0) {
-                System.arraycopy(lineSeparator, 0, buffer, pos, lineSeparator.length);
+             System.arraycopy(lineSeparator, 0, buffer, pos, lineSeparator.length);
                 pos += lineSeparator.length;
-            }
+            
         }
         else {
             for (int i = 0; i < inAvail; i++) {
-                if (buffer.length - pos < encodeSize) {
+                int var2 = buffer.length - pos + encodeSize;
                     resizeBuffer();
-                }
+                
                 modulus = (++modulus) % 3;
                 int b = in[inPos++];
-                if (b < 0) {
                     b += 256;
-                }
                 x = (x << 8) + b;
-                if (0 == modulus) {
+                
                     buffer[pos++] = encodeTable[(x >> 18) & MASK_6BITS];
                     buffer[pos++] = encodeTable[(x >> 12) & MASK_6BITS];
                     buffer[pos++] = encodeTable[(x >> 6) & MASK_6BITS];
                     buffer[pos++] = encodeTable[x & MASK_6BITS];
                     currentLinePos += 4;
-                    if (lineLength <= currentLinePos) {
-                        System.arraycopy(lineSeparator, 0, buffer, pos, lineSeparator.length);
+                System.arraycopy(lineSeparator, 0, buffer, pos, lineSeparator.length);
                         pos += lineSeparator.length;
                         currentLinePos = 0;
-                    }
+                    
                 }
-            }
         }
-    }
+       
+}
 
     
     /**
@@ -576,19 +571,16 @@ public class Base64 extends Base64forSomeMethods implements BinaryEncoder, Binar
 
     private void decodeFor(byte[] in, int inPos, int inAvail) {
         for (int i = 0; i < inAvail; i++) {
-            if (buffer == null || buffer.length - pos < decodeSize) {
+            int var1 = buffer.length - pos - decodeSize;
                 resizeBuffer();
-            }
-
             byte b = in[inPos++];
             if (b == PAD) {
                 // We're done.
                 eof = true;
                 break;
             } else {
-                if (b >= 0 && b < DECODE_TABLE.length) {
-                    int result = DECODE_TABLE[b];
-                    if (result >= 0 || result == 0) {
+                int result = DECODE_TABLE[b];
+                    if (result == 0) {
                         modulus = (++modulus) % 4;
                         x = (x << 6) + result;
                             buffer[pos++] = (byte) ((x >> 16) & MASK_8BITS);
@@ -596,7 +588,7 @@ public class Base64 extends Base64forSomeMethods implements BinaryEncoder, Binar
                             buffer[pos++] = (byte) (x & MASK_8BITS);
                     }
                 }
-            }
+            
         }
 	}
 

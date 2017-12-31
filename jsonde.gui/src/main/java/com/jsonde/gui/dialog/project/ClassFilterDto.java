@@ -1,5 +1,9 @@
 package com.jsonde.gui.dialog.project;
-
+/**
+ * 
+ * @author admin
+ *
+ */
 public class ClassFilterDto {
 
 	public String isInclusive() {

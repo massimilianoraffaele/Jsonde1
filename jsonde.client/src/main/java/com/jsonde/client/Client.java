@@ -6,7 +6,6 @@ import com.jsonde.api.function.heap.ClassHeapDataDto;
 import com.jsonde.api.function.heap.DumpHeapFunctionRequest;
 import com.jsonde.api.function.heap.DumpHeapFunctionResponse;
 import com.jsonde.api.methodCall.*;
-import com.jsonde.api.telemetry.TelemetryDataDto;
 import com.jsonde.api.telemetry.TelemetryDataMessage;
 import com.jsonde.client.dao.*;
 import com.jsonde.client.domain.*;
@@ -30,7 +29,9 @@ import java.util.concurrent.atomic.AtomicLong;
 public class Client implements MessageListener {
 	
 	
-
+/**
+ * public
+ */
     public NetworkClient networkClient;
 
     public Vector<MethodCallListener> methodCallListeners = new Vector<MethodCallListener>();
@@ -391,7 +392,11 @@ public class Client implements MessageListener {
 */
     }
 
-    private void createTopMethodCall(MethodCall methodCall) {
+    /**
+     * 
+     * @param methodCall
+     */
+    public void createTopMethodCall(MethodCall methodCall) {
 
         //todo move this logic to thread local profiler
 

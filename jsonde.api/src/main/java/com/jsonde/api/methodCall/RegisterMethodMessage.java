@@ -3,6 +3,7 @@ package com.jsonde.api.methodCall;
 import com.jsonde.api.Message;
 
 import java.util.Arrays;
+
 /**
  * 
  * @author admin
@@ -10,9 +11,12 @@ import java.util.Arrays;
  */
 public class RegisterMethodMessage extends Message {
 
-    private static long methodId;
-    private static long classId;
-    private static int access;
+    private long methodId;
+    private long methodId1;
+    private long classId;
+    private long classId1;
+    private int access1;
+    private int access;
     private String name;
     private String desc;
     private String signature;
@@ -20,7 +24,7 @@ public class RegisterMethodMessage extends Message {
 
     public RegisterMethodMessage() {
     }
-
+    
     public RegisterMethodMessage(
             long methodId,
             long classId,
@@ -28,7 +32,8 @@ public class RegisterMethodMessage extends Message {
             String name,
             String desc,
             String signature,
-            String[] exceptions) {
+            String[] exceptions ) 
+    {
         this.methodId = methodId;
         this.classId = classId;
         this.access = access;
@@ -108,10 +113,10 @@ public class RegisterMethodMessage extends Message {
         return true;
     }
     
-    public static boolean if2() {
-    	if (access != access) return false;
-        if (classId != classId) return false;
-        if (methodId != methodId) return false;
+    public boolean if2() {
+    	if (this.access != access1) return false;
+        if (this.classId != classId1) return false;
+        if (this.methodId != methodId1) return false;
         return true;
     }
 
