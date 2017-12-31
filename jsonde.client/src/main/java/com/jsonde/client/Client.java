@@ -6,7 +6,6 @@ import com.jsonde.api.function.heap.ClassHeapDataDto;
 import com.jsonde.api.function.heap.DumpHeapFunctionRequest;
 import com.jsonde.api.function.heap.DumpHeapFunctionResponse;
 import com.jsonde.api.methodCall.*;
-import com.jsonde.api.telemetry.TelemetryDataMessage;
 import com.jsonde.client.dao.*;
 import com.jsonde.client.domain.*;
 import com.jsonde.client.network.NetworkClient;
@@ -34,7 +33,13 @@ public class Client implements MessageListener {
  */
     public NetworkClient networkClient;
 
+    /**
+     * vector
+     */
     public Vector<MethodCallListener> methodCallListeners = new Vector<MethodCallListener>();
+   /**
+    * vector
+    */
     public static Vector<ClassListener> classListeners = new Vector<ClassListener>();
 
     public void addMethodCallListener(MethodCallListener methodCallListener) {

@@ -11,7 +11,6 @@ import com.jsonde.util.StringUtils;
 import com.jsonde.util.log.Log;
 
 import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.lang.instrument.ClassFileTransformer;
 import java.lang.instrument.IllegalClassFormatException;

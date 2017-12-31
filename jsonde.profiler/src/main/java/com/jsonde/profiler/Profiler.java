@@ -51,10 +51,19 @@ public abstract class Profiler extends ProfilerAbstractClassForSomeMethods {
         return profiler;
     }
 
+    /**
+     * string
+     */
     public static final String ENTER_METHOD_METHOD_NAME =
             "enterMethod";
+    /**
+     * string
+     */
     public static final String ENTER_METHOD_METHOD_DESCRIPTOR =
             "(JLjava/lang/Object;[Ljava/lang/Object;)V";
+    /**
+     * string
+     */
     private static final String ENTER_METHOD_METHOD_NAME_WITH_DESCRIPTOR =
             ENTER_METHOD_METHOD_NAME + ENTER_METHOD_METHOD_DESCRIPTOR;
 

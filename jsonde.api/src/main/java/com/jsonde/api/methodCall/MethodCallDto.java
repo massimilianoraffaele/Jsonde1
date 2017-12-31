@@ -28,15 +28,30 @@ public class MethodCallDto implements Serializable {
      * actual
      */
     public static final byte ACTUAL_CLASS_ID_SET_FLAG = 3;
-
+/**
+ * flags
+ */
     public byte flags;
 
+    /**
+     * long
+     */
     public long methodCallId;
+    /**
+     * long
+     */
     public long callerId;
-
+/**
+ * long
+ */
     public long methodId;
+    /**
+     * long
+     */
     public long actualClassId;
-
+/**
+ * long
+ */
     public long executionTime;
 
     public void returnToPool() {

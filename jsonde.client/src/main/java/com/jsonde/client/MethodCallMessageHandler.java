@@ -3,7 +3,6 @@ package com.jsonde.client;
 import com.jsonde.api.methodCall.MethodCallDto;
 import com.jsonde.api.methodCall.MethodCallMessage;
 import com.jsonde.api.methodCall.MethodCallSummaryDto;
-import com.jsonde.api.telemetry.TelemetryDataMessage;
 import com.jsonde.client.dao.DaoException;
 import com.jsonde.client.dao.DaoFactory;
 import com.jsonde.client.domain.MethodCall;

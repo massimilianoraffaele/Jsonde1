@@ -10,7 +10,6 @@ import com.jsonde.util.db.DbUtils;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
-import org.jfree.chart.plot.XYPlot;
 import org.jfree.data.general.DefaultPieDataset;
 import org.jfree.data.time.Millisecond;
 import org.jfree.data.time.RegularTimePeriod;
