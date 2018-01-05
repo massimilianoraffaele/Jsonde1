@@ -1,23 +1,34 @@
 package com.jsonde.gui.profiler;
 
+import java.awt.BorderLayout;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+
 import com.jsonde.client.dao.DaoException;
 import com.jsonde.client.dao.DaoFactory;
 import com.jsonde.client.domain.Method;
 import com.jsonde.client.domain.MethodCallSummary;
 import com.jsonde.gui.Main;
-import org.freehep.swing.treetable.AbstractTreeTableModel;
-import org.freehep.swing.treetable.JTreeTable;
-import org.freehep.swing.treetable.TreeTableModel;
-
-import javax.swing.*;
-import java.awt.*;
-import java.util.ArrayList;
-import java.util.List;
-
+/**
+ * 
+ * @author admin
+ *
+ */
 public class MethodCallProfilerView extends JPanel {
 
+	/**
+	 * 
+	 * @author albertomadio
+	 * MethodCallProfilerNode
+	 */
     private static class MethodCallProfilerNode {
 
+    	/**
+    	 * id
+    	 */
         final Long id;
 
         final String name;
@@ -31,6 +42,13 @@ public class MethodCallProfilerView extends JPanel {
             return name;
         }
 
+        /**
+         * 
+         * @param id
+         * @param name
+         * @param invocationCount
+         * @param totalTime
+         */
         private MethodCallProfilerNode(Long id, String name, long invocationCount, String totalTime) {
             this.id = id;
             this.name = name;
@@ -43,24 +61,12 @@ public class MethodCallProfilerView extends JPanel {
             if (null == childNodes) {
 
                 try {
-                    /*List<MethodCallSummary> methodCallSummaries;
-                    if (null == id) {
-                         methodCallSummaries =
-                                DaoFactory.getMethodCallSummaryDao().getByCondition("CALLERID IS NULL ORDER BY TOTALTIME DESC");
-
-                        // select methodid as methodid, count(id) as invocationcount, sum(executiontime) as executiontime from methodcall where callerid is null group by methodid order by executiontime desc
-
-                    } else {
-                        methodCallSummaries =
-                                DaoFactory.getMethodCallSummaryDao().getByCondition("CALLERID = ? ORDER BY TOTALTIME DESC", id);
-                    }*/
-
+                  
                     List<MethodCallSummary> methodCallSummaries =
                             DaoFactory.getMethodCallSummaryDao().getCpuProfilerData(id);
 
                     childNodes = new ArrayList<MethodCallProfilerNode>(methodCallSummaries.size());
 
-//                    for (MethodCallSummary methodCallSummary : methodCallSummaries) {
                     for (MethodCallSummary methodCallSummary : methodCallSummaries) {
 
                         Method method = DaoFactory.getMethodDao().get(methodCallSummary.getMethodId());
@@ -87,20 +93,10 @@ public class MethodCallProfilerView extends JPanel {
                         if (time > 0) {
 
                             timeStringBuilder.insert(0, time % 60L + " s ");
-
+                            timeStringBuilder.insert(0, time % 60L + " m ");
+                            timeStringBuilder.insert(0, time + " h ");
+                            
                             time /= 60L;
-
-                            if (time > 0) {
-                                timeStringBuilder.insert(0, time % 60L + " m ");
-
-                                time /= 60L;
-
-                                if (time > 0) {
-                                    timeStringBuilder.insert(0, time + " h ");
-                                }
-
-                            }
-
                         }
 
                         MethodCallProfilerNode childNode = new MethodCallProfilerNode(
@@ -145,13 +141,22 @@ public class MethodCallProfilerView extends JPanel {
         add(scrollPane, BorderLayout.CENTER);
     }
 
+    /**
+     * 
+     * @author albertomadio
+     * MethodCallProfilerViewTreeTableModel
+     */
     private class MethodCallProfilerViewTreeTableModel extends AbstractTreeTableModel {
 
+    	/**
+    	 * 
+    	 * @param root
+    	 */
         private MethodCallProfilerViewTreeTableModel(MethodCallProfilerNode root) {
             super(root);
         }
 
-        public Object getChild(Object parent, int index) {
+        public MethodCallProfilerNode getChild(Object parent, int index) {
             MethodCallProfilerNode parentNode = (MethodCallProfilerNode) parent;
             return parentNode.getChildNodes().get(index);
         }
@@ -177,7 +182,6 @@ public class MethodCallProfilerView extends JPanel {
             return null;
         }
 
-        @Override
         public Class getColumnClass(int column) {
             switch (column) {
                 case 0:
@@ -190,8 +194,7 @@ public class MethodCallProfilerView extends JPanel {
             return null;
         }
 
-        @Override
-        public Object getValueAt(Object o, int i) {
+        public String getValueAt(Object o, int i) {
 
             MethodCallProfilerNode node = (MethodCallProfilerNode) o;
 
@@ -199,7 +202,9 @@ public class MethodCallProfilerView extends JPanel {
                 case 0:
                     return node.name;
                 case 1:
-                    return node.invocationCount;
+                    String invocationCount1 = new String(); 
+                    invocationCount1 = String.valueOf(node.invocationCount);
+                    return invocationCount1;
                 case 2:
                     return node.totalTime;
             }

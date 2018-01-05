@@ -1,14 +1,24 @@
 package com.jsonde.gui.dialog.project.sun;
 
-import com.jsonde.gui.dialog.JSondeDialog;
-import com.jsonde.gui.dialog.project.FiltersPanel;
-import com.jsonde.gui.dialog.project.FiltersPanelImpl;
-
-import javax.swing.*;
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Container;
+import java.awt.FlowLayout;
+import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
+import com.jsonde.gui.dialog.JSondeDialog;
+import com.jsonde.gui.dialog.project.FiltersPanel;
+import com.jsonde.gui.dialog.project.FiltersPanelImpl;
+/**
+ * 
+ * @author admin
+ *
+ */
 public class AttachSunJVMDialog extends JSondeDialog {
 
     private SunJVMFieldsPanel fieldsPanel;
@@ -42,6 +52,10 @@ public class AttachSunJVMDialog extends JSondeDialog {
         return filtersPanel;
     }
 
+    /**
+     * void 
+     * createGUI
+     */
     private void createGUI() {
 
         Container contentPane = getContentPane();
@@ -65,6 +79,11 @@ public class AttachSunJVMDialog extends JSondeDialog {
 
     }
 
+    /**
+     * 
+     * @author albertomadio
+     * ButtonsPanel
+     */
     private class ButtonsPanel extends JPanel {
 
         private boolean ok;
@@ -73,10 +92,14 @@ public class AttachSunJVMDialog extends JSondeDialog {
             return ok;
         }
 
-        private ButtonsPanel() {
+        public ButtonsPanel() {
             this("Ok");
         }
 
+        /**
+         * 
+         * @param okTitle
+         */
         private ButtonsPanel(String okTitle) {
 
             setLayout(new FlowLayout(FlowLayout.RIGHT));

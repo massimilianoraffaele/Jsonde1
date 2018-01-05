@@ -1,5 +1,11 @@
 package com.jsonde.gui.action;
 
+import java.awt.event.ActionEvent;
+
+import javax.swing.AbstractAction;
+import javax.swing.Action;
+import javax.swing.ImageIcon;
+
 import com.jsonde.api.configuration.AgentConfigurationMessage;
 import com.jsonde.client.Client;
 import com.jsonde.gui.Main;
@@ -8,11 +14,13 @@ import com.jsonde.gui.configuration.SessionConfigurationException;
 import com.jsonde.gui.dialog.project.FieldsPanel;
 import com.jsonde.gui.dialog.project.NewProjectDialog;
 import com.jsonde.gui.sdedit.SdEditUIAdapter;
+
 import net.sf.sdedit.icons.Icons;
-
-import javax.swing.*;
-import java.awt.event.ActionEvent;
-
+/**
+ * 
+ * @author admin
+ *
+ */
 public class NewProjectAction extends AbstractAction {
 
     private SdEditUIAdapter sdEditUIAdapter;

@@ -1,13 +1,21 @@
 package com.jsonde.gui.action;
 
+import java.awt.event.ActionEvent;
+
+import javax.swing.AbstractAction;
+import javax.swing.Action;
+import javax.swing.ImageIcon;
+
 import com.jsonde.gui.ApplicationUserInterface;
 import com.jsonde.gui.dialog.about.AboutDialog;
 import com.jsonde.gui.sdedit.SdEditUIAdapter;
+
 import net.sf.sdedit.icons.Icons;
-
-import javax.swing.*;
-import java.awt.event.ActionEvent;
-
+/**
+ * 
+ * @author admin
+ *
+ */
 public class AboutAction extends AbstractAction {
 
     private ApplicationUserInterface applicationUserInterface;

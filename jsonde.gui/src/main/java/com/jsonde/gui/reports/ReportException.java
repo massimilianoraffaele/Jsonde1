@@ -1,5 +1,9 @@
 package com.jsonde.gui.reports;
-
+/**
+ * 
+ * @author admin
+ *
+ */
 public class ReportException extends Exception {
 
     public ReportException() {

@@ -1,11 +1,18 @@
 package com.jsonde.gui.components;
 
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Component;
+import java.awt.Cursor;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import javax.swing.Action;
+import javax.swing.JLabel;
+/**
+ * 
+ * @author admin
+ *
+ */
 public class JActionLabel extends JLabel implements MouseListener {
 
     private Action action;

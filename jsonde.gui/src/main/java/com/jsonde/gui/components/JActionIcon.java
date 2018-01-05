@@ -1,12 +1,20 @@
 package com.jsonde.gui.components;
 
-import javax.swing.*;
-import javax.swing.border.Border;
-import java.awt.*;
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import javax.swing.Action;
+import javax.swing.BorderFactory;
+import javax.swing.Icon;
+import javax.swing.JLabel;
+import javax.swing.border.Border;
+/**
+ * 
+ * @author admin
+ *
+ */
 public class JActionIcon extends JLabel implements MouseListener {
 
     private Border emptyBorder = BorderFactory.createEmptyBorder(2, 2, 2, 2);

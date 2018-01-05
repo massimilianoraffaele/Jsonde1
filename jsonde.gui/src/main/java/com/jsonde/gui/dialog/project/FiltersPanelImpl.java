@@ -1,13 +1,19 @@
 package com.jsonde.gui.dialog.project;
 
-import com.jsonde.api.configuration.ClassFilterDto;
-
-import javax.swing.*;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
-import java.awt.*;
+import java.awt.BorderLayout;
 import java.util.List;
 
+import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+
+import com.jsonde.api.configuration.ClassFilterDto;
+/**
+ * 
+ * @author admin
+ *
+ */
 public class FiltersPanelImpl extends JPanel implements ChangeListener, FiltersPanel {
 
     private JTabbedPane tabbedPane;

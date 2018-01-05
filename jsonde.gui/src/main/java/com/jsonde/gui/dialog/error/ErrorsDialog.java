@@ -1,11 +1,23 @@
 package com.jsonde.gui.dialog.error;
 
-import com.jsonde.gui.dialog.JSondeDialog;
-
-import javax.swing.*;
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Container;
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 
+import javax.swing.AbstractAction;
+import javax.swing.Action;
+import javax.swing.JButton;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+
+import com.jsonde.gui.dialog.JSondeDialog;
+/**
+ * 
+ * @author admin
+ *
+ */
 public class ErrorsDialog extends JSondeDialog {
 
     private StringBuffer stringBuffer;

@@ -1,10 +1,21 @@
 package com.jsonde.gui.reports;
 
-import javax.xml.bind.annotation.*;
 import java.util.List;
+
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement(name = "report-group")
+
+/**
+ * 
+ * @author admin
+ *massimo
+ */
 public class ReportGroup {
 
     @XmlAttribute(name = "id")

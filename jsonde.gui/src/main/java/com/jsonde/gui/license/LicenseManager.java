@@ -1,13 +1,15 @@
 package com.jsonde.gui.license;
 
-import com.jsonde.gui.Main;
-import com.jsonde.gui.license.codec.binary.Base64;
-import com.jsonde.util.file.FileUtils;
-import com.jsonde.util.io.IO;
-
-import javax.crypto.*;
-import javax.crypto.spec.DESKeySpec;
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
@@ -16,12 +18,40 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Random;
 
+import javax.crypto.BadPaddingException;
+import javax.crypto.Cipher;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
+import javax.crypto.SecretKeyFactory;
+import javax.crypto.spec.DESKeySpec;
+
+import com.jsonde.gui.Main;
+import com.jsonde.gui.license.codec.binary.Base64;
+import com.jsonde.util.file.FileUtils;
+import com.jsonde.util.io.IO;
+/**
+ * 
+ * @author admin
+ *
+ */
 public class LicenseManager {
 
-    private byte SALT_SIZE = 8;
+
+    private final byte SALT_SIZE = 8;
 
     private Random saltGenerator = new Random(System.currentTimeMillis());
 
+    /**
+     * 
+     * @param licenseCode
+     * @return
+     * @throws InvalidKeyException
+     * @throws NoSuchAlgorithmException
+     * @throws InvalidKeySpecException
+     * @throws NoSuchPaddingException
+     * @throws IllegalBlockSizeException
+     * @throws BadPaddingException
+     */
     private byte[] getLicenseData(byte[] licenseCode) throws
             InvalidKeyException,
             NoSuchAlgorithmException,
@@ -48,7 +78,7 @@ public class LicenseManager {
 
     }
 
-    private byte[] createLicenseCode(byte[] licenseData) throws InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeySpecException, IllegalBlockSizeException, BadPaddingException {
+    public byte[] createLicenseCode(byte[] licenseData) throws InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeySpecException, IllegalBlockSizeException, BadPaddingException {
 
         byte[] salt = new byte[SALT_SIZE];
 
@@ -87,7 +117,7 @@ public class LicenseManager {
         return Arrays.equals(license, licenseData);
     }
 
-    public void saveLicense(String license) {
+    public void saveLicense(String license12) {
 
         String licenseFileName =
                 FileUtils.USER_HOME +
@@ -106,7 +136,7 @@ public class LicenseManager {
 
         try {
             fileWriter = new FileWriter(licenseFile);
-            fileWriter.write(license);
+            fileWriter.write(license12);
         } catch (IOException e) {
             Main.getInstance().processException(e);
         } finally {

@@ -1,12 +1,27 @@
 package com.jsonde.gui.dialog.license;
 
-import com.jsonde.gui.dialog.JSondeDialog;
-import com.jsonde.gui.license.LicenseManager;
-
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Container;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 
+import javax.swing.AbstractAction;
+import javax.swing.ButtonGroup;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JRadioButton;
+import javax.swing.JTextField;
+
+import com.jsonde.gui.dialog.JSondeDialog;
+import com.jsonde.gui.license.LicenseManager;
+/**
+ * 
+ * @author admin
+ *
+ */
 public class LicenseDialog extends JSondeDialog {
 
     private boolean evaluate;

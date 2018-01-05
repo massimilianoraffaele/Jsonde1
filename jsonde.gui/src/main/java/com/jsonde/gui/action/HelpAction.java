@@ -1,17 +1,28 @@
 package com.jsonde.gui.action;
 
-import com.jsonde.gui.ApplicationUserInterface;
-import com.jsonde.gui.Main;
-import com.jsonde.gui.sdedit.SdEditUIAdapter;
-import net.sf.sdedit.icons.Icons;
-
-import javax.swing.*;
-import javax.swing.text.html.HTMLDocument;
-import javax.swing.text.html.HTMLEditorKit;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.net.URL;
 
+import javax.swing.AbstractAction;
+import javax.swing.Action;
+import javax.swing.ImageIcon;
+import javax.swing.JComponent;
+import javax.swing.JEditorPane;
+import javax.swing.JScrollPane;
+import javax.swing.text.html.HTMLDocument;
+import javax.swing.text.html.HTMLEditorKit;
+
+import com.jsonde.gui.ApplicationUserInterface;
+import com.jsonde.gui.Main;
+import com.jsonde.gui.sdedit.SdEditUIAdapter;
+
+import net.sf.sdedit.icons.Icons;
+/**
+ * 
+ * @author admin
+ *
+ */
 public class HelpAction extends AbstractAction {
 
     private ApplicationUserInterface applicationUserInterface;
@@ -37,6 +48,10 @@ public class HelpAction extends AbstractAction {
 
     }
 
+    /**
+     * 
+     * @return
+     */
     private JScrollPane createHTMLPane() {
 
         HTMLEditorKit htmlEditorKit = new HTMLEditorKit();

@@ -1,13 +1,27 @@
 package com.jsonde.gui.dialog.about;
 
-import com.jsonde.gui.dialog.JSondeDialog;
-import com.jsonde.util.file.FileUtils;
-
-import javax.swing.*;
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Container;
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.util.Map;
 
+import javax.swing.AbstractAction;
+import javax.swing.Action;
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+
+import com.jsonde.gui.dialog.JSondeDialog;
+import com.jsonde.util.file.FileUtils;
+/**
+ * 
+ * @author admin
+ *
+ */
 public class AboutDialog extends JSondeDialog {
 
     public AboutDialog() {

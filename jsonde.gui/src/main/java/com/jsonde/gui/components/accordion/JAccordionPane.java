@@ -1,7 +1,12 @@
 package com.jsonde.gui.components.accordion;
 
-import javax.swing.*;
-
+import javax.swing.Icon;
+import javax.swing.JComponent;
+/**
+ * 
+ * @author admin
+ *
+ */
 public class JAccordionPane {
 
     private String title;

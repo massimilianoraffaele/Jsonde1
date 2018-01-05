@@ -1,11 +1,24 @@
 package com.jsonde.gui.components.accordion;
 
-import javax.swing.*;
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
+import javax.swing.AbstractAction;
+import javax.swing.BorderFactory;
+import javax.swing.Icon;
+import javax.swing.JButton;
+import javax.swing.JComponent;
+import javax.swing.JPanel;
+/**
+ * 
+ * @author admin
+ *
+ */
 public class JAccordionPanel extends JPanel {
 
     private Set<JAccordionPane> accordionPanes = new LinkedHashSet<JAccordionPane>();
@@ -31,8 +44,12 @@ public class JAccordionPanel extends JPanel {
 
     }
 
+    /**
+     * void
+     * buildButtonPanel
+     */
     private void buildButtonsPanel() {
-
+    	
         buttonsPanel.removeAll();
 
         int i = 0;
@@ -59,10 +76,6 @@ public class JAccordionPanel extends JPanel {
             i++;
 
         }
-
-        /*if (1 == i) {
-            accordionPanelButtonAction.selectPane();
-        }*/
 
         validate();
 
@@ -92,10 +105,19 @@ public class JAccordionPanel extends JPanel {
 
     }
 
+    /**
+     * 
+     * @author albertomadio
+     * AccordionPanelButtonAction
+     */
     private class AccordionPanelButtonAction extends AbstractAction {
 
         private JAccordionPane accordionPane;
 
+        /**
+         * 
+         * @param accordionPane
+         */
         private AccordionPanelButtonAction(JAccordionPane accordionPane) {
             this.accordionPane = accordionPane;
             putValue(NAME, accordionPane.getTitle());

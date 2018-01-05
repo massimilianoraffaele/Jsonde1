@@ -38,8 +38,8 @@
     <dependencies>
         <dependency>
             <groupId>net.sf.sdedit</groupId>
-            <artifactId>sdedit</artifactId>
-            <version>3.0.5</version>
+            <artifactId>sdedit-light</artifactId>
+            <version>3.1</version>
         </dependency>
         <dependency>
             <groupId>com.jsonde</groupId>

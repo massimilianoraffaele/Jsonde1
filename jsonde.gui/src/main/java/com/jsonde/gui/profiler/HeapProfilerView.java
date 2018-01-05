@@ -1,15 +1,22 @@
 package com.jsonde.gui.profiler;
 
+import java.awt.BorderLayout;
+
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+
 import com.jsonde.client.Client;
 import com.jsonde.client.dao.DaoException;
 import com.jsonde.client.dao.DaoFactory;
 import com.jsonde.client.domain.Clazz;
 import com.jsonde.gui.Main;
-
-import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
-import java.awt.*;
-
+/**
+ * 
+ * @author admin
+ *
+ */
 public class HeapProfilerView extends JPanel {
 
     private Client client;

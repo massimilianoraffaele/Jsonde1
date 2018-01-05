@@ -1,14 +1,32 @@
 package com.jsonde.gui.dialog.project;
 
-import com.jsonde.gui.components.JActionIcon;
-import net.sf.sdedit.icons.Icons;
-
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 
+import javax.swing.AbstractAction;
+import javax.swing.Action;
+import javax.swing.ImageIcon;
+import javax.swing.JComponent;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+import com.jsonde.gui.components.JActionIcon;
+
+import net.sf.sdedit.icons.Icons;
+/**
+ * 
+ * @author admin
+ *
+ */
 public class FieldsPanel extends JPanel {
 
+	/**
+	 * projectNameField
+	 */
     JTextField projectNameField;
     JTextField projectFilesLocationField;
     JTextField agentHostField;
@@ -46,6 +64,10 @@ public class FieldsPanel extends JPanel {
         agentPortField.setText(agentPort);
     }
 
+    /**
+     * 
+     * @param components
+     */
     private void setMinimumHeight(JComponent... components) {
 
         int minimumHeight = 0;

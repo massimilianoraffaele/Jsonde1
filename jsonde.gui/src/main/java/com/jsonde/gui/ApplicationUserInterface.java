@@ -1,9 +1,10 @@
 package com.jsonde.gui;
 
-import com.jsonde.client.Client;
+import java.awt.Component;
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.JFrame;
+
+import com.jsonde.client.Client;
 
 /**
  * Created by IntelliJ IDEA.
@@ -14,6 +15,11 @@ import java.awt.*;
  */
 public interface ApplicationUserInterface {
 
+	/**
+	 * 
+	 * @param component
+	 * @param title
+	 */
     void addTab(Component component, String title);
 
     Client getClient();

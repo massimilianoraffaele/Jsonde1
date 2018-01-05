@@ -1,12 +1,21 @@
 package com.jsonde.gui.dialog.project;
 
-import com.jsonde.gui.dialog.JSondeDialog;
-
-import javax.swing.*;
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Container;
+import java.awt.FlowLayout;
+import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
+import javax.swing.JPanel;
+
+import com.jsonde.gui.dialog.JSondeDialog;
+/**
+ * 
+ * @author admin
+ *
+ */
 public class NewProjectDialog extends JSondeDialog {
 
     private FieldsPanel fieldsPanel;
@@ -40,6 +49,10 @@ public class NewProjectDialog extends JSondeDialog {
         return filtersPanel;
     }
 
+    /**
+     * void 
+     * createGUI
+     */
     private void createGUI() {
 
         Container contentPane = getContentPane();
@@ -65,6 +78,11 @@ public class NewProjectDialog extends JSondeDialog {
 
     }
 
+    /**
+     * 
+     * @author albertomadio
+     * ButtonsPanel
+     */
     private class ButtonsPanel extends JPanel {
 
         private boolean ok;
@@ -73,10 +91,14 @@ public class NewProjectDialog extends JSondeDialog {
             return ok;
         }
 
-        private ButtonsPanel() {
+        public ButtonsPanel() {
             this("Ok");
         }
 
+        /**
+         * 
+         * @param okTitle
+         */
         private ButtonsPanel(String okTitle) {
 
             setLayout(new FlowLayout(FlowLayout.RIGHT));

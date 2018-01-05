@@ -1,5 +1,44 @@
 package com.jsonde.gui.sdedit;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.io.PrintWriter;
+import java.io.StringWriter;
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.Enumeration;
+
+import javax.swing.AbstractAction;
+import javax.swing.Action;
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JPanel;
+import javax.swing.JProgressBar;
+import javax.swing.JScrollPane;
+import javax.swing.JSplitPane;
+import javax.swing.JToolBar;
+import javax.swing.JTree;
+import javax.swing.SwingUtilities;
+import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.TreePath;
+
 import com.jsonde.client.ClassListener;
 import com.jsonde.client.Client;
 import com.jsonde.client.MethodCallListener;
@@ -9,7 +48,16 @@ import com.jsonde.client.domain.Method;
 import com.jsonde.client.domain.MethodCall;
 import com.jsonde.gui.ApplicationUserInterface;
 import com.jsonde.gui.Main;
-import com.jsonde.gui.action.*;
+import com.jsonde.gui.action.AboutAction;
+import com.jsonde.gui.action.CloseAllDiagramsAction;
+import com.jsonde.gui.action.CloseDiagramAction;
+import com.jsonde.gui.action.ExitJSondeAction;
+import com.jsonde.gui.action.HelpAction;
+import com.jsonde.gui.action.NewLocalSunJVMProjectAction;
+import com.jsonde.gui.action.NewProjectAction;
+import com.jsonde.gui.action.OpenMemoryHeapViewAction;
+import com.jsonde.gui.action.OpenMethodCallProfilerViewAction;
+import com.jsonde.gui.action.OpenProjectAction;
 import com.jsonde.gui.action.composite.CreateCompositeComponentTabAction;
 import com.jsonde.gui.action.reports.ReportActions;
 import com.jsonde.gui.components.JActionIcon;
@@ -22,26 +70,18 @@ import com.jsonde.gui.reports.ReportCompositeComponentProvider;
 import com.jsonde.gui.reports.ReportException;
 import com.jsonde.gui.reports.Reports;
 import com.jsonde.gui.tree.Node;
+
 import net.sf.sdedit.config.ConfigurationManager;
 import net.sf.sdedit.editor.Editor;
 import net.sf.sdedit.ui.UserInterface;
 import net.sf.sdedit.ui.components.ATabbedPane;
 import net.sf.sdedit.ui.components.ATabbedPaneListener;
 import net.sf.sdedit.ui.impl.UserInterfaceImpl;
-
-import javax.swing.*;
-import javax.swing.tree.DefaultTreeModel;
-import javax.swing.tree.TreePath;
-import java.awt.*;
-import java.awt.event.*;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
-import java.io.PrintWriter;
-import java.io.StringWriter;
-import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.Enumeration;
-
+/**
+ * 
+ * @author admin
+ *
+ */
 public class SdEditUIAdapter implements MethodCallListener, ApplicationUserInterface, ClassListener {
 
     private UserInterface userInterface;
@@ -115,6 +155,10 @@ public class SdEditUIAdapter implements MethodCallListener, ApplicationUserInter
         errorsLabel.setText(exceptionsCounter + " Errors");
     }
 
+    /**
+     * void 
+     * createStatusBar
+     */
     private void createStatusBar() {
 
         JPanel statusBar = new JPanel();

@@ -1,8 +1,16 @@
 package com.jsonde.gui.dialog;
 
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Dimension;
+import java.awt.Point;
+import java.awt.Rectangle;
+import java.awt.Toolkit;
 
+import javax.swing.JDialog;
+/**
+ * 
+ * @author admin
+ *
+ */
 public abstract class JSondeDialog extends JDialog {
 
     protected Rectangle getFrameBounds() {

@@ -1,12 +1,21 @@
 package com.jsonde.gui.dialog.project;
 
-import com.jsonde.api.configuration.ClassFilterDto;
-
-import javax.swing.*;
-import java.awt.*;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+import com.jsonde.api.configuration.ClassFilterDto;
+/**
+ * 
+ * @author admin
+ *
+ */
 public class SimpleFiltersPanel extends JPanel implements FiltersPanel {
 
     private JTextField packageFilter;

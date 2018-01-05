@@ -1,19 +1,29 @@
 package com.jsonde.gui;
 
-import com.jsonde.gui.dialog.license.LicenseDialog;
-import com.jsonde.gui.license.LicenseManager;
-import com.jsonde.gui.sdedit.SdEditUIAdapter;
-
-import javax.swing.*;
-import java.awt.*;
+import java.awt.AWTEvent;
+import java.awt.EventQueue;
+import java.awt.Toolkit;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Calendar;
 import java.util.Date;
 
+import javax.swing.JOptionPane;
+
+import com.jsonde.gui.dialog.license.LicenseDialog;
+import com.jsonde.gui.license.LicenseManager;
+import com.jsonde.gui.sdedit.SdEditUIAdapter;
+/**
+ * 
+ * @author admin
+ *
+ */
 public class Main {
 
     private static Main instance;
-
+/**
+ * 
+ * @return
+ */
     public static Main getInstance() {
         if (null == instance) {
             instance = new Main();
@@ -57,6 +67,11 @@ public class Main {
 
     }
 
+    /**
+     * 
+     * @author albertomadio
+     * MyEventQueue
+     */
     private static class MyEventQueue extends EventQueue implements Thread.UncaughtExceptionHandler {
 
         public void uncaughtException(Thread t, Throwable e) {
@@ -108,11 +123,11 @@ public class Main {
 
     }
 
-    public static void main(String... arguments) {
+    public static void main(String... arguments33) {
 
         Main main = Main.getInstance();
 
-        main.arguments = arguments;
+        main.arguments = arguments33;
 
         //main.checkLicense();
 

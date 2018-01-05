@@ -1,13 +1,28 @@
 package com.jsonde.gui.components.listpane;
 
-import javax.swing.*;
-import javax.swing.border.Border;
-import javax.swing.border.EmptyBorder;
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.Component;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.swing.AbstractListModel;
+import javax.swing.Action;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.ListCellRenderer;
+import javax.swing.ListModel;
+import javax.swing.UIManager;
+import javax.swing.border.Border;
+import javax.swing.border.EmptyBorder;
+/**
+ * 
+ * @author admin
+ *
+ */
 public class JListPane extends JList {
 
     private List<ActionListener> actionListeners = new LinkedList<ActionListener>();
@@ -18,6 +33,9 @@ public class JListPane extends JList {
     private final ListModel listModel = new JListPaneListModel();
     private final MouseListener mouseListener = new JListPaneMouseListener();
 
+    /**
+     * 
+     */
     public JListPane() {
         this(new DefaultListPaneModel());
     }
@@ -44,6 +62,11 @@ public class JListPane extends JList {
         this.listPaneModel = listPaneModel;
     }
 
+    /**
+     * 
+     * @param index
+     * @param e
+     */
     private void fireActionEvent(int index, ActionEvent e) {
 
         Action action = getListPaneModel().getActionAt(index);
@@ -62,8 +85,16 @@ public class JListPane extends JList {
         return listCellRenderer;
     }
 
+    /**
+     * 
+     * @author albertomadio
+     * JListPaneListCellRenderer
+     */
     private class JListPaneListCellRenderer implements ListCellRenderer {
 
+    	/**
+    	 * 
+    	 */
         public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
 
             JLabel label = new JLabel();
@@ -99,6 +130,10 @@ public class JListPane extends JList {
         private final Border noFocusBorder = new EmptyBorder(1, 1, 1, 1);
         private final Border SAFE_NO_FOCUS_BORDER = new EmptyBorder(1, 1, 1, 1);
 
+        /**
+         * 
+         * @return
+         */
         private Border getNoFocusBorder() {
             if (System.getSecurityManager() != null) {
                 return SAFE_NO_FOCUS_BORDER;
@@ -109,20 +144,33 @@ public class JListPane extends JList {
 
     }
 
+    /**
+     * 
+     * @author albertomadio
+     * JListPaneListModel
+     */
     private class JListPaneListModel extends AbstractListModel {
 
         private static final long serialVersionUID = 1979045198103713994L;
 
+        /**
+         * 
+         */
         public int getSize() {
             return listPaneModel.getSize();
         }
 
-        public Object getElementAt(int index) {
+        public String getElementAt(int index) {
             return listPaneModel.getLabelAt(index);
         }
 
     }
 
+    /**
+     * 
+     * @author albertomadio
+     * JListPaneMouseListener
+     */
     private class JListPaneMouseListener extends MouseAdapter {
 
         @Override

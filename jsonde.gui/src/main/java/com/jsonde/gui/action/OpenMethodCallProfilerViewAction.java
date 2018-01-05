@@ -1,12 +1,19 @@
 package com.jsonde.gui.action;
 
+import java.awt.event.ActionEvent;
+
+import javax.swing.AbstractAction;
+import javax.swing.ImageIcon;
+import javax.swing.JPanel;
+
 import com.jsonde.gui.ApplicationUserInterface;
 import com.jsonde.gui.profiler.MethodCallProfilerView;
 import com.jsonde.gui.reports.custom.DependencyReport;
-
-import javax.swing.*;
-import java.awt.event.ActionEvent;
-
+/**
+ * 
+ * @author admin
+ *
+ */
 public class OpenMethodCallProfilerViewAction extends AbstractAction {
 
     private ApplicationUserInterface applicationUserInterface;

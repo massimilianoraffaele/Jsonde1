@@ -1,11 +1,19 @@
 package com.jsonde.gui.action;
 
-import com.jsonde.gui.sdedit.SdEditUIAdapter;
-import net.sf.sdedit.icons.Icons;
-
-import javax.swing.*;
 import java.awt.event.ActionEvent;
 
+import javax.swing.AbstractAction;
+import javax.swing.Action;
+import javax.swing.ImageIcon;
+
+import com.jsonde.gui.sdedit.SdEditUIAdapter;
+
+import net.sf.sdedit.icons.Icons;
+/**
+ * 
+ * @author admin
+ *
+ */
 public class CloseAllDiagramsAction extends AbstractAction {
 
     private SdEditUIAdapter sdEditUIAdapter;

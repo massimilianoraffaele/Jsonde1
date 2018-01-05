@@ -1,9 +1,17 @@
 package com.jsonde.gui.dialog.project;
 
-import javax.swing.*;
-import javax.swing.border.TitledBorder;
-import java.awt.*;
+import java.awt.BorderLayout;
 
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
+import javax.swing.border.TitledBorder;
+/**
+ * 
+ * @author admin
+ *
+ */
 public class FiltersTablePanel extends JPanel {
 
     private JTable filtersTable;

@@ -1,17 +1,29 @@
 package com.jsonde.gui.action.composite;
 
-import com.jsonde.gui.ApplicationUserInterface;
-import com.jsonde.gui.components.composite.CompositeComponentProvider;
-
-import javax.swing.*;
-import java.awt.*;
+import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 
+import javax.swing.AbstractAction;
+import javax.swing.JComponent;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
+
+import com.jsonde.gui.ApplicationUserInterface;
+import com.jsonde.gui.components.composite.CompositeComponentProvider;
+/**
+ * 
+ * @author admin
+ *
+ */
 public class CreateCompositeComponentTabAction extends AbstractAction implements Runnable {
 
     private ApplicationUserInterface applicationUserInterface;
     private CompositeComponentProvider compositeComponentProvider;
 
+    /**
+     * JPanel(new BorderLayout())
+     */
     JPanel panel = new JPanel(new BorderLayout());
 
     public CreateCompositeComponentTabAction(
@@ -29,6 +41,10 @@ public class CreateCompositeComponentTabAction extends AbstractAction implements
 
     }
 
+    /**
+     * 
+     * @return
+     */
     private JComponent getWaitComponent() {
         return new JLabel("Loading...");
     }

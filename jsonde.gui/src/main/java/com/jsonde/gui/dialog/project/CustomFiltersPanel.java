@@ -1,18 +1,31 @@
 package com.jsonde.gui.dialog.project;
 
-import com.jsonde.api.configuration.ClassFilterDto;
-import com.jsonde.gui.action.ListSelectionListenerAction;
-
-import javax.swing.*;
-import java.awt.*;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.swing.AbstractAction;
+import javax.swing.JButton;
+import javax.swing.JPanel;
+import javax.swing.ListSelectionModel;
+
+import com.jsonde.api.configuration.ClassFilterDto;
+import com.jsonde.gui.action.ListSelectionListenerAction;
+/**
+ * 
+ * @author admin
+ *
+ */
 public class CustomFiltersPanel extends JPanel implements FiltersPanel {
 
     private FiltersTableModel filtersTableModel;
 
+    /**
+     * setClassFilters
+     */
     public void setClassFilters(List<ClassFilterDto> classFilters) {
         filtersTableModel.setClassFilters(classFilters);
     }
@@ -114,47 +127,85 @@ public class CustomFiltersPanel extends JPanel implements FiltersPanel {
 
     }
 
+    /**
+     * 
+     * @author albertomadio
+     * NewFilterAction
+     */
     private class NewFilterAction extends AbstractAction {
 
         private FiltersTableModel filtersTableModel;
 
+        /**
+         * 
+         * @param filtersTableModel
+         */
         private NewFilterAction(FiltersTableModel filtersTableModel) {
             super("New Filter");
             this.filtersTableModel = filtersTableModel;
         }
 
+        /**
+         * actionPerformed
+         */
         public void actionPerformed(ActionEvent e) {
             filtersTableModel.addClassFilter(new ClassFilterDto(false, ""));
         }
 
     }
 
+    /**
+     * 
+     * @author albertomadio
+     * DeleteFilterAction
+     *
+     */
     private class DeleteFilterAction extends ListSelectionListenerAction {
 
         private FiltersTableModel filtersTableModel;
 
+        /**
+         * 
+         * @param filtersTableModel
+         */
         private DeleteFilterAction(FiltersTableModel filtersTableModel) {
             super("Delete Filter");
             this.filtersTableModel = filtersTableModel;
         }
-
+        
+        /**
+         * actionPerformed
+         */
         public void actionPerformed(ActionEvent e) {
             filtersTableModel.deleteClassFilter(selectedId);
         }
 
     }
-
+    
+    /**
+     * 
+     * @author albertomadio
+     * MoveFilterUpAction
+     */
     private class MoveFilterUpAction extends ListSelectionListenerAction {
 
         private FiltersTableModel filtersTableModel;
         private ListSelectionModel filtersTableSelectionModel;
 
+        /**
+         * 
+         * @param filtersTableModel
+         * @param filtersTableSelectionModel
+         */
         private MoveFilterUpAction(FiltersTableModel filtersTableModel, ListSelectionModel filtersTableSelectionModel) {
             super("Move Up");
             this.filtersTableModel = filtersTableModel;
             this.filtersTableSelectionModel = filtersTableSelectionModel;
         }
 
+        /**
+         * actionPerformed
+         */
         public void actionPerformed(ActionEvent e) {
             filtersTableModel.swapRows(selectedId, selectedId - 1);
             filtersTableSelectionModel.setSelectionInterval(selectedId - 1, selectedId - 1);
@@ -167,17 +218,30 @@ public class CustomFiltersPanel extends JPanel implements FiltersPanel {
 
     }
 
+    /**
+     * 
+     * @author albertomadio
+     * MoveFilterDownAction
+     */
     private class MoveFilterDownAction extends ListSelectionListenerAction {
 
         private FiltersTableModel filtersTableModel;
         private ListSelectionModel filtersTableSelectionModel;
 
+        /**
+         * 
+         * @param filtersTableModel
+         * @param filtersTableSelectionModel
+         */
         private MoveFilterDownAction(FiltersTableModel filtersTableModel, ListSelectionModel filtersTableSelectionModel) {
             super("Move Down");
             this.filtersTableModel = filtersTableModel;
             this.filtersTableSelectionModel = filtersTableSelectionModel;
         }
 
+        /**
+         * actionPerformed
+         */
         public void actionPerformed(ActionEvent e) {
             filtersTableModel.swapRows(selectedId, selectedId + 1);
             filtersTableSelectionModel.setSelectionInterval(selectedId + 1, selectedId + 1);

@@ -1,5 +1,13 @@
 package com.jsonde.gui.action;
 
+import java.awt.event.ActionEvent;
+import java.io.File;
+
+import javax.swing.AbstractAction;
+import javax.swing.Action;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+
 import com.jsonde.api.configuration.AgentConfigurationMessage;
 import com.jsonde.client.Client;
 import com.jsonde.client.sun.VirtualMachineService;
@@ -10,16 +18,17 @@ import com.jsonde.gui.configuration.SessionConfigurationException;
 import com.jsonde.gui.dialog.project.sun.AttachSunJVMDialog;
 import com.jsonde.gui.dialog.project.sun.SunJVMFieldsPanel;
 import com.jsonde.gui.sdedit.SdEditUIAdapter;
+
 import net.sf.sdedit.icons.Icons;
-
-import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.io.File;
-
+/**
+ * 
+ * @author admin
+ *
+ */
 public class NewLocalSunJVMProjectAction extends AbstractAction {
 
     private SdEditUIAdapter sdEditUIAdapter;
-
+    final private String path1 =  "./lib/jsonde.agent-1.1.0.jar";
     public NewLocalSunJVMProjectAction(SdEditUIAdapter sdEditUIAdapter) {
         this.sdEditUIAdapter = sdEditUIAdapter;
     }
@@ -65,7 +74,7 @@ public class NewLocalSunJVMProjectAction extends AbstractAction {
 
             try {
 
-                File agentJarFile = new File("./lib/jsonde.agent-1.1.0.jar");
+                File agentJarFile = new File(path1);
 
                 vmService.attachAgent(vmId, agentJarFile.getAbsolutePath(), "60001");
 
@@ -114,7 +123,11 @@ public class NewLocalSunJVMProjectAction extends AbstractAction {
         }
 
     }
-
+    
+/**
+ *  void 
+ *  showSunVMErrorMessage
+ */
     private void showSunVMErrorMessage() {
         JOptionPane.showMessageDialog(sdEditUIAdapter.getFrame(), "Failed to get list of virtual machines. " +
                 "This feature is available only on Sun JDK 1.6+. " +

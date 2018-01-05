@@ -43,7 +43,7 @@ public class StringUtils {
      * @see <a href="http://java.sun.com/j2se/1.4.2/docs/api/java/nio/charset/Charset.html">Standard charsets</a>
      * @see #getBytesUnchecked(String, String)
      */
-    public static byte[] getBytesIso8859_1(String string) {
+    public static byte[] getBytesIso88591(String string) {
         return StringUtils.getBytesUnchecked(string, CharEncoding.ISO_8859_1);
     }
 
@@ -144,6 +144,12 @@ public class StringUtils {
         }
     }
 
+    /**
+     * 
+     * @param charsetName
+     * @param e
+     * @return
+     */
     private static IllegalStateException newIllegalStateException(String charsetName, UnsupportedEncodingException e) {
         return new IllegalStateException(charsetName + ": " + e);
     }
@@ -182,7 +188,7 @@ public class StringUtils {
      * @throws IllegalStateException Thrown when a {@link UnsupportedEncodingException} is caught, which should never happen since the
      *                               charset is required.
      */
-    public static String newStringIso8859_1(byte[] bytes) {
+    public static String newStringIso88591(byte[] bytes) {
         return StringUtils.newString(bytes, CharEncoding.ISO_8859_1);
     }
 

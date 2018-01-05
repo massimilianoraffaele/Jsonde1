@@ -14,7 +14,11 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
-
+/**
+ * 
+ * @author admin
+ *
+ */
 public class SdEditDataRenderer {
 
     private final Set<Integer> addedClassNames = new HashSet<Integer>();
@@ -23,6 +27,13 @@ public class SdEditDataRenderer {
     private final Map<String, String> shortClassNamesMap = new HashMap<String, String>();
     private final Set<String> classesWithAmbigousNames = new HashSet<String>();
 
+    /**
+     * 
+     * @param methodCall
+     * @param method
+     * @return
+     * @throws DaoException
+     */
     private String getClassName(MethodCall methodCall, Method method) throws DaoException {
 
         String fullClassName =

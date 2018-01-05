@@ -1,9 +1,15 @@
 package com.jsonde.gui.action;
 
-import javax.swing.*;
+import javax.swing.AbstractAction;
+import javax.swing.Icon;
+import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-
+/**
+ * 
+ * @author admin
+ *
+ */
 public abstract class ListSelectionListenerAction
         extends AbstractAction implements
         ListSelectionListener {
@@ -19,12 +25,19 @@ public abstract class ListSelectionListenerAction
         super(name, icon);
     }
 
+    /**
+     * selectedId
+     */
     protected int selectedId = -1;
 
     public void valueChanged(ListSelectionEvent e) {
         findSelection(e);
     }
 
+    /**
+     * 
+     * @param e
+     */
     private void findSelection(ListSelectionEvent e) {
         if (!e.getValueIsAdjusting()) {
             ListSelectionModel mod = (ListSelectionModel) e.getSource();

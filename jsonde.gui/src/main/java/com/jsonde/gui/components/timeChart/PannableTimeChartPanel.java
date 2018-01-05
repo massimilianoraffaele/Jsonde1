@@ -1,5 +1,15 @@
 package com.jsonde.gui.components.timeChart;
 
+import java.awt.BorderLayout;
+import java.util.Date;
+
+import javax.swing.BoundedRangeModel;
+import javax.swing.DefaultBoundedRangeModel;
+import javax.swing.JPanel;
+import javax.swing.JScrollBar;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
@@ -8,13 +18,11 @@ import org.jfree.chart.event.AxisChangeEvent;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.plot.XYPlot;
 import org.jfree.data.time.TimeSeriesCollection;
-
-import javax.swing.*;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
-import java.awt.*;
-import java.util.Date;
-
+/**
+ * 
+ * @author admin
+ *
+ */
 public class PannableTimeChartPanel extends JPanel  implements ChangeListener {
 
     private XYPlot plot;

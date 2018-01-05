@@ -1,20 +1,39 @@
 package com.jsonde.gui.dialog.project.sun;
 
+import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
+import javax.swing.JComponent;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+
 import com.jsonde.client.sun.VirtualMachineData;
 import com.jsonde.client.sun.VirtualMachineService;
 import com.jsonde.client.sun.VirtualMachineServiceException;
 import com.jsonde.gui.Main;
+
 import net.sf.sdedit.icons.Icons;
-
-import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
-import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-
+/**
+ * 
+ * @author admin
+ *
+ */
 public class SunJVMFieldsPanel extends JPanel {
 
+	/**
+	 * projectNameField
+	 */
     JTextField projectNameField;
     JTextField projectFilesLocationField;
     JTable virtualMachineTable;
@@ -50,6 +69,10 @@ public class SunJVMFieldsPanel extends JPanel {
 
     }
 
+    /**
+     * 
+     * @param components
+     */
     private void setMinimumHeight(JComponent... components) {
 
         int minimumHeight = 0;

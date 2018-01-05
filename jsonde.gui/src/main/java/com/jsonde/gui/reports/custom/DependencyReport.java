@@ -1,19 +1,26 @@
 package com.jsonde.gui.reports.custom;
 
-import com.jsonde.client.dao.DaoException;
-import com.jsonde.client.dao.DaoFactory;
-import com.jsonde.client.domain.CodeSource;
-import com.jsonde.gui.Main;
-
-import javax.swing.*;
-import javax.swing.tree.DefaultMutableTreeNode;
-import javax.swing.tree.DefaultTreeModel;
-import javax.swing.tree.MutableTreeNode;
 import java.util.Arrays;
 import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
 
+import javax.swing.JComponent;
+import javax.swing.JScrollPane;
+import javax.swing.JTree;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.MutableTreeNode;
+
+import com.jsonde.client.dao.DaoException;
+import com.jsonde.client.dao.DaoFactory;
+import com.jsonde.client.domain.CodeSource;
+import com.jsonde.gui.Main;
+/**
+ * 
+ * @author admin
+ *
+ */
 public class DependencyReport implements ReportGenerator {
 
     public JComponent generateReport() {
@@ -61,6 +68,14 @@ public class DependencyReport implements ReportGenerator {
         return scrollPane;
     }
 
+    /**
+     * 
+     * @param dependencies
+     * @param dependencyTreeModel
+     * @param parent
+     * @param codeSourceIds
+     * @param shownSourceIds
+     */
     private void createTree(
             Map<Long, Set<Long>> dependencies,
             DefaultTreeModel dependencyTreeModel,

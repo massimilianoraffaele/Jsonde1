@@ -1,5 +1,27 @@
 package com.jsonde.gui.reports;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JComponent;
+import javax.swing.JLabel;
+import javax.swing.JScrollPane;
+
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.data.general.DefaultPieDataset;
+import org.jfree.data.time.Millisecond;
+import org.jfree.data.time.RegularTimePeriod;
+import org.jfree.data.time.TimeSeries;
+import org.jfree.data.time.TimeSeriesCollection;
+
 import com.jsonde.client.dao.DaoException;
 import com.jsonde.client.dao.DaoFactory;
 import com.jsonde.gui.Main;
@@ -7,25 +29,12 @@ import com.jsonde.gui.components.composite.CompositeComponentProvider;
 import com.jsonde.gui.components.timeChart.PannableTimeChartPanel;
 import com.jsonde.gui.reports.custom.ReportGenerator;
 import com.jsonde.util.db.DbUtils;
-import org.jfree.chart.ChartFactory;
-import org.jfree.chart.ChartPanel;
-import org.jfree.chart.JFreeChart;
-import org.jfree.chart.axis.DateAxis;
-import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.chart.plot.XYPlot;
-import org.jfree.data.general.DefaultPieDataset;
-import org.jfree.data.time.Millisecond;
-import org.jfree.data.time.RegularTimePeriod;
-import org.jfree.data.time.TimeSeries;
-import org.jfree.data.time.TimeSeriesCollection;
 
-import javax.swing.*;
-import java.awt.*;
-import java.sql.*;
-import java.util.*;
-import java.util.Date;
-import java.util.List;
-
+/**
+ * 
+ * @author admin
+ *
+ */
 public class ReportCompositeComponentProvider implements CompositeComponentProvider {
 
     private Report report;
@@ -65,6 +74,10 @@ public class ReportCompositeComponentProvider implements CompositeComponentProvi
 
     }
 
+    /**
+     * 
+     * @return
+     */
     private JComponent createCustomChart() {
 
         String reportGeneratorClassName = report.getReportGenerator();
@@ -111,7 +124,7 @@ public class ReportCompositeComponentProvider implements CompositeComponentProvi
             ResultSetMetaData resultSetMetaData = resultSet.getMetaData();
             int columnCount = resultSetMetaData.getColumnCount();
 
-            List<TimeSeries> timeSeriesList = new ArrayList<TimeSeries>(columnCount);
+            ArrayList<TimeSeries> timeSeriesList = new ArrayList<TimeSeries>(columnCount);
 
             for (int i = 2; i <= columnCount; i++) {
 
