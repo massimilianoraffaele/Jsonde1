@@ -6,6 +6,9 @@ package com.jsonde.client.dao;
  */
 public class DaoException extends Exception {
 
+	/**
+	 * DaoException
+	 */
     public DaoException() {
     }
 

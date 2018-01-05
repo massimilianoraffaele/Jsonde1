@@ -13,6 +13,10 @@ public class Log {
     private final String className;
     private final Logger logger;
 
+    /**
+     * 
+     * @param clazz
+     */
     public Log(Class clazz) {
         this.clazz = clazz;
         this.className = clazz.getName();

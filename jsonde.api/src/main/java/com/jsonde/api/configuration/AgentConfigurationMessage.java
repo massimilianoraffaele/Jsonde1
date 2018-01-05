@@ -13,6 +13,10 @@ public class AgentConfigurationMessage extends Message {
     private String version;
     private List<ClassFilterDto> classFilters;
 
+    /**
+     * 
+     * @return
+     */
     public String getVersion() {
         return version;
     }

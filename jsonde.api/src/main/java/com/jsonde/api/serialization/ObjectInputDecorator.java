@@ -15,6 +15,9 @@ public abstract class ObjectInputDecorator implements ObjectInput {
         this.target = target;
     }
 
+    /**
+     * readFully
+     */
     public void readFully(byte[] b) throws IOException {
         target.readFully(b);
     }

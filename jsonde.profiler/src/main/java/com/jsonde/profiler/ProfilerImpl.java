@@ -1,5 +1,24 @@
 package com.jsonde.profiler;
 
+import java.lang.instrument.ClassDefinition;
+import java.lang.instrument.Instrumentation;
+import java.lang.instrument.UnmodifiableClassException;
+import java.net.URL;
+import java.security.CodeSource;
+import java.security.ProtectionDomain;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicLong;
+
 import com.jsonde.api.Message;
 import com.jsonde.api.MessageListener;
 import com.jsonde.api.function.FunctionRequest;
@@ -9,8 +28,14 @@ import com.jsonde.api.function.echo.EchoFunctionResponse;
 import com.jsonde.api.function.heap.ClassHeapDataDto;
 import com.jsonde.api.function.heap.DumpHeapFunctionRequest;
 import com.jsonde.api.function.heap.DumpHeapFunctionResponse;
-import com.jsonde.api.methodCall.*;
-import com.jsonde.profiler.heap.*;
+import com.jsonde.api.methodCall.DescribeClassMessage;
+import com.jsonde.api.methodCall.MethodCallDto;
+import com.jsonde.api.methodCall.MethodCallMessage;
+import com.jsonde.api.methodCall.MethodCallSummaryDto;
+import com.jsonde.api.methodCall.RegisterClassMessage;
+import com.jsonde.api.methodCall.RegisterMethodMessage;
+import com.jsonde.profiler.heap.ClassHeapData;
+import com.jsonde.profiler.heap.HeapAnalyzer;
 import com.jsonde.profiler.network.NetworkServer;
 import com.jsonde.profiler.network.NetworkServerException;
 import com.jsonde.profiler.network.NetworkServerImpl;
@@ -19,15 +44,6 @@ import com.jsonde.util.ClassUtils;
 import com.jsonde.util.ObjectIdGenerator;
 import com.jsonde.util.ObjectIsAbsentException;
 import com.jsonde.util.log.Log;
-import java.lang.instrument.ClassDefinition;
-import java.lang.instrument.Instrumentation;
-import java.lang.instrument.UnmodifiableClassException;
-import java.net.URL;
-import java.security.CodeSource;
-import java.security.ProtectionDomain;
-import java.util.*;
-import java.util.concurrent.*;
-import java.util.concurrent.atomic.AtomicLong;
 /**
  * 
  * @author admin
@@ -75,13 +91,18 @@ public class ProfilerImpl extends Profiler implements MessageListener {
 
     private Set<Class> redefinedClasses = new HashSet<Class>();
 
+    /**
+     * 
+     * @param instrumentation
+     * @param port
+     */
     public ProfilerImpl(Instrumentation instrumentation, int port) {
         this.instrumentation = instrumentation;
         networkServer = new NetworkServerImpl(port, daemonThreadFactory);
         heapAnalyzer = new HeapAnalyzer(daemonThreadFactory);
         networkServer.addMessageListener(this);
     }
-
+    
     public ProfilerImpl() {
         instrumentation = null;
     }
@@ -119,6 +140,11 @@ public class ProfilerImpl extends Profiler implements MessageListener {
 
     }
 
+    /**
+     * 
+     * @param functionRequest
+     * @return
+     */
     private FunctionResponse invokeFunction(FunctionRequest functionRequest) {
 
         if (functionRequest instanceof EchoFunctionRequest) {

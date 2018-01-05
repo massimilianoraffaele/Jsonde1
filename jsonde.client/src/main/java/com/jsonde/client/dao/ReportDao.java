@@ -18,6 +18,10 @@ import java.util.Set;
  */
 public class ReportDao extends AbstractDao {
 
+	/**
+	 * 
+	 * @param dataSource
+	 */
     public ReportDao(DataSource dataSource) {
         super(dataSource);
     }

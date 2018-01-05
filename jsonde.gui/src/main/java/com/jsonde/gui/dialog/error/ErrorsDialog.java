@@ -5,11 +5,7 @@ import com.jsonde.gui.dialog.JSondeDialog;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-/**
- * 
- * @author admin
- *
- */
+
 public class ErrorsDialog extends JSondeDialog {
 
     private StringBuffer stringBuffer;

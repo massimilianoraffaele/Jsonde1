@@ -20,6 +20,11 @@ public class ClientOutputWorker implements Runnable {
     private NetworkClientImpl client;
     private final Socket socket;
 
+    /**
+     * 
+     * @param client
+     * @param socket
+     */
     public ClientOutputWorker(NetworkClientImpl client, Socket socket) {
         this.client = client;
         this.socket = socket;

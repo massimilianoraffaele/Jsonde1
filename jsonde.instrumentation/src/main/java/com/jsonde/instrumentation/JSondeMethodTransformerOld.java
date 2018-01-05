@@ -25,6 +25,16 @@ public class JSondeMethodTransformerOld extends AdviceAdapter {
     private static final String PROFILER_CLASS_INTERNAL_NAME =
             ClassUtils.getInternalClassName(Profiler.CLASS_CANONICAL_NAME);
 
+    /**
+     * 
+     * @param methodId
+     * @param mv
+     * @param access
+     * @param name
+     * @param desc
+     * @param className
+     * @param parentClassName
+     */
     public JSondeMethodTransformerOld(long methodId, MethodVisitor mv, int access, String name, String desc, String className, String parentClassName) {
         super(Opcodes.ASM4, mv, access, name, desc);
         this.methodId = methodId;
@@ -70,7 +80,10 @@ public class JSondeMethodTransformerOld extends AdviceAdapter {
 
     }
 
-
+    /**
+     * 
+     * @param opcode
+     */
     private void onFinally(int opcode) {
 
         if (opcode == ATHROW) {

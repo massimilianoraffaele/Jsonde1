@@ -14,6 +14,10 @@ import com.jsonde.client.domain.TelemetryData;
  */
 public class MethodCallMessageHandler implements MessageHandler<MethodCallMessage> {
 	
+	/**
+	 * 
+	 * @param message
+	 */
 	public void onMessage(MethodCallMessage message){
 
         MethodCallMessage methodCallMessage =
@@ -41,46 +45,6 @@ public class MethodCallMessageHandler implements MessageHandler<MethodCallMessag
         } catch (DaoException e) {
             e.printStackTrace();
         }
-
-        /*if (complete || message instanceof TelemetryDataMessage) {
-            createTopMethodCall(methodCall);
-        }
-
-        TelemetryDataMessage telemetryDataMessage =
-                (TelemetryDataMessage) message;
-
-        TelemetryDataDto dto = telemetryDataMessage.getTelemetryData();
-
-        TelemetryData telemetryData = new TelemetryData();
-
-        telemetryData.setId(telemetryDataIdGenerator.getAndIncrement());
-        telemetryData.setTime(dto.time);
-
-        {
-            // memory
-            telemetryData.setFreeMemory(dto.freeMemory);
-            telemetryData.setMaxMemory(dto.maxMemory);
-            telemetryData.setTotalMemory(dto.totalMemory);
-        }
-
-        {
-            // class loading
-            telemetryData.setLoadedClassCount(dto.loadedClassCount);
-            telemetryData.setClassCount(dto.classCount);
-            telemetryData.setUnloadedClassCount(dto.unloadedClassCount);
-        }
-
-        {
-            // compilation
-            telemetryData.setTotalCompilationTime(dto.totalCompilationTime);
-        }
-
-        try {
-            DaoFactory.getTelemetryDataDao().insert(telemetryData);
-        } catch (DaoException e) {
-            e.printStackTrace();
-        }
-		*/
 
 	}
 

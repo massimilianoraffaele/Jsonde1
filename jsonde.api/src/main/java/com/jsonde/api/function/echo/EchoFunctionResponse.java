@@ -10,6 +10,10 @@ public class EchoFunctionResponse extends FunctionResponse<EchoFunctionRequest> 
 
     private String message;
 
+    /**
+     * 
+     * @param request
+     */
     public EchoFunctionResponse(EchoFunctionRequest request) {
         super(request);
         message = request.getMessage();

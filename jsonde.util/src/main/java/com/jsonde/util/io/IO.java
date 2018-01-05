@@ -13,6 +13,10 @@ public class IO {
 
     private static final Log log = Log.getLog(IO.class);
 
+    /**
+     * 
+     * @param closeable
+     */
     public static void close(Closeable closeable) {
 
         final String METHOD_NAME = "close(Closeable)";
@@ -27,20 +31,5 @@ public class IO {
         }
 
     }
-
-    /*public static void close(ObjectInput objectInput) {
-
-        final String METHOD_NAME = "close(ObjectInput)";
-
-        if (null == objectInput)
-            return;
-
-        try {
-            objectInput.close();
-        } catch (IOException e) {
-            log.error(METHOD_NAME, e);
-        }
-
-    }*/
 
 }

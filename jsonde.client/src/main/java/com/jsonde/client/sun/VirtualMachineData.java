@@ -9,6 +9,11 @@ public class VirtualMachineData {
     private String id;
     private String description;
 
+    /**
+     * 
+     * @param id
+     * @param description
+     */
     public VirtualMachineData(String id, String description) {
         this.id = id;
         this.description = description;

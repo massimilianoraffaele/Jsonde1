@@ -11,6 +11,10 @@ import com.jsonde.api.function.FunctionResponse;
  */
 public interface NetworkClient {
 
+	/**
+	 * 
+	 * @throws NetworkClientException
+	 */
     void start() throws NetworkClientException;
 
     void stop() throws NetworkClientException;
@@ -18,6 +22,13 @@ public interface NetworkClient {
     void sendMessage(Message message);
 
     //FunctionResponse invokeFunction(final FunctionRequest functionRequest) throws InterruptedException;
+    
+    /**
+     * 
+     * @param functionRequest
+     * @return
+     * @throws InterruptedException
+     */
     <T extends FunctionResponse> T invokeFunction(final FunctionRequest<T> functionRequest) throws InterruptedException;
 
     void addMessageListener(MessageListener messageListener);

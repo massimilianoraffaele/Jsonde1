@@ -6,6 +6,9 @@ package com.jsonde.profiler.network;
  */
 public class NetworkServerException extends Exception {
 
+	/**
+	 * NetworkServerException
+	 */
     public NetworkServerException() {
     }
 

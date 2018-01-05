@@ -18,6 +18,10 @@ public class ThreadLocalProfiler {
 
     private final Profiler profiler;
 
+    /**
+     * 
+     * @param profiler
+     */
     public ThreadLocalProfiler(Profiler profiler) {
         this.profiler = profiler;
     }

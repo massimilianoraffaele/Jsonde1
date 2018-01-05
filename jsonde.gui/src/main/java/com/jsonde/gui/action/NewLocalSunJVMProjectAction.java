@@ -15,15 +15,11 @@ import net.sf.sdedit.icons.Icons;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.io.File;
-/**
- * 
- * @author admin
- *
- */
+
 public class NewLocalSunJVMProjectAction extends AbstractAction {
 
     private SdEditUIAdapter sdEditUIAdapter;
-    final private String path1 =  "./lib/jsonde.agent-1.1.0.jar";
+
     public NewLocalSunJVMProjectAction(SdEditUIAdapter sdEditUIAdapter) {
         this.sdEditUIAdapter = sdEditUIAdapter;
     }
@@ -69,7 +65,7 @@ public class NewLocalSunJVMProjectAction extends AbstractAction {
 
             try {
 
-                File agentJarFile = new File(path1);
+                File agentJarFile = new File("./lib/jsonde.agent-1.1.0.jar");
 
                 vmService.attachAgent(vmId, agentJarFile.getAbsolutePath(), "60001");
 

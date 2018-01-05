@@ -14,6 +14,10 @@ public class DumpHeapFunctionResponse extends FunctionResponse<DumpHeapFunctionR
 
     private Set<ClassHeapDataDto> classHeapDataDtos;
 
+    /**
+     * 
+     * @param request
+     */
     public DumpHeapFunctionResponse(FunctionRequest request) {
         super(request);
         classHeapDataDtos = new HashSet<ClassHeapDataDto>();

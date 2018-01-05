@@ -7,11 +7,7 @@ import com.jsonde.gui.reports.custom.DependencyReport;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
-/**
- * 
- * @author admin
- *
- */
+
 public class OpenMemoryHeapViewAction extends AbstractAction {
 
     private ApplicationUserInterface applicationUserInterface;

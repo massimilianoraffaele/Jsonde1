@@ -6,11 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-/**
- * 
- * @author admin
- *
- */
+
 public class NewProjectDialog extends JSondeDialog {
 
     private FieldsPanel fieldsPanel;
@@ -77,7 +73,7 @@ public class NewProjectDialog extends JSondeDialog {
             return ok;
         }
 
-        public ButtonsPanel() {
+        private ButtonsPanel() {
             this("Ok");
         }
 

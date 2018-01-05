@@ -35,6 +35,12 @@ public abstract class Profiler extends ProfilerAbstractClassForSomeMethods {
 
     private static volatile Profiler profiler;
 
+    /**
+     * 
+     * @param instrumentation
+     * @param port
+     * @return
+     */
     public static Profiler initializeProfiler(Instrumentation instrumentation, int port) {
         profiler = new ProfilerImpl(instrumentation, port);
         return profiler;

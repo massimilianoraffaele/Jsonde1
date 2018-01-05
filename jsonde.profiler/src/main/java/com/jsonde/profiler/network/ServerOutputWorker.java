@@ -21,6 +21,11 @@ public class ServerOutputWorker implements Runnable, Closeable {
     private NetworkServerImpl server;
     private final Socket socket;
 
+    /**
+     * 
+     * @param server
+     * @param socket
+     */
     public ServerOutputWorker(NetworkServerImpl server, Socket socket) {
         this.server = server;
         this.socket = socket;

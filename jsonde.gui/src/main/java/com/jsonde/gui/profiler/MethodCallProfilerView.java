@@ -13,11 +13,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
-/**
- * 
- * @author admin
- *
- */
+
 public class MethodCallProfilerView extends JPanel {
 
     private static class MethodCallProfilerNode {
@@ -91,10 +87,20 @@ public class MethodCallProfilerView extends JPanel {
                         if (time > 0) {
 
                             timeStringBuilder.insert(0, time % 60L + " s ");
-                            timeStringBuilder.insert(0, time % 60L + " m ");
-                            timeStringBuilder.insert(0, time + " h ");
-                            
+
                             time /= 60L;
+
+                            if (time > 0) {
+                                timeStringBuilder.insert(0, time % 60L + " m ");
+
+                                time /= 60L;
+
+                                if (time > 0) {
+                                    timeStringBuilder.insert(0, time + " h ");
+                                }
+
+                            }
+
                         }
 
                         MethodCallProfilerNode childNode = new MethodCallProfilerNode(
@@ -145,7 +151,7 @@ public class MethodCallProfilerView extends JPanel {
             super(root);
         }
 
-        public MethodCallProfilerNode getChild(Object parent, int index) {
+        public Object getChild(Object parent, int index) {
             MethodCallProfilerNode parentNode = (MethodCallProfilerNode) parent;
             return parentNode.getChildNodes().get(index);
         }
@@ -184,7 +190,8 @@ public class MethodCallProfilerView extends JPanel {
             return null;
         }
 
-        public String getValueAt(Object o, int i) {
+        @Override
+        public Object getValueAt(Object o, int i) {
 
             MethodCallProfilerNode node = (MethodCallProfilerNode) o;
 
@@ -192,9 +199,7 @@ public class MethodCallProfilerView extends JPanel {
                 case 0:
                     return node.name;
                 case 1:
-                    String invocationCount1 = new String(); 
-                    invocationCount1 = String.valueOf(node.invocationCount);
-                    return invocationCount1;
+                    return node.invocationCount;
                 case 2:
                     return node.totalTime;
             }

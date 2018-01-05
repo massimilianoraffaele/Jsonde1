@@ -2,7 +2,11 @@ package com.jsonde.profiler.heap;
 
 import java.lang.ref.Reference;
 import java.lang.ref.ReferenceQueue;
-import java.util.*;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.ThreadFactory;
 /**
  * 
@@ -19,6 +23,10 @@ public class HeapAnalyzer extends ReferenceQueue<Object> implements Runnable {
 
     private Thread thread;
 
+    /**
+     * 
+     * @param threadFactory
+     */
     public HeapAnalyzer(ThreadFactory threadFactory) {
         thread = threadFactory.newThread(this);
     }

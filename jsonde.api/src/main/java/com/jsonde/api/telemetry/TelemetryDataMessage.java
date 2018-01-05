@@ -10,6 +10,10 @@ public class TelemetryDataMessage extends Message {
 
     private TelemetryDataDto telemetryDataDto;
 
+    /**
+     * 
+     * @param telemetryDataDto
+     */
     public TelemetryDataMessage(TelemetryDataDto telemetryDataDto) {
         this.telemetryDataDto = telemetryDataDto;
     }

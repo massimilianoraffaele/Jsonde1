@@ -3,11 +3,7 @@ package com.jsonde.gui.tree;
 import com.jsonde.client.domain.MethodCall;
 
 import javax.swing.tree.DefaultMutableTreeNode;
-/**
- * 
- * @author admin
- *
- */
+
 public class Node extends DefaultMutableTreeNode {
 
     private String value;

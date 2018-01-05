@@ -10,6 +10,10 @@ import org.objectweb.asm.Opcodes;
  */
 public class JSondeClassLoaderMethodTransformer extends MethodVisitor implements Opcodes {
 
+	/**
+	 * 
+	 * @param methodVisitor
+	 */
     public JSondeClassLoaderMethodTransformer(MethodVisitor methodVisitor) {
         super(ASM4, methodVisitor);
     }

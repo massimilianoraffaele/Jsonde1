@@ -9,6 +9,10 @@ public class Method extends DomainObject {
     private long classId;
     private String name;
 
+    /**
+     * 
+     * @return
+     */
     public long getClassId() {
         return classId;
     }

@@ -10,6 +10,11 @@ import javax.sql.DataSource;
  */
 public class CodeSourceDao extends AbstractEntityDao<CodeSource> {
 
+	/**
+	 * 
+	 * @param dataSource
+	 * @throws DaoException
+	 */
     public CodeSourceDao(DataSource dataSource) throws DaoException {
         super(dataSource);
     }

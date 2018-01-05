@@ -17,6 +17,10 @@ public class TelemetryData extends DomainObject {
 
     private long totalCompilationTime;
 
+    /**
+     * 
+     * @return
+     */
     public long getTime() {
         return time;
     }

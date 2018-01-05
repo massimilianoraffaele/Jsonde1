@@ -7,7 +7,12 @@ import java.util.EventListener;
  *
  */
 public interface MessageListener extends EventListener {
-
+	
+	/**
+	 * 
+	 * @param message
+	 * onMessage
+	 */
     void onMessage(Message message);
 
 }

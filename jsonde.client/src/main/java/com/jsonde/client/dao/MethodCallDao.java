@@ -16,6 +16,11 @@ import java.sql.Types;
  */
 public class MethodCallDao extends AbstractEntityDao<MethodCall> {
 
+	/**
+	 * 
+	 * @param dataSource
+	 * @throws DaoException
+	 */
     public MethodCallDao(DataSource dataSource) throws DaoException {
         super(dataSource);
     }

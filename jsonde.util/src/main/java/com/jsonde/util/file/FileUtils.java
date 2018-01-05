@@ -26,6 +26,11 @@ public class FileUtils {
      */
     public static final String USER_HOME = System.getProperty("user.home");
 
+    /**
+     * 
+     * @param path
+     * @return
+     */
     public static boolean deleteDirectory(File path) {
         if (path.exists()) {
             File[] files = path.listFiles();

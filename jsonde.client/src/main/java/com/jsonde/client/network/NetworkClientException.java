@@ -6,6 +6,9 @@ package com.jsonde.client.network;
  */
 public class NetworkClientException extends Exception {
 
+	/**
+	 * NetworkClientException
+	 */
     public NetworkClientException() {
     }
 

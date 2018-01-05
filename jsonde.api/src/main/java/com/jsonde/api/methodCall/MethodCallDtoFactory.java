@@ -22,6 +22,10 @@ public class MethodCallDtoFactory extends ObjectPool<MethodCallDto> {
         element.flags = 0;
     }
 
+    /**
+     * 
+     * @return
+     */
     public static MethodCallDto getMethodCallDtoFromPool() {
         try {
             return instance.takeFromPool();

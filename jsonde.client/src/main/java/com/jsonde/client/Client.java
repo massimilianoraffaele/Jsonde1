@@ -1,18 +1,5 @@
 package com.jsonde.client;
 
-import com.jsonde.api.Message;
-import com.jsonde.api.MessageListener;
-import com.jsonde.api.function.heap.ClassHeapDataDto;
-import com.jsonde.api.function.heap.DumpHeapFunctionRequest;
-import com.jsonde.api.function.heap.DumpHeapFunctionResponse;
-import com.jsonde.api.methodCall.*;
-import com.jsonde.client.dao.*;
-import com.jsonde.client.domain.*;
-import com.jsonde.client.network.NetworkClient;
-import com.jsonde.client.network.NetworkClientException;
-import com.jsonde.client.network.NetworkClientImpl;
-import org.h2.jdbcx.JdbcConnectionPool;
-
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.HashMap;
@@ -20,6 +7,26 @@ import java.util.List;
 import java.util.Map;
 import java.util.Vector;
 import java.util.concurrent.atomic.AtomicLong;
+
+import org.h2.jdbcx.JdbcConnectionPool;
+
+import com.jsonde.api.Message;
+import com.jsonde.api.MessageListener;
+import com.jsonde.api.function.heap.ClassHeapDataDto;
+import com.jsonde.api.function.heap.DumpHeapFunctionRequest;
+import com.jsonde.api.function.heap.DumpHeapFunctionResponse;
+import com.jsonde.api.methodCall.RegisterClassMessage;
+import com.jsonde.client.dao.ClazzDao;
+import com.jsonde.client.dao.DaoException;
+import com.jsonde.client.dao.DaoFactory;
+import com.jsonde.client.dao.TopMethodCallDao;
+import com.jsonde.client.domain.Clazz;
+import com.jsonde.client.domain.Method;
+import com.jsonde.client.domain.MethodCall;
+import com.jsonde.client.domain.TopMethodCall;
+import com.jsonde.client.network.NetworkClient;
+import com.jsonde.client.network.NetworkClientException;
+import com.jsonde.client.network.NetworkClientImpl;
 /**
  * 
  * @author admin
@@ -42,6 +49,10 @@ public class Client implements MessageListener {
     */
     public static Vector<ClassListener> classListeners = new Vector<ClassListener>();
 
+    /**
+     * 
+     * @param methodCallListener
+     */
     public void addMethodCallListener(MethodCallListener methodCallListener) {
         methodCallListeners.add(methodCallListener);
     }
@@ -191,12 +202,6 @@ public class Client implements MessageListener {
 
         networkClient.removeMessageListener(this);
 
-        /*try {
-            jdbcConnectionPool.dispose();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }*/
-
     }
 
     public void sendMessage(Message message) {
@@ -220,181 +225,6 @@ public class Client implements MessageListener {
     	  MessageHandler h = handlers.get(message.getClass());
     	  if(h != null) ((MessageListener) h).onMessage(message);
     	
-/*
-        if (message instanceof RegisterClassMessage) {
-
-            RegisterClassMessage registerClassMessage = (RegisterClassMessage) message;
-
-            Clazz clazz = new Clazz();
-            clazz.setId(registerClassMessage.getClassId());
-            clazz.setName(registerClassMessage.getName());
-
-            try {
-                DaoFactory.getClazzDao().insert(clazz);
-            } catch (DaoException e) {
-                e.printStackTrace();
-            }
-
-            fireRegisterClassEvent(clazz);
-
-        } else if (message instanceof RegisterMethodMessage) {
-
-            RegisterMethodMessage registerMethodMessage =
-                    (RegisterMethodMessage) message;
-
-            Method method = new Method();
-            method.setId(registerMethodMessage.getMethodId());
-            method.setClassId(registerMethodMessage.getClassId());
-            method.setName(registerMethodMessage.getName());
-
-            try {
-                DaoFactory.getMethodDao().insert(method);
-            } catch (DaoException e) {
-                e.printStackTrace();
-            }
-
-        } else if (message instanceof MethodCallMessage) {
-
-            MethodCallMessage methodCallMessage =
-                    (MethodCallMessage) message;
-
-            boolean complete = methodCallMessage.isComplete();
-
-            MethodCallDto[] methodCallDtos =
-                    methodCallMessage.getMethodCallDtos();
-
-            MethodCall methodCall = null;
-
-            try {
-                methodCall = DaoFactory.getMethodCallDao().
-                        persistMethodCallDtos(methodCallDtos);
-            } catch (DaoException e) {
-                e.printStackTrace();
-            }
-
-            MethodCallSummaryDto methodCallSummaryDto = methodCallMessage.getMethodCallSummaryDto();
-
-            try {
-                DaoFactory.getMethodCallSummaryDao().processMethodCallSummaryDto(methodCallSummaryDto);
-           
-            } catch (DaoException e) {
-                e.printStackTrace();
-            }
-
-            if (complete || message instanceof TelemetryDataMessage) {
-                createTopMethodCall(methodCall);
-            }
-
-            TelemetryDataMessage telemetryDataMessage =
-                    (TelemetryDataMessage) message;
-
-            TelemetryDataDto dto = telemetryDataMessage.getTelemetryData();
-
-            TelemetryData telemetryData = new TelemetryData();
-
-            telemetryData.setId(telemetryDataIdGenerator.getAndIncrement());
-            telemetryData.setTime(dto.time);
-
-            {
-                // memory
-                telemetryData.setFreeMemory(dto.freeMemory);
-                telemetryData.setMaxMemory(dto.maxMemory);
-                telemetryData.setTotalMemory(dto.totalMemory);
-            }
-
-            {
-                // class loading
-                telemetryData.setLoadedClassCount(dto.loadedClassCount);
-                telemetryData.setClassCount(dto.classCount);
-                telemetryData.setUnloadedClassCount(dto.unloadedClassCount);
-            }
-
-            {
-                // compilation
-                telemetryData.setTotalCompilationTime(dto.totalCompilationTime);
-            }
-
-            try {
-                DaoFactory.getTelemetryDataDao().insert(telemetryData);
-            } catch (DaoException e) {
-                e.printStackTrace();
-            }
-
-
-        } else if (message instanceof DescribeClassMessage) {
-
-            DescribeClassMessage describeClassMessage =
-                    (DescribeClassMessage) message;
-
-            try {
-
-                long classId;
-
-                if (describeClassMessage.isClassRedefined()) {
-
-                    classId = describeClassMessage.getClassId();
-
-                } else {
-
-                    long staticConstructorMethodId = describeClassMessage.getMethodId();
-                    Method method = DaoFactory.getMethodDao().get(staticConstructorMethodId);
-                    classId = method.getClassId();
-
-                }
-
-                ClazzDao clazzDao = DaoFactory.getClazzDao();
-                Clazz clazz = clazzDao.get(classId);
-
-                {
-                    ClazzLoaderDao clazzLoaderDao = DaoFactory.getClazzLoaderDao();
-
-                    ClazzLoader clazzLoader = clazzLoaderDao.get(describeClassMessage.getClassLoaderId());
-
-                    if (null == clazzLoader) {
-                        clazzLoader = new ClazzLoader();
-                        clazzLoader.setId(describeClassMessage.getClassLoaderId());
-                        clazzLoaderDao.insert(clazzLoader);
-                    }
-
-                    clazz.setClassLoaderId(clazzLoader.getId());
-
-                }
-
-                {
-                    CodeSourceDao codeSourceDao =
-                            DaoFactory.getCodeSourceDao();
-
-                    CodeSource codeSource;
-
-                    List<CodeSource> codeSources =
-                            null == describeClassMessage.getCodeLocation() ?
-                                    codeSourceDao.getByCondition("source is null") :
-                                    codeSourceDao.getByCondition("source = ?", describeClassMessage.getCodeLocation());
-
-                    if (codeSources.isEmpty()) {
-
-                        codeSource = new CodeSource();
-                        codeSource.setId(codeSourceIdGenerator.getAndIncrement());
-                        codeSource.setSource(describeClassMessage.getCodeLocation());
-
-                        codeSourceDao.insert(codeSource);
-
-                    } else {
-                        codeSource = codeSources.get(0);
-                    }
-
-                    clazz.setCodeSourceId(codeSource.getId());
-
-                }
-
-                clazzDao.update(clazz);
-
-            } catch (DaoException e) {
-                e.printStackTrace();
-            }
-
-        }
-*/
     }
 
     /**
@@ -443,17 +273,31 @@ public class Client implements MessageListener {
 
     }
 
+    /**
+     * 
+     * @author albertomadio
+     * TopMethodCallBuilder
+     */
     private static class TopMethodCallBuilder {
 
         private int hashCode;
         private ByteArrayOutputStream outputStream;
         private int count;
 
+        /**
+         * TopMethodCallBuilder
+         */
         private TopMethodCallBuilder() {
             hashCode = 1;
             outputStream = new ByteArrayOutputStream();
         }
 
+        /**
+         * 
+         * @param methodCall
+         * @throws IOException
+         * @throws DaoException
+         */
         public void visitMethodCall(MethodCall methodCall) throws IOException, DaoException {
 
             count++;
@@ -489,9 +333,14 @@ public class Client implements MessageListener {
 
         }
 
+        /**
+         * 
+         * @param bs
+         */
         private void writeByte(byte[] bs) {
-            for (byte b : bs)
+            for (byte b : bs) {
                 writeByte(b);
+            }
         }
 
         public int getHashCode() {

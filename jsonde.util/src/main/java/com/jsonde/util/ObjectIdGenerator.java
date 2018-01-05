@@ -14,6 +14,11 @@ public class ObjectIdGenerator<T> {
     private AtomicLong sequence = new AtomicLong();
     private Map<ObjectWrapper<T>, Long> objectIds = new HashMap<ObjectWrapper<T>, Long>();
 
+    /**
+     * 
+     * @param object
+     * @return
+     */
     public synchronized long getId(T object) {
 
         ObjectWrapper<T> objectWrapper = wrap(object);
@@ -39,6 +44,12 @@ public class ObjectIdGenerator<T> {
     }
 
     @SuppressWarnings("unchecked")
+    
+    /**
+     * 
+     * @param object
+     * @return
+     */
     private ObjectWrapper<T> wrap(T object) {
         if (object instanceof ObjectWrapper) {
             return (ObjectWrapper<T>) object;
@@ -68,12 +79,21 @@ public class ObjectIdGenerator<T> {
         private final M m;
         private final N n;
 
+        /**
+         * 
+         * @param m
+         * @param n
+         */
         private Pair(M m, N n) {
             this.m = m;
             this.n = n;
         }
 
         @Override
+        
+        /**
+         * equals
+         */
         public boolean equals(Object o) {
             if (this == o) return true;
             if (o == null || getClass() != o.getClass()) return false;
@@ -87,6 +107,10 @@ public class ObjectIdGenerator<T> {
         }
 
         @Override
+        
+        /**
+         * hashCode
+         */
         public int hashCode() {
             int result = m != null ? System.identityHashCode(m) : 0;
             result = 31 * result + (n != null ? System.identityHashCode(n) : 0);
@@ -95,10 +119,20 @@ public class ObjectIdGenerator<T> {
 
     }
 
+    /**
+     * 
+     * @author albertomadio
+     * ObjectWrapper
+     * @param <T>
+     */
     private static class ObjectWrapper<T> {
 
         private final T object;
-
+        
+        /**
+         * 
+         * @param object
+         */
         private ObjectWrapper(T object) {
             this.object = object;
         }

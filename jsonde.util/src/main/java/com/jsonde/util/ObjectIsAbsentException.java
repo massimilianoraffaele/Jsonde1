@@ -6,6 +6,9 @@ package com.jsonde.util;
  */
 public class ObjectIsAbsentException extends Exception {
 
+	/**
+	 * ObjectIsAbsentException
+	 */
     public ObjectIsAbsentException() {
     }
 

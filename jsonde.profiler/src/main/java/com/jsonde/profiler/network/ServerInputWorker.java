@@ -1,12 +1,16 @@
 package com.jsonde.profiler.network;
 
+import java.io.Closeable;
+import java.io.EOFException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.ObjectInputStream;
+import java.net.Socket;
+import java.net.SocketException;
+
 import com.jsonde.api.Message;
 import com.jsonde.util.io.IO;
 import com.jsonde.util.log.Log;
-
-import java.io.*;
-import java.net.Socket;
-import java.net.SocketException;
 /**
  * 
  * @author admin
@@ -20,6 +24,11 @@ public class ServerInputWorker implements Runnable, Closeable {
     private final Socket socket;
     private InputStream inputStream;
 
+    /**
+     * 
+     * @param server
+     * @param socket
+     */
     public ServerInputWorker(NetworkServerImpl server, Socket socket) {
         this.server = server;
         this.socket = socket;

@@ -42,6 +42,10 @@ public class MethodCallSummaryDto implements Serializable {
      */
     public int invocationCount;
 
+    /**
+     * 
+     * @param callee
+     */
     public void addCallee(MethodCallSummaryDto callee) {
         callee.caller = this;
         callees.put(callee.methodId, callee);

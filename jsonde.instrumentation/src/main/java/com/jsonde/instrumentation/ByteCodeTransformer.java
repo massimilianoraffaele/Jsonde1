@@ -15,6 +15,9 @@ import java.security.ProtectionDomain;
  */
 public class ByteCodeTransformer implements ClassFileTransformer {
 
+	/**
+	 * transform
+	 */
     public byte[] transform(ClassLoader loader, String className, Class<?> classBeingRedefined, ProtectionDomain protectionDomain, byte[] classfileBuffer) throws IllegalClassFormatException {
 
         className = ClassUtils.getFullyQualifiedName(className);
@@ -27,11 +30,6 @@ public class ByteCodeTransformer implements ClassFileTransformer {
                         !className.contains(".samples.")) {
             return classfileBuffer;
         }
-
-        /*if (
-                className.startsWith("sun.reflect")) {
-            return classfileBuffer;
-        }*/
 
         try {
             return transform(classfileBuffer, true, loader, classBeingRedefined);
@@ -66,9 +64,7 @@ public class ByteCodeTransformer implements ClassFileTransformer {
 
 
 		final byte[] bytes = classWriter.toByteArray();
-		/*dumpBytes(originalBytes);
-		dumpBytes(bytes);*/
-
+		
 		return bytes;
 
     }

@@ -8,6 +8,11 @@ import com.jsonde.api.MessageListener;
  *
  */
 public interface NetworkServer {
+	
+	/**
+	 * 
+	 * @throws NetworkServerException
+	 */
     void start() throws NetworkServerException;
 
     void stop() throws NetworkServerException;

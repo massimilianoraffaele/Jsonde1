@@ -17,6 +17,13 @@ public class ClassHeapDataDto implements Serializable {
     private long collectCounter;
     private long totalCurrentSize;
 
+    /**
+     * 
+     * @param constructorId
+     * @param createCounter
+     * @param collectCounter
+     * @param totalCurrentSize
+     */
     public ClassHeapDataDto(long constructorId, long createCounter, long collectCounter, long totalCurrentSize) {
         this.constructorId = constructorId;
         this.createCounter = createCounter;

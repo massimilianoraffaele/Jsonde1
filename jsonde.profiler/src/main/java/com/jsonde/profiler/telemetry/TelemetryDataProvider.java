@@ -16,6 +16,10 @@ public class TelemetryDataProvider implements Runnable {
 
     private Profiler profiler;
 
+    /**
+     * 
+     * @param profiler
+     */
     public TelemetryDataProvider(Profiler profiler) {
         this.profiler = profiler;
     }

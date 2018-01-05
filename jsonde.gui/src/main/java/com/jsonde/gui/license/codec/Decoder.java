@@ -48,6 +48,6 @@ public interface Decoder {
      *                          method is null, a param cannot be cast to the
      *                          appropriate type for a specific encoder.
      */
-    byte[] decode(Object pObject) throws DecoderException;
+    Object decode(Object pObject) throws DecoderException;
 }  
 

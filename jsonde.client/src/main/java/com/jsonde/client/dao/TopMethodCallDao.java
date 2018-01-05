@@ -10,6 +10,11 @@ import javax.sql.DataSource;
  */
 public class TopMethodCallDao extends AbstractEntityDao<TopMethodCall> {
 
+	/**
+	 * 
+	 * @param dataSource
+	 * @throws DaoException
+	 */
     public TopMethodCallDao(DataSource dataSource) throws DaoException {
         super(dataSource);
     }

@@ -2,11 +2,7 @@ package com.jsonde.gui.dialog;
 
 import javax.swing.*;
 import java.awt.*;
-/**
- * 
- * @author admin
- *
- */
+
 public abstract class JSondeDialog extends JDialog {
 
     protected Rectangle getFrameBounds() {

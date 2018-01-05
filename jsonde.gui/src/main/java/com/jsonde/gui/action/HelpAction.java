@@ -11,11 +11,7 @@ import javax.swing.text.html.HTMLEditorKit;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.net.URL;
-/**
- * 
- * @author admin
- *
- */
+
 public class HelpAction extends AbstractAction {
 
     private ApplicationUserInterface applicationUserInterface;

@@ -6,9 +6,16 @@ package com.jsonde.client.domain;
  */
 public abstract class AbstractMethodCall extends DomainObject {
 
+	/**
+	 * callerId
+	 */
     protected Long callerId;
     protected Long methodId;
 
+    /**
+     * 
+     * @return
+     */
     public Long getCallerId() {
         return callerId;
     }

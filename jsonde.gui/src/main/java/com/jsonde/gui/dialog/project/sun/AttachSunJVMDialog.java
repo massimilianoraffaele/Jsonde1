@@ -8,11 +8,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-/**
- * 
- * @author admin
- *
- */
+
 public class AttachSunJVMDialog extends JSondeDialog {
 
     private SunJVMFieldsPanel fieldsPanel;
@@ -77,7 +73,7 @@ public class AttachSunJVMDialog extends JSondeDialog {
             return ok;
         }
 
-        public ButtonsPanel() {
+        private ButtonsPanel() {
             this("Ok");
         }
 

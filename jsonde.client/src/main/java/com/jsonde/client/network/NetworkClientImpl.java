@@ -1,16 +1,21 @@
 package com.jsonde.client.network;
 
+import java.io.IOException;
+import java.net.Socket;
+import java.util.Collection;
+import java.util.Vector;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.SynchronousQueue;
+import java.util.concurrent.TimeUnit;
+
 import com.jsonde.api.Message;
 import com.jsonde.api.MessageListener;
 import com.jsonde.api.function.FunctionRequest;
 import com.jsonde.api.function.FunctionResponse;
 import com.jsonde.util.log.Log;
-
-import java.io.IOException;
-import java.net.Socket;
-import java.util.Collection;
-import java.util.Vector;
-import java.util.concurrent.*;
 /**
  * 
  * @author admin
@@ -36,6 +41,11 @@ public class NetworkClientImpl implements NetworkClient {
 
     private Collection<MessageListener> messageListeners = new Vector<MessageListener>();
 
+    /**
+     * 
+     * @param address
+     * @param port
+     */
     public NetworkClientImpl(String address, int port) {
         this.address = address;
         this.port = port;
@@ -113,6 +123,10 @@ public class NetworkClientImpl implements NetworkClient {
 
     }
 
+    /**
+     * 
+     * @throws NetworkClientException
+     */
     private synchronized void closeSockets() throws NetworkClientException {
         try {
             socket.close();

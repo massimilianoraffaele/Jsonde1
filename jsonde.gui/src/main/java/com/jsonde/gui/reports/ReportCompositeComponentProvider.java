@@ -10,6 +10,9 @@ import com.jsonde.util.db.DbUtils;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
+import org.jfree.chart.axis.DateAxis;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.plot.XYPlot;
 import org.jfree.data.general.DefaultPieDataset;
 import org.jfree.data.time.Millisecond;
 import org.jfree.data.time.RegularTimePeriod;
@@ -20,12 +23,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.sql.*;
 import java.util.*;
+import java.util.Date;
+import java.util.List;
 
-/**
- * 
- * @author admin
- *
- */
 public class ReportCompositeComponentProvider implements CompositeComponentProvider {
 
     private Report report;
@@ -111,7 +111,7 @@ public class ReportCompositeComponentProvider implements CompositeComponentProvi
             ResultSetMetaData resultSetMetaData = resultSet.getMetaData();
             int columnCount = resultSetMetaData.getColumnCount();
 
-            ArrayList<TimeSeries> timeSeriesList = new ArrayList<TimeSeries>(columnCount);
+            List<TimeSeries> timeSeriesList = new ArrayList<TimeSeries>(columnCount);
 
             for (int i = 2; i <= columnCount; i++) {
 

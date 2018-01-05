@@ -22,6 +22,11 @@ public class ClientInputWorker implements Runnable {
     private NetworkClientImpl client;
     private final Socket socket;
 
+    /**
+     * 
+     * @param client
+     * @param socket
+     */
     public ClientInputWorker(NetworkClientImpl client, Socket socket) {
         this.client = client;
         this.socket = socket;

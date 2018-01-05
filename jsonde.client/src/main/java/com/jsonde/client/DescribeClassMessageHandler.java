@@ -20,7 +20,10 @@ import com.jsonde.client.domain.Method;
  */
 public class DescribeClassMessageHandler implements MessageHandler<DescribeClassMessage>{
 
-	
+	/**
+	 * 
+	 * @param message
+	 */
 	public void onMessage(DescribeClassMessage message){
 		DescribeClassMessage describeClassMessage =
                 (DescribeClassMessage) message;

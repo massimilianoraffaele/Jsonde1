@@ -15,6 +15,11 @@ public class DescribeClassMessage extends Message {
 
     private boolean classRedefined;
 
+    /**
+     * 
+     * @param methodId
+     * @param classRedefined
+     */
     public DescribeClassMessage(long methodId, boolean classRedefined) {
         this.methodId = methodId;
         this.classRedefined = classRedefined;

@@ -9,11 +9,15 @@ import java.io.ObjectInput;
  */
 public class PoolableObjectInput extends ObjectInputDecorator {
 
+	/**
+	 * 
+	 * @param target
+	 */
     public PoolableObjectInput(ObjectInput target) {
         super(target);
     }
 
-    @Override
+    @Override    
     public ObjectInput readObject() throws ClassNotFoundException, IOException {
         boolean isPoolableExternalizable = super.readBoolean();
         if (isPoolableExternalizable) {
@@ -23,17 +27,7 @@ public class PoolableObjectInput extends ObjectInputDecorator {
 
             PoolableExternalizable poolableExternalizable = null;
 
-            /*try {
-                Method createMethod = factoryClass.getMethod("create");
-                poolableExternalizable = PoolableExternalizable.class.cast(createMethod.invoke(null));
-            }  catch (IllegalAccessException e) {
-                throw new IOException(e);
-            } catch (InvocationTargetException e) {
-                throw new IOException(e);
-            } catch (NoSuchMethodException e) {
-                throw new IOException(e);
-            }*/
-
+            
             poolableExternalizable.readExternal(this);
 
             return (ObjectInput) poolableExternalizable;

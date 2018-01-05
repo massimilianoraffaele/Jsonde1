@@ -6,6 +6,9 @@ package com.jsonde.util.pool;
  */
 public class ObjectPoolException extends Exception {
 
+	/**
+	 * ObjectPoolException
+	 */
     public ObjectPoolException() {
     }
 

@@ -6,12 +6,8 @@ import com.jsonde.util.file.FileUtils;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.util.*;
-/**
- * 
- * @author admin
- *
- */
+import java.util.Map;
+
 public class AboutDialog extends JSondeDialog {
 
     public AboutDialog() {

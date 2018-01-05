@@ -11,6 +11,10 @@ public class TopMethodCall extends DomainObject {
     private long hashCode;
     private long count;
 
+    /**
+     * 
+     * @return
+     */
     public long getMethodCallId() {
         return methodCallId;
     }

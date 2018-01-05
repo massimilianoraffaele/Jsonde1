@@ -8,6 +8,11 @@ import java.io.Externalizable;
  */
 public interface PoolableExternalizable extends Externalizable {
 
+	/**
+	 * 
+	 * @return
+	 */
+	
     String getFactoryClassName();
 
 }

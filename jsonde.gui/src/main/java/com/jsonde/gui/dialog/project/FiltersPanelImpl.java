@@ -7,11 +7,7 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.util.List;
-/**
- * 
- * @author admin
- *
- */
+
 public class FiltersPanelImpl extends JPanel implements ChangeListener, FiltersPanel {
 
     private JTabbedPane tabbedPane;

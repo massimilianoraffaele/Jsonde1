@@ -28,10 +28,20 @@ public class DaoFactory {
     private final ReportDao reportDao;
     private final TelemetryDataDao telemetryDataDao;
 
+    /**
+     * 
+     * @param dataSource12
+     * @throws DaoException
+     */
     public static void initialize(DataSource dataSource12) throws DaoException {
         instance = new DaoFactory(dataSource12);
     }
 
+    /**
+     * 
+     * @param dataSource
+     * @throws DaoException
+     */
     private DaoFactory(DataSource dataSource) throws DaoException {
 
         this.dataSource = dataSource;

@@ -6,11 +6,7 @@ import net.sf.sdedit.icons.Icons;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-/**
- * 
- * @author admin
- *
- */
+
 public class FieldsPanel extends JPanel {
 
     JTextField projectNameField;

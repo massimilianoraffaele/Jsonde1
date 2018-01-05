@@ -16,6 +16,10 @@ public class Clazz extends DomainObject {
     private long collectCounter;
     private long totalCurrentSize;
 
+    /**
+     * 
+     * @return
+     */
     public Long getSuperClassId() {
         return superClassId;
     }

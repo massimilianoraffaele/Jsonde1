@@ -9,6 +9,10 @@ import java.io.ObjectOutput;
  */
 public class PoolableObjectOutput extends ObjectOutputDecorator {
 
+	/**
+	 * 
+	 * @param target
+	 */
     public PoolableObjectOutput(ObjectOutput target) {
         super(target);
     }

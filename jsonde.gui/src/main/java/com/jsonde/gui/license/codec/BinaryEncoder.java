@@ -17,7 +17,6 @@
 
 package com.jsonde.gui.license.codec;
 
-
 /**
  * Defines common encoding methods for byte array encoders.
  *

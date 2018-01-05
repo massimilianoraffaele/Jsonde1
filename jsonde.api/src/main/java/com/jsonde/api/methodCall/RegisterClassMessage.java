@@ -21,11 +21,26 @@ public class RegisterClassMessage extends Message {
     public RegisterClassMessage() {
     }
 
+    /**
+     * 
+     * @param classId
+     * @param name
+     */
     public RegisterClassMessage(long classId, String name) {
         this.classId = classId;
         this.name = name;
     }
 
+    /**
+     * 
+     * @param classId
+     * @param version
+     * @param access
+     * @param name
+     * @param signature
+     * @param superName
+     * @param interfaces
+     */
     public RegisterClassMessage(
             long classId,
             int version,

@@ -6,6 +6,9 @@ package com.jsonde.instrumentation;
  */
 public class SkipClassException extends Exception {
 
+	/**
+	 * SkipClassException
+	 */
     public SkipClassException() {
     }
 

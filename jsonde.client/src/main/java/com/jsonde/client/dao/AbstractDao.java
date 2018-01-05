@@ -13,8 +13,15 @@ import java.sql.SQLException;
  */
 public class AbstractDao {
 
+	/**
+	 * DataSource
+	 */
     protected DataSource dataSource;
 
+    /**
+     * 
+     * @param dataSource
+     */
     public AbstractDao(DataSource dataSource) {
         this.dataSource = dataSource;
     }

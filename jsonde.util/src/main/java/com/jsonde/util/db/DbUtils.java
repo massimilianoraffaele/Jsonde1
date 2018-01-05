@@ -15,6 +15,10 @@ public class DbUtils {
 
     private static final Log log = Log.getLog(DbUtils.class);
 
+    /**
+     * 
+     * @param connection
+     */
     public static void close(Connection connection) {
 
         final String METHOD_NAME = "close(Connection)";

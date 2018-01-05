@@ -12,6 +12,10 @@ import com.jsonde.client.Client;
  */
 public class RegisterClassMessageHandler implements MessageHandler<RegisterClassMessage> {
 
+	/**
+	 * 
+	 * @param message
+	 */
 	public void onMessage(RegisterClassMessage message){
 		RegisterClassMessage registerClassMessage = (RegisterClassMessage) message;
 

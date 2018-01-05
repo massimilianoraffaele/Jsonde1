@@ -21,6 +21,13 @@ public class JSondeClassTransformer extends ClassVisitor {
 
     private long classId;
 
+    /**
+     * 
+     * @param classVisitor
+     * @param instrumentClass
+     * @param classLoader
+     * @param classBeingRedefined
+     */
     public JSondeClassTransformer(ClassVisitor classVisitor, boolean instrumentClass, ClassLoader classLoader, Class<?> classBeingRedefined) {
         super(Opcodes.ASM4, classVisitor);
         this.instrumentClass = instrumentClass;

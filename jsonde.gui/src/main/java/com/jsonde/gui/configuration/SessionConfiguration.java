@@ -12,12 +12,6 @@ import java.io.File;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement(name = "session")
-
-/**
- * 
- * @author admin
- *
- */
 public class SessionConfiguration {
 
     @XmlElement(name = "database-file-name")

@@ -27,6 +27,10 @@ public class ObjectPool<T> {
 
     }
 
+    /**
+     * 
+     * @param elementsClass
+     */
     public ObjectPool(Class<T> elementsClass) {
         this.elementsClass = elementsClass;
     }
@@ -62,6 +66,11 @@ public class ObjectPool<T> {
 
     }
 
+    /**
+     * 
+     * @return
+     * @throws ObjectPoolException
+     */
     private T takeFromPoolOrCreateImpl() throws ObjectPoolException {
         T element;
 

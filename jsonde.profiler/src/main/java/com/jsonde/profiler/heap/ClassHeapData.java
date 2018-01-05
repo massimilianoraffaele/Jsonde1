@@ -10,6 +10,10 @@ public class ClassHeapData {
     private long collectCounter;
     private long totalCurrentSize;
 
+    /**
+     * 
+     * @param objectSize
+     */
     public synchronized void newObject(long objectSize) {
         totalCurrentSize += objectSize;
         createCounter++;

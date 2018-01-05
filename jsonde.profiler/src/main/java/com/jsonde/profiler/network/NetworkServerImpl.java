@@ -40,6 +40,11 @@ public class NetworkServerImpl implements NetworkServer {
 
     private DaemonThreadFactory daemonThreadFactory;
 
+    /**
+     * 
+     * @param port
+     * @param daemonThreadFactory
+     */
     public NetworkServerImpl(int port, DaemonThreadFactory daemonThreadFactory) {
         this.port = port;
         this.daemonThreadFactory = daemonThreadFactory;
@@ -123,6 +128,10 @@ public class NetworkServerImpl implements NetworkServer {
 
     }
 
+    /**
+     * 
+     * @throws NetworkServerException
+     */
     private synchronized void closeSockets() throws NetworkServerException {
         try {
             if (null != socket)

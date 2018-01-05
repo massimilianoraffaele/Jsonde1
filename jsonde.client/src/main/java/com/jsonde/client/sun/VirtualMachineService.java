@@ -21,7 +21,12 @@ public class VirtualMachineService {
     private Class virtualMachineClass;
 
     private static VirtualMachineService instance;
-
+    
+    /**
+     * 
+     * @return
+     * @throws VirtualMachineServiceException
+     */
     public static VirtualMachineService getInstance() throws VirtualMachineServiceException {
         if (null == instance) {
             instance = new VirtualMachineService();
@@ -29,14 +34,10 @@ public class VirtualMachineService {
         return instance;
     }
 
-    /*static {
-        try {
-            System.setOut(new PrintStream(new FileOutputStream("C:/out.txt")));
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-    }*/
-
+   /**
+    * 
+    * @throws VirtualMachineServiceException
+    */
     private VirtualMachineService() throws VirtualMachineServiceException {
 
         try {
@@ -57,7 +58,7 @@ public class VirtualMachineService {
 
                 @Override
                 protected String findLibrary(String libname) {
-                    //System.out.println("Loading native library " + libname);
+                    
 
                     String libraryFileName;
 
@@ -98,16 +99,16 @@ public class VirtualMachineService {
 
             };
 
-            //System.out.println(toolsClassLoader);
+            
 
             virtualMachineClass = toolsClassLoader.loadClass("com.sun.tools.attach.VirtualMachine");
 
             for (Method method : virtualMachineClass.getMethods()) {
-                //System.out.println(method);
+                
             }
 
 
-            //System.out.println(virtualMachineClass);
+            
 
         } catch (Throwable e) {
             throw new VirtualMachineServiceException(e);
@@ -115,6 +116,11 @@ public class VirtualMachineService {
 
     }
 
+    /**
+     * 
+     * @return
+     * @throws VirtualMachineServiceException
+     */
     public boolean isSun16JVM() throws VirtualMachineServiceException {
         return null != getToolsJarURL();
     }
@@ -132,10 +138,8 @@ public class VirtualMachineService {
                     FileUtils.FILE_SEPARATOR +
                     "tools.jar");
 
-            //System.out.println(toolsJarFile);
-
             if (toolsJarFile.exists()) {
-                //System.out.println("Used 1");
+                
                 return toolsJarFile.toURI().toURL();
             }
 
@@ -147,10 +151,9 @@ public class VirtualMachineService {
                     FileUtils.FILE_SEPARATOR +
                     "tools.jar");
 
-            //System.out.println(toolsJarFile);
 
             if (toolsJarFile.exists()) {
-                //System.out.println("Used 2");
+                
                 return toolsJarFile.toURI().toURL();
             }
 
@@ -162,10 +165,9 @@ public class VirtualMachineService {
                     FileUtils.FILE_SEPARATOR +
                     "tools.jar");
 
-            //System.out.println(toolsJarFile);
 
             if (toolsJarFile.exists()) {
-                //System.out.println("Used 3");
+                
                 return toolsJarFile.toURI().toURL();
             }
 
@@ -177,10 +179,8 @@ public class VirtualMachineService {
                     FileUtils.FILE_SEPARATOR +
                     "tools.jar");
 
-            //System.out.println(toolsJarFile);
-
             if (toolsJarFile.exists()) {
-                //System.out.println("Used 4");
+                
                 return toolsJarFile.toURI().toURL();
             }
 
@@ -192,10 +192,8 @@ public class VirtualMachineService {
                     FileUtils.FILE_SEPARATOR +
                     "tools.jar");
 
-            //System.out.println(toolsJarFile);
-
             if (toolsJarFile.exists()) {
-                //System.out.println("Used 5");
+               
                 return toolsJarFile.toURI().toURL();
             }
 
@@ -219,27 +217,15 @@ public class VirtualMachineService {
 
             Class virtualMachineDescriptorClass = toolsClassLoader.loadClass("com.sun.tools.attach.VirtualMachineDescriptor");
 
-            //System.out.println(virtualMachineDescriptorClass);
-
             Method virtualMachineDescriptorIdMethod = virtualMachineDescriptorClass.getMethod("id");
-
-            //System.out.println(virtualMachineDescriptorIdMethod);
 
             Method virtualMachineDescriptorDisplayNameMethod = virtualMachineDescriptorClass.getMethod("displayName");
 
-            //System.out.println(virtualMachineDescriptorDisplayNameMethod);
-
             Method listMethod = virtualMachineClass.getMethod("list");
-
-            //System.out.println(listMethod);
 
             List virtualMachines = (List) listMethod.invoke(null);
 
-            //System.out.println(virtualMachines);
-
             for (Object virtualMachine : virtualMachines) {
-
-                //System.out.println("Virtual Machine found: " + virtualMachine);
 
                 String id = (String) virtualMachineDescriptorIdMethod.invoke(virtualMachine);
                 String description = (String) virtualMachineDescriptorDisplayNameMethod.invoke(virtualMachine);
@@ -293,7 +279,6 @@ public class VirtualMachineService {
         VirtualMachineService virtualMachineService = new VirtualMachineService();
 
         for (VirtualMachineData vmData : virtualMachineService.getVirtualMachines()) {
-            //System.out.println(vmData);
         }
 
     }

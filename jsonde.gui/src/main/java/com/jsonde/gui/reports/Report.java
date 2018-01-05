@@ -4,12 +4,6 @@ import javax.xml.bind.annotation.*;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement(name = "report")
-
-/**
- * 
- * @author admin
- *massimo
- */
 public class Report {
 
     @XmlAttribute(name = "id")

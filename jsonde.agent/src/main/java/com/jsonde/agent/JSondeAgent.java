@@ -36,6 +36,11 @@ public class JSondeAgent implements MessageListener, ClassFileTransformer {
 
     private final ClassLoader resolveAgentLibrariesClassLoader;
 
+    /**
+     * 
+     * @param arg2
+     * @param instrumentation2
+     */
     public static void premain(final String arg2, Instrumentation instrumentation2) {
         JSondeAgent jSondeAgent = new JSondeAgent(arg2, instrumentation2);
         jSondeAgent.execute();
@@ -51,52 +56,7 @@ public class JSondeAgent implements MessageListener, ClassFileTransformer {
                 jSondeAgent.execute();
                 jSondeAgent.redefineLoadedClasses();
                 jSondeAgent.setTransformer();
-                /*try {
-                    if (instrumentation.isRetransformClassesSupported()) {
-                        jSondeAgent.setTransformer();
-                        Class[] classes = instrumentation.getAllLoadedClasses();
-
-                        List<Class> modifiableClasses = new ArrayList<Class>(classes.length / 2);
-
-                        for (Class clazz : classes) {
-                            if (instrumentation.isModifiableClass(clazz)) {
-                                modifiableClasses.add(clazz);
-                            }
-                        }
-
-                        int classesCount = modifiableClasses.size();
-                        int chunkSize = 100;
-                        int chunkCount = classesCount / chunkSize;
-
-                        for (int i = 0; i < chunkCount; i++) {
-
-                            Class[] classesChunk =
-                                    modifiableClasses.
-                                            subList(i * chunkSize, (i+1) * chunkSize).
-                                            toArray(new Class[chunkSize]);
-
-                            instrumentation.retransformClasses(classesChunk);
-
-                        }
-
-                        Class[] classesChunk =
-                                    modifiableClasses.
-                                            subList(classesCount - (classesCount % chunkSize), classesCount).
-                                            toArray(new Class[chunkSize]);
-
-                        instrumentation.retransformClasses(classesChunk);
-
-                    } else {
-                        jSondeAgent.redefineLoadedClasses();
-                        jSondeAgent.setTransformer();
-                    }
-                } catch (NoSuchMethodError e) {
-                    jSondeAgent.redefineLoadedClasses();
-                    jSondeAgent.setTransformer();
-                } catch (UnmodifiableClassException e) {
-                    e.printStackTrace();
-                }*/
-
+               
             }
 
         }).start();
@@ -120,6 +80,10 @@ public class JSondeAgent implements MessageListener, ClassFileTransformer {
         profiler = Profiler.initializeProfiler(instrumentation, portNumber);
     }
 
+    /**
+     * 
+     * @return
+     */
     private int getPortNumber() {
         try {
             return Integer.parseInt(arguments);
@@ -188,16 +152,7 @@ public class JSondeAgent implements MessageListener, ClassFileTransformer {
             ClassLoader classLoader = clazz.getClassLoader();
             if1(classLoader,classFileResourceURL, className);
             
-            /*if (null == classLoader) {
-                classFileResourceURL = ClassLoader.getSystemResource(
-                        ClassUtils.convertClassNameToResourceName(className));}
-            else 
-            {
-                classFileResourceURL = classLoader.getResource(
-                        ClassUtils.convertClassNameToResourceName(className));
-            }*/
-
-            if (null == classFileResourceURL)
+       if (null == classFileResourceURL)
                 return;
 
             InputStream byteCodeInputStream = null;
@@ -224,15 +179,7 @@ public class JSondeAgent implements MessageListener, ClassFileTransformer {
                             clazz.getClassLoader());
                 }
             }
-            /* catch (IOException e) {
-                e.printStackTrace();
-            } catch (IllegalClassFormatException e) {
-                e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-            } finally {
-                IO.close(originalByteArrayOutputStream);
-                IO.close(byteCodeInputStream);
-            }
-            */
+           
             catch (Exception e) {
                 e.printStackTrace();
             } 
@@ -255,7 +202,6 @@ public class JSondeAgent implements MessageListener, ClassFileTransformer {
                      ClassUtils.convertClassNameToResourceName(className));
          }
     }
-    
     
     
     public byte[] transform(
@@ -286,13 +232,7 @@ public class JSondeAgent implements MessageListener, ClassFileTransformer {
 
               String name = ClassUtils.getFullyQualifiedName(className);
 
-                /*if (!name.startsWith("com.jsonde")) {
-                    Profiler.getProfiler().redefineClass(
-                            transformedBytes,
-                            name,
-                            loader);
-                }*/
-              
+                
                 return classfileBuffer;
 
             } else {

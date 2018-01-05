@@ -22,6 +22,12 @@ public class MethodCallMessage extends Message implements Externalizable {
     public MethodCallMessage() {
     }
 
+    /**
+     * 
+     * @param methodCallDtos
+     * @param methodCallSummaryDto
+     * @param complete
+     */
     public MethodCallMessage(
             List<MethodCallDto> methodCallDtos,
             MethodCallSummaryDto methodCallSummaryDto,
@@ -34,6 +40,11 @@ public class MethodCallMessage extends Message implements Externalizable {
                         copyMethodCallSummaryDto(methodCallSummaryDto);
     }
 
+    /**
+     * 
+     * @param original
+     * @return
+     */
     private MethodCallSummaryDto copyMethodCallSummaryDto(MethodCallSummaryDto original) {
 
         if (null == original) {

@@ -39,6 +39,6 @@ public interface Encoder {
      *                          thrown if the encoder experiences a failure
      *                          condition during the encoding process.
      */
-	byte[] encode(Object pObject) throws EncoderException;
+    Object encode(Object pObject) throws EncoderException;
 }  
 

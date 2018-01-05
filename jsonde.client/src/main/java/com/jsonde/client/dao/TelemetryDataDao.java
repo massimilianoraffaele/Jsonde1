@@ -10,6 +10,11 @@ import javax.sql.DataSource;
  */
 public class TelemetryDataDao extends AbstractEntityDao<TelemetryData> {
 
+	/**
+	 * 
+	 * @param dataSource
+	 * @throws DaoException
+	 */
     public TelemetryDataDao(DataSource dataSource) throws DaoException {
         super(dataSource);
     }

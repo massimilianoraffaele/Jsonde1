@@ -12,11 +12,7 @@ import net.sf.sdedit.icons.Icons;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
-/**
- * 
- * @author admin
- *
- */
+
 public class NewProjectAction extends AbstractAction {
 
     private SdEditUIAdapter sdEditUIAdapter;

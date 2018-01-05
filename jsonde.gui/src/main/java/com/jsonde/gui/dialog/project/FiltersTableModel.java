@@ -6,11 +6,7 @@ import javax.swing.table.AbstractTableModel;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-/**
- * 
- * @author admin
- *
- */
+
 public class FiltersTableModel extends AbstractTableModel {
 
     private List<ClassFilterDto> classFilters;
@@ -58,12 +54,12 @@ public class FiltersTableModel extends AbstractTableModel {
         return 2;
     }
 
-    public String getValueAt(int rowIndex, int columnIndex) {
+    public Object getValueAt(int rowIndex, int columnIndex) {
         ClassFilterDto classFilter = classFilters.get(rowIndex);
 
         switch (columnIndex) {
             case 0:
-                return String.valueOf(classFilter.isInclusive());
+                return classFilter.isInclusive();
             case 1:
                 return classFilter.getPackageName();
         }

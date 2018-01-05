@@ -6,6 +6,9 @@ package com.jsonde.client.sun;
  */
 public class VirtualMachineServiceException extends Exception {
 
+	/**
+	 * VirtualMachineServiceException
+	 */
     public VirtualMachineServiceException() {
     }
 

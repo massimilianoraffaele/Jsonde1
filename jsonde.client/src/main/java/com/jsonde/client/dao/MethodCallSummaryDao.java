@@ -19,6 +19,11 @@ import java.util.concurrent.atomic.AtomicLong;
  */
 public class MethodCallSummaryDao extends AbstractEntityDao<MethodCallSummary> {
 
+	/**
+	 * 
+	 * @param dataSource
+	 * @throws DaoException
+	 */
     public MethodCallSummaryDao(DataSource dataSource) throws DaoException {
         super(dataSource);
     }

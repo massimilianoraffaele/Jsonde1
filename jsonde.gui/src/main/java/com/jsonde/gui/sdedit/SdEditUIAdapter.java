@@ -1,24 +1,34 @@
 package com.jsonde.gui.sdedit;
 
-import com.jsonde.client.*;
+import com.jsonde.client.ClassListener;
+import com.jsonde.client.Client;
+import com.jsonde.client.MethodCallListener;
 import com.jsonde.client.dao.DaoFactory;
-import com.jsonde.client.domain.*;
+import com.jsonde.client.domain.Clazz;
+import com.jsonde.client.domain.Method;
+import com.jsonde.client.domain.MethodCall;
 import com.jsonde.gui.ApplicationUserInterface;
 import com.jsonde.gui.Main;
 import com.jsonde.gui.action.*;
 import com.jsonde.gui.action.composite.CreateCompositeComponentTabAction;
 import com.jsonde.gui.action.reports.ReportActions;
-import com.jsonde.gui.components.*;
+import com.jsonde.gui.components.JActionIcon;
+import com.jsonde.gui.components.JActionLabel;
 import com.jsonde.gui.components.accordion.JAccordionPanel;
-import com.jsonde.gui.components.listpane.*;
+import com.jsonde.gui.components.listpane.DefaultListPaneModel;
+import com.jsonde.gui.components.listpane.JListPane;
 import com.jsonde.gui.dialog.error.ErrorsDialog;
-import com.jsonde.gui.reports.*;
+import com.jsonde.gui.reports.ReportCompositeComponentProvider;
+import com.jsonde.gui.reports.ReportException;
+import com.jsonde.gui.reports.Reports;
 import com.jsonde.gui.tree.Node;
 import net.sf.sdedit.config.ConfigurationManager;
 import net.sf.sdedit.editor.Editor;
 import net.sf.sdedit.ui.UserInterface;
-import net.sf.sdedit.ui.components.*;
+import net.sf.sdedit.ui.components.ATabbedPane;
+import net.sf.sdedit.ui.components.ATabbedPaneListener;
 import net.sf.sdedit.ui.impl.UserInterfaceImpl;
+
 import javax.swing.*;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreePath;
@@ -26,14 +36,12 @@ import java.awt.*;
 import java.awt.event.*;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.io.*;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.lang.reflect.Field;
-import java.util.*;
-/**
- * 
- * @author admin
- *
- */
+import java.util.ArrayList;
+import java.util.Enumeration;
+
 public class SdEditUIAdapter implements MethodCallListener, ApplicationUserInterface, ClassListener {
 
     private UserInterface userInterface;

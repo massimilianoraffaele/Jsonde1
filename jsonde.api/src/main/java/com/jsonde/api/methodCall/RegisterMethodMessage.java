@@ -22,9 +22,22 @@ public class RegisterMethodMessage extends Message {
     private String signature;
     private String[] exceptions;
 
+    /**
+     * RegisterMethodMessage
+     */
     public RegisterMethodMessage() {
     }
     
+    /**
+     * 
+     * @param methodId
+     * @param classId
+     * @param access
+     * @param name
+     * @param desc
+     * @param signature
+     * @param exceptions
+     */
     public RegisterMethodMessage(
             long methodId,
             long classId,

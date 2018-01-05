@@ -15,6 +15,11 @@ public class ClassFilterDto implements Serializable {
 	private boolean inclusive;
     private String packageName;
 
+    /**
+     * 
+     * @param inclusive
+     * @param packageName
+     */
     public ClassFilterDto(boolean inclusive, String packageName) {
         this.inclusive = inclusive;
         this.packageName = packageName;

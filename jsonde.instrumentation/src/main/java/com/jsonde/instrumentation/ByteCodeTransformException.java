@@ -6,6 +6,9 @@ package com.jsonde.instrumentation;
  */
 public class ByteCodeTransformException extends Exception {
 
+	/**
+	 * ByteCodeTransformException
+	 */
     public ByteCodeTransformException() {
     }
 

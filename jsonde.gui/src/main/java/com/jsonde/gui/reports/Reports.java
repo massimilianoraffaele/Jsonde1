@@ -14,13 +14,6 @@ import java.util.Map;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement(name = "reports")
-
-
-/**
- * 
- * @author admin
- *massimo
- */
 public class Reports {
 
     @XmlElement(name = "report")

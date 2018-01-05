@@ -6,10 +6,17 @@ package com.jsonde.util;
  */
 public class StringUtils {
 
+	/**
+	 * 
+	 * @param wildcard
+	 * @return
+	 */
     public static String wildcardToRegex(String wildcard) {
         StringBuffer s = new StringBuffer(wildcard.length() + 6);
         s.append('^');
-        for (int i = 0, is = wildcard.length(); i < is; i++) {
+        
+        
+        for (int i = 0; i < wildcard.length(); i++) {
             char c = wildcard.charAt(i);
             switch (c) {
                 case '*':
@@ -20,17 +27,7 @@ public class StringUtils {
                     break;
                 // escape special regexp-characters
                 case '(':
-                case ')':
-               /* 	 escape special regexp - characters
-               case '[':
-                case ']':
-                case '$':
-                case '.':
-                case '{':
-                case '}':
-                case '|':
-                case '\\':
-                */
+                case ')':        
                     s.append("\\");
                     s.append(c);
                     break;

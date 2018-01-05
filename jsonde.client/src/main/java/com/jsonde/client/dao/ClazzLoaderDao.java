@@ -10,6 +10,11 @@ import javax.sql.DataSource;
  */
 public class ClazzLoaderDao extends AbstractEntityDao<ClazzLoader> {
 
+	/**
+	 * 
+	 * @param dataSource
+	 * @throws DaoException
+	 */
     public ClazzLoaderDao(DataSource dataSource) throws DaoException {
         super(dataSource);
     }

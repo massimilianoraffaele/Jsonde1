@@ -10,6 +10,11 @@ import java.util.EventListener;
  */
 public interface ClassListener extends EventListener {
 
+	/**
+	 * 
+	 * @param clazz
+	 * onRegisterClass
+	 */	
     void onRegisterClass(Clazz clazz);
 
 }

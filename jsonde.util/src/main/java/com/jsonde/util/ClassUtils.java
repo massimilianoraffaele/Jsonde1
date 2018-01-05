@@ -27,6 +27,11 @@ public class ClassUtils {
      */
     private static final String EMPTY_STRING = "";
 
+    /**
+     * 
+     * @param className
+     * @return
+     */
     public static String getFullyQualifiedName(String className) {
         if (null == className) return EMPTY_STRING;
         return className.replace('/', '.');
@@ -104,6 +109,11 @@ public class ClassUtils {
 
     }
 
+    /**
+     * 
+     * @param directory
+     * @return
+     */
     private static Set<String> getPackagesFromDirectory(File directory) {
         return getPackagesFromDirectory(directory, directory);
     }

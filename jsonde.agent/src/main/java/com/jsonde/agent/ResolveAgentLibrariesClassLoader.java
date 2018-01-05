@@ -1,7 +1,11 @@
 package com.jsonde.agent;
 
 import java.io.IOException;
-import java.net.*;
+import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.net.URLClassLoader;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.jar.Attributes;
@@ -21,6 +25,10 @@ public class ResolveAgentLibrariesClassLoader extends URLClassLoader {
         super(getUrls(), null);
     }
 
+    /**
+     * 
+     * @return
+     */
     private static URL[] getUrls() {
 
         try {

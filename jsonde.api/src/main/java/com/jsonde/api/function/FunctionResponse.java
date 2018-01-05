@@ -19,6 +19,10 @@ public abstract class FunctionResponse<T extends FunctionRequest> extends Messag
         requestId = request.getRequestId();
     }
 
+    /**
+     * 
+     * @return
+     */
     public long getRequestId() {
         return requestId;
     }

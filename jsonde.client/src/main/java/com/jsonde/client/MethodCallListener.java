@@ -10,6 +10,10 @@ import java.util.EventListener;
  */
 public interface MethodCallListener extends EventListener {
 
+	/**
+	 * 
+	 * @param methodCall
+	 */	
     void onMethodCall(MethodCall methodCall);
 
 }

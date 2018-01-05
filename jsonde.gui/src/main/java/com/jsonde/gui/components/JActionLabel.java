@@ -5,11 +5,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-/**
- * 
- * @author admin
- *
- */
+
 public class JActionLabel extends JLabel implements MouseListener {
 
     private Action action;
