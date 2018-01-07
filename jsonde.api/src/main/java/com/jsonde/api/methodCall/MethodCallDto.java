@@ -8,10 +8,6 @@ import java.io.Serializable;
  */
 public class MethodCallDto implements Serializable {
 
-    /**
-	 * 
-	 */
-	private static final long serialVersionUID = 6140934579333095367L;
 	/**
 	 * dsad
 	 */

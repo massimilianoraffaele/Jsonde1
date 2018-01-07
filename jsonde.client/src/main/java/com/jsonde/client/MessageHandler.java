@@ -9,4 +9,8 @@ import com.jsonde.api.Message;
  */
 public interface MessageHandler<M extends Message> {
 
+	  /**
+	   * messageHandler
+	   */
+      int messageHandler = 0;
 }

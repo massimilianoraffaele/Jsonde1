@@ -6,6 +6,9 @@ import com.jsonde.api.function.FunctionRequest;
  * @author admin
  *
  */
-public class DumpHeapFunctionRequest extends FunctionRequest<DumpHeapFunctionResponse> {
-
+final public class DumpHeapFunctionRequest extends FunctionRequest<DumpHeapFunctionResponse> {
+    
+	public DumpHeapFunctionRequest(){
+		super();
+	}
 }

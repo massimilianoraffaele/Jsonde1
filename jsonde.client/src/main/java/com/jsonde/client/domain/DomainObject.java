@@ -8,10 +8,6 @@ import java.io.Serializable;
  */
 public abstract class DomainObject implements Serializable {
 
-    /**
-	 * 
-	 */
-	private static final long serialVersionUID = -1424089909490927953L;
 	private long id;
 
 	/**

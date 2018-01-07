@@ -23,7 +23,6 @@ public class MethodCallMessageHandler implements MessageHandler<MethodCallMessag
         MethodCallMessage methodCallMessage =
                 (MethodCallMessage) message;
 
-        boolean complete = methodCallMessage.isComplete();
 
         MethodCallDto[] methodCallDtos =
                 methodCallMessage.getMethodCallDtos();

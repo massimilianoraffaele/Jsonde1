@@ -6,11 +6,7 @@ import java.io.Serializable;
  * @author admin
  *
  */
-public class TelemetryDataDto implements Serializable {
-/**
- * 
- */
-    private static final long serialVersionUID = -4872627251132927940L;
+final public class TelemetryDataDto implements Serializable {
 
     /**
      * gfdfg

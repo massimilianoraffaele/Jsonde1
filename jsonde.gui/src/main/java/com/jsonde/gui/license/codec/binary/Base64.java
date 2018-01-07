@@ -447,7 +447,6 @@ public class Base64 extends Base64forSomeMethods implements BinaryEncoder, Binar
          */
         if (inAvail < 0) {
             eof = true;
-            int var1 = buffer.length - pos + encodeSize;
                 resizeBuffer();
         
             switch (modulus) {
@@ -476,7 +475,6 @@ public class Base64 extends Base64forSomeMethods implements BinaryEncoder, Binar
         }
         else {
             for (int i = 0; i < inAvail; i++) {
-                int var2 = buffer.length - pos + encodeSize;
                     resizeBuffer();
                 
                 modulus = (++modulus) % 3;
@@ -554,7 +552,6 @@ public class Base64 extends Base64forSomeMethods implements BinaryEncoder, Binar
      */
     private void decodeFor(byte[] in, int inPos, int inAvail) {
         for (int i = 0; i < inAvail; i++) {
-            int var1 = buffer.length - pos - decodeSize;
                 resizeBuffer();
             byte b = in[inPos++];
             if (b == PAD) {
@@ -795,6 +792,7 @@ public class Base64 extends Base64forSomeMethods implements BinaryEncoder, Binar
                     break;
                 default:
                     groomedData[bytesCopied++] = data[i];
+                    break;
             }
         }
         byte packedData[] = new byte[bytesCopied];

@@ -5,4 +5,9 @@ package com.jsonde.client.dao;
  *
  */
 public interface Dao {
+	
+	/**
+	 * dao
+	 */
+	int dao = 0;
 }

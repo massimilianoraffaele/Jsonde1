@@ -8,10 +8,6 @@ import java.io.Serializable;
  */
 public class ClassHeapDataDto implements Serializable {
 
-    /**
-	 * 
-	 */
-	private static final long serialVersionUID = -4621925840853358181L;
 	private long constructorId;
     private long createCounter;
     private long collectCounter;

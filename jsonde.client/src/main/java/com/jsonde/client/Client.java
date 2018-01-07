@@ -358,6 +358,5 @@ public class Client implements MessageListener {
 
     public static AtomicLong codeSourceIdGenerator = new AtomicLong();
     private AtomicLong topMethodCallIdGenerator = new AtomicLong();
-    private AtomicLong telemetryDataIdGenerator = new AtomicLong();
 
 }

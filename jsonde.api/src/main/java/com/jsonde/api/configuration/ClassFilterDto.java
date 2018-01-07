@@ -8,10 +8,7 @@ import java.io.Serializable;
  */
 public class ClassFilterDto implements Serializable {
 
-    /**
-	 * 
-	 */
-	private static final long serialVersionUID = 4764173961922409560L;
+    
 	private boolean inclusive;
     private String packageName;
 

@@ -28,13 +28,6 @@ package com.jsonde.gui.license.codec;
 public class EncoderException extends Exception {
 
     /**
-     * Declares the Serial Version Uid.
-     *
-     * @see <a href="http://c2.com/cgi/wiki?AlwaysDeclareSerialVersionUid">Always Declare Serial Version Uid</a>
-     */
-    private static final long serialVersionUID = 1L;
-
-    /**
      * Constructs a new exception with <code>null</code> as its detail message. The cause is not initialized, and may
      * subsequently be initialized by a call to {@link #initCause}.
      *

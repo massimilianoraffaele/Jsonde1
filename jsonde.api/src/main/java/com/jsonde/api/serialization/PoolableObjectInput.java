@@ -22,9 +22,7 @@ public class PoolableObjectInput extends ObjectInputDecorator {
         boolean isPoolableExternalizable = super.readBoolean();
         if (isPoolableExternalizable) {
             String factoryClassName = super.readUTF();
-
-            Class factoryClass = Class.forName(factoryClassName);
-
+            
             PoolableExternalizable poolableExternalizable = null;
 
             

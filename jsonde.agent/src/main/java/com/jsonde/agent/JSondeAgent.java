@@ -230,9 +230,6 @@ public class JSondeAgent implements MessageListener, ClassFileTransformer {
             if3(className, transformedBytes, contextClassLoader);
             if (null == loader.getParent()) {
 
-              String name = ClassUtils.getFullyQualifiedName(className);
-
-                
                 return classfileBuffer;
 
             } else {

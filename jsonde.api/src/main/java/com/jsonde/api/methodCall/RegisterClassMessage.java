@@ -129,8 +129,10 @@ public class RegisterClassMessage extends Message {
     }
 
     public static boolean if1() {
-        if (classId != classId) return false;
-        if (version != version) return false;
+        long classId1 = 0;
+        long version1 = 0;
+    	if (classId != classId1) return false;
+        if (version != version1) return false;
        return true; 
     }
     

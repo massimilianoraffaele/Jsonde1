@@ -98,11 +98,6 @@ public class ObjectIdGenerator<T> {
             if (this == o) return true;
             if (o == null || getClass() != o.getClass()) return false;
 
-            Pair pair = (Pair) o;
-
-            if (m != null ? m != pair.m : pair.m != null) return false;
-            if (n != null ? n != pair.n : pair.n != null) return false;
-
             return true;
         }
 
