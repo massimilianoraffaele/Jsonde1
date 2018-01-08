@@ -21,7 +21,6 @@ public class PoolableObjectInput extends ObjectInputDecorator {
     public ObjectInput readObject() throws ClassNotFoundException, IOException {
         boolean isPoolableExternalizable = super.readBoolean();
         if (isPoolableExternalizable) {
-            String factoryClassName = super.readUTF();
             
             PoolableExternalizable poolableExternalizable = null;
 

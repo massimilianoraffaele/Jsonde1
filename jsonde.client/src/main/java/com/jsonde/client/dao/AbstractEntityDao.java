@@ -412,7 +412,7 @@ public abstract class AbstractEntityDao<T extends DomainObject> extends Abstract
 
     }
     
-    public void getinternalIf(DomainObject domainObject, ResultSet resultSet, long id) throws Exception {
+    public void getinternalIf(DomainObject domainObject, ResultSet resultSet, long id) throws ExceptionInternalIf {
         try{
     	domainObject.setId(id);
 
@@ -444,7 +444,7 @@ public abstract class AbstractEntityDao<T extends DomainObject> extends Abstract
 
         }
     }catch (Exception e) {
-            throw new Exception(e);
+            throw new ExceptionInternalIf(e);
         }
     }
 

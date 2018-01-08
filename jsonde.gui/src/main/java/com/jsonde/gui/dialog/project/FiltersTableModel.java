@@ -89,6 +89,9 @@ public class FiltersTableModel extends AbstractTableModel {
             case 2:
             	classFilter.getPackageName();
             	break;
+            	default:
+            		classFilter.getPackageName();
+            		break;
         }
 
     }
