@@ -9,6 +9,10 @@ import java.io.Serializable;
 public class MethodCallDto implements Serializable {
 
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	/**
 	 * dsad
 	 */
 	public static final byte RETURN_VALUE_FLAG = 0;

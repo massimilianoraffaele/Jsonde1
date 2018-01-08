@@ -11,6 +11,10 @@ import java.util.Map;
  */
 public class MethodCallSummaryDto implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Map<Long, MethodCallSummaryDto> callees = new HashMap<Long, MethodCallSummaryDto>();
 	/**
 	 * gffdg

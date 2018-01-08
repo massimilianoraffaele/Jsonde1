@@ -14,6 +14,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
@@ -348,7 +349,6 @@ public abstract class AbstractEntityDao<T extends DomainObject> extends Abstract
     public T get(long id) throws DaoException {
 
         T domainObject = createDomainObject();
-
         StringBuilder getQueryBuilder = new StringBuilder();
 
         getQueryBuilder.
@@ -394,9 +394,8 @@ public abstract class AbstractEntityDao<T extends DomainObject> extends Abstract
             	
             	getinternalIf(domainObject, resultSet, id);
 
-            } else {
-                return null;
-            }
+            } 
+              
 
         } 
         
@@ -452,13 +451,13 @@ public abstract class AbstractEntityDao<T extends DomainObject> extends Abstract
     public T getUniqueByCondition(String condition, Object... parameters) throws DaoException {
 
         List<T> result = getByCondition(condition, parameters);
-
+    
         if (1 < result.size()) {
             throw new DaoException("Not uique result");
         } else if (1 == result.size()) {
             return result.get(0);
         } else {
-            return null;
+        	return result.get(1);
         }
 
     }

@@ -52,7 +52,7 @@ package com.jsonde.gui.license.codec;
  * @see <a href="http://java.sun.com/j2se/1.4.2/docs/api/java/nio/charset/Charset.html">Standard charsets</a>
  * @since 1.4
  */
-final public class CharEncoding {
+public class CharEncoding {
     /**
      * CharEncodingISO Latin Alphabet No. 1, a.k.a. ISO-LATIN-1. </p>
      * <p>

@@ -48,7 +48,7 @@ public class MethodCallMessage extends Message implements Externalizable {
     private MethodCallSummaryDto copyMethodCallSummaryDto(MethodCallSummaryDto original) {
 
         if (null == original) {
-            return null;
+            return original;
         }
 
         MethodCallSummaryDto copy = new MethodCallSummaryDto();
@@ -59,8 +59,6 @@ public class MethodCallMessage extends Message implements Externalizable {
         copy.invocationCount = original.invocationCount;
 
         original.exceptionCount = 0;
-        original.executionTime = 0;
-        original.invocationCount = 0;
 
         for (MethodCallSummaryDto calleeSummaryOriginal : original.getCallees()) {
             copy.addCallee(copyMethodCallSummaryDto(calleeSummaryOriginal));
@@ -136,14 +134,12 @@ public class MethodCallMessage extends Message implements Externalizable {
 
             methodCallDto.flags = in.readByte();
             methodCallDto.methodCallId = in.readLong();
-            methodCallDto.methodId = in.readLong();
 
             if ((1 << MethodCallDto.ACTUAL_CLASS_ID_SET_FLAG) ==
                     (methodCallDto.flags & (1 << MethodCallDto.ACTUAL_CLASS_ID_SET_FLAG))) {
                 methodCallDto.actualClassId = in.readLong();
             }
 
-            methodCallDto.executionTime = in.readLong();
 
             if ((1 << MethodCallDto.CALLER_ID_SET_FLAG) ==
                     (methodCallDto.flags & (1 << MethodCallDto.CALLER_ID_SET_FLAG))) {

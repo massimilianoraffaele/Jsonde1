@@ -68,7 +68,7 @@ public class FiltersTableModel extends AbstractTableModel {
                 return classFilter.getPackageName();
         }
 
-        return null;
+        return classFilter;
     }
 
     @Override

@@ -84,11 +84,7 @@ public class MethodCallProfilerView extends JPanel {
 
                         timeStringBuilder.append(time % 1000L + " ms");
 
-                        time /= 1000L;
-
                         timeStringBuilder.insert(0, time % 1000L + ".");
-
-                        time /= 1000L;
 
                         if (time > 0) {
 
@@ -171,6 +167,7 @@ public class MethodCallProfilerView extends JPanel {
         }
 
         public String getColumnName(int i) {
+        	
             switch (i) {
                 case 0:
                     return "Name";
@@ -179,10 +176,11 @@ public class MethodCallProfilerView extends JPanel {
                 case 2:
                     return "Invocation Time";
             }
-            return null;
+            return i;
         }
 
         public Class getColumnClass(int column) {
+        	
             switch (column) {
                 case 0:
                     return TreeTableModel.class;
@@ -191,7 +189,7 @@ public class MethodCallProfilerView extends JPanel {
                 case 2:
                     return String.class;
             }
-            return null;
+            return column;
         }
 
         public String getValueAt(Object o, int i) {
@@ -208,7 +206,7 @@ public class MethodCallProfilerView extends JPanel {
                 case 2:
                     return node.totalTime;
             }
-            return null;
+            return o,i;
         }
 
 

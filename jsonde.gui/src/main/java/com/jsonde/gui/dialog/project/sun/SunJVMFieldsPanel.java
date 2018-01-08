@@ -65,7 +65,7 @@ public class SunJVMFieldsPanel extends JPanel {
             }
         }
 
-        return null;
+        return tableModel;
 
     }
 

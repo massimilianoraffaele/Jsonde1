@@ -105,6 +105,8 @@ public class VirtualMachineService {
 
             for (Method method : virtualMachineClass.getMethods()) {
                 
+            	System.out.println(method);
+            	
             }
 
 
@@ -125,6 +127,8 @@ public class VirtualMachineService {
         return null != getToolsJarURL();
     }
 
+    
+    
     public URL getToolsJarURL() throws VirtualMachineServiceException {
 
         try {
@@ -173,31 +177,21 @@ public class VirtualMachineService {
 
             javaHome = System.getProperty("java.home");
 
-            toolsJarFile = new File(javaHome +
-                    FileUtils.FILE_SEPARATOR +
-                    "lib" +
-                    FileUtils.FILE_SEPARATOR +
-                    "tools.jar");
+            
 
             if (toolsJarFile.exists()) {
                 
                 return toolsJarFile.toURI().toURL();
             }
 
-            toolsJarFile = new File(javaHome +
-                    FileUtils.FILE_SEPARATOR +
-                    ".." +
-                    FileUtils.FILE_SEPARATOR +
-                    "lib" +
-                    FileUtils.FILE_SEPARATOR +
-                    "tools.jar");
+           
 
             if (toolsJarFile.exists()) {
                
                 return toolsJarFile.toURI().toURL();
             }
 
-            return null;
+            return new URL(jdkHome);
 
         } catch (MalformedURLException e) {
             throw new VirtualMachineServiceException(e);
@@ -279,6 +273,8 @@ public class VirtualMachineService {
         VirtualMachineService virtualMachineService = new VirtualMachineService();
 
         for (VirtualMachineData vmData : virtualMachineService.getVirtualMachines()) {
+        	
+        	System.out.println(vmData);
         }
 
     }

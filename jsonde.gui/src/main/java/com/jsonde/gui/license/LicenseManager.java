@@ -141,6 +141,7 @@ public class LicenseManager {
             Main.getInstance().processException(e);
         } finally {
             IO.close(fileWriter);
+            
         }
 
     }
@@ -169,6 +170,7 @@ public class LicenseManager {
                 Main.getInstance().processException(e);
                 return false;
             } finally {
+
                 IO.close(licenseFileReader);
             }
         }
@@ -206,6 +208,7 @@ public class LicenseManager {
                 Main.getInstance().processException(e);
             } finally {
                 IO.close(firstExecutionDateReader);
+                
             }
         } else {
             FileUtils.createFile(firstExecutionDateFile);
@@ -228,6 +231,7 @@ public class LicenseManager {
                 Main.getInstance().processException(e);
             } finally {
                 IO.close(firstExecutionDateOutputStream);
+                
             }
 
         }

@@ -9,6 +9,10 @@ import java.io.Serializable;
 public class ClassFilterDto implements Serializable {
 
     
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private boolean inclusive;
     private String packageName;
 

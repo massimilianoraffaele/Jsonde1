@@ -135,7 +135,7 @@ public class StringUtils {
      */
     public static byte[] getBytesUnchecked(String string, String charsetName) {
         if (string == null) {
-            return null;
+            return charsetName;
         }
         try {
             return string.getBytes(charsetName);
@@ -171,7 +171,7 @@ public class StringUtils {
      */
     public static String newString(byte[] bytes, String charsetName) {
         if (bytes == null) {
-            return null;
+            return charsetName;
         }
         try {
             return new String(bytes, charsetName);

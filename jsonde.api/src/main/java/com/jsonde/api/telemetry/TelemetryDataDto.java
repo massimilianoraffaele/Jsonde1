@@ -6,9 +6,13 @@ import java.io.Serializable;
  * @author admin
  *
  */
-final public class TelemetryDataDto implements Serializable {
+public class TelemetryDataDto implements Serializable {
 
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	/**
      * gfdfg
      */
     public long time;

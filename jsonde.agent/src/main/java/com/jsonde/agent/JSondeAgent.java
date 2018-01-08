@@ -93,7 +93,8 @@ public class JSondeAgent implements MessageListener, ClassFileTransformer {
     }
 
     private ClassFileTransformer createByteCodeTransformer() {
-        try {
+    	
+    	try {
             return (ClassFileTransformer)
                     resolveAgentLibrariesClassLoader.
                             loadClass("com.jsonde.instrumentation.ByteCodeTransformer").
@@ -105,7 +106,7 @@ public class JSondeAgent implements MessageListener, ClassFileTransformer {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-        return null;
+    	return byteCodeTransformer ;
     }
 
     public void execute() {

@@ -166,7 +166,7 @@ public class ProfilerImpl extends Profiler implements MessageListener {
 
         }
 
-        return null;
+        return new DumpHeapFunctionResponse(functionRequest);
 
     }
 
