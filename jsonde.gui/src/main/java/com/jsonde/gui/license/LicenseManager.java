@@ -117,7 +117,7 @@ public class LicenseManager {
         return Arrays.equals(license, licenseData);
     }
 
-    public void saveLicense(String license12) {
+    public void saveLicense(String license12) throws IOException {
 
         String licenseFileName =
                 FileUtils.USER_HOME +
@@ -140,13 +140,13 @@ public class LicenseManager {
         } catch (IOException e) {
             Main.getInstance().processException(e);
         } finally {
-            IO.close(fileWriter);
+            fileWriter.close();
             
         }
 
     }
 
-    public boolean checkLicense() {
+    public boolean checkLicense() throws IOException {
 
         String licenseFileName =
                 FileUtils.USER_HOME +
@@ -170,8 +170,7 @@ public class LicenseManager {
                 Main.getInstance().processException(e);
                 return false;
             } finally {
-
-                IO.close(licenseFileReader);
+                licenseFileReader.close();
             }
         }
 
@@ -179,7 +178,7 @@ public class LicenseManager {
 
     }
 
-    public Date getFirstExecutionDate() {
+    public Date getFirstExecutionDate() throws IOException {
 
         String licenseFileName =
                 FileUtils.USER_HOME +
@@ -207,7 +206,7 @@ public class LicenseManager {
             } catch (ClassNotFoundException e) {
                 Main.getInstance().processException(e);
             } finally {
-                IO.close(firstExecutionDateReader);
+            	firstExecutionDateReader.close();
                 
             }
         } else {
@@ -230,7 +229,7 @@ public class LicenseManager {
             } catch (IOException e) {
                 Main.getInstance().processException(e);
             } finally {
-                IO.close(firstExecutionDateOutputStream);
+            	firstExecutionDateOutputStream.close();
                 
             }
 
