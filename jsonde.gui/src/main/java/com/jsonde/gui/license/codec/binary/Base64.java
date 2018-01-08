@@ -540,6 +540,8 @@ public class Base64 extends Base64forSomeMethods implements BinaryEncoder, Binar
                     buffer[pos++] = (byte) ((x >> 16) & MASK_8BITS);
                     buffer[pos++] = (byte) ((x >> 8) & MASK_8BITS);
                     break;
+                default:
+                	break;
             }
         }
     }
@@ -786,8 +788,11 @@ public class Base64 extends Base64forSomeMethods implements BinaryEncoder, Binar
         for (int i = 0; i < data.length; i++) {
             switch (data[i]) {
                 case ' ':
+                	break;
                 case '1':
+                	break;
                 case '2':
+                	break;
                 case '3':
                     break;
                 default:

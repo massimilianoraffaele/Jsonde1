@@ -173,8 +173,9 @@ public class MethodCallProfilerView extends JPanel {
                     return "Name";
                 case 1:
                     return "Invocation Count";
-                case 2:
+                default:
                     return "Invocation Time";
+                    break;
             }
             return i;
         }
@@ -186,8 +187,9 @@ public class MethodCallProfilerView extends JPanel {
                     return TreeTableModel.class;
                 case 1:
                     return Long.class;
-                case 2:
+                default:
                     return String.class;
+                    break;
             }
             return column;
         }
@@ -203,8 +205,9 @@ public class MethodCallProfilerView extends JPanel {
                     String invocationCount1 = new String(); 
                     invocationCount1 = String.valueOf(node.invocationCount);
                     return invocationCount1;
-                case 2:
+                default:
                     return node.totalTime;
+                    break;
             }
             return o,i;
         }

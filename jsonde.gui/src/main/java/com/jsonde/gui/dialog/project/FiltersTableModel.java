@@ -66,6 +66,9 @@ public class FiltersTableModel extends AbstractTableModel {
                 return String.valueOf(classFilter.isInclusive());
             case 1:
                 return classFilter.getPackageName();
+                default:
+                	return classFilter.toString();
+                	break;
         }
 
         return classFilter;
@@ -83,6 +86,9 @@ public class FiltersTableModel extends AbstractTableModel {
             case 1:
                 classFilter.setPackageName((String) aValue);
                 break;
+            case 2:
+            	classFilter.getPackageName();
+            	break;
         }
 
     }

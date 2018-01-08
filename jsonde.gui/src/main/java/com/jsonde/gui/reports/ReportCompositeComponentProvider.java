@@ -64,10 +64,13 @@ public class ReportCompositeComponentProvider implements CompositeComponentProvi
         switch (report.getChartType()) {
             case PIE:
                 return createPieChart();
+               
             case TIME:
                 return createTimeChart();
             case CUSTOM:
                 return createCustomChart();
+                default:
+                	break;
         }
 
         return new JLabel("Unknown chart type");
