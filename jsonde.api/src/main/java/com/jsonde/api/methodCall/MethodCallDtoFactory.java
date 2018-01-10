@@ -26,12 +26,12 @@ public class MethodCallDtoFactory extends ObjectPool<MethodCallDto> {
      * 
      * @return
      */
-    public static MethodCallDto getMethodCallDtoFromPool() {
+    public static MethodCallDto getMethodCallDtoFromPool() throws Error{
         try {
             return instance.takeFromPool();
         } catch (ObjectPoolException e) {
             e.printStackTrace();
-            throw new RuntimeException(e);
+            throw new Error();
         }
     }
 

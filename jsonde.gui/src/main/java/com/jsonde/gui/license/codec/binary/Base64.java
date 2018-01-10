@@ -920,9 +920,9 @@ public class Base64 extends Base64forSomeMethods implements BinaryEncoder, Binar
      * @throws NullPointerException if null is passed in
      * @since 1.4
      */
-    public static byte[] encodeInteger(BigInteger bigInt) {
+    public static byte[] encodeInteger(BigInteger bigInt) throws Error {
         if (bigInt == null) {
-            throw new NullPointerException("encodeInteger called with null parameter");
+            throw new Error();
         }
         return encodeBase64(toIntegerBytes(bigInt), false);
     }

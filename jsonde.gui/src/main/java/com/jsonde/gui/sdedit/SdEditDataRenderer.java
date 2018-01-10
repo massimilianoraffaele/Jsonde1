@@ -87,7 +87,7 @@ public class SdEditDataRenderer {
 
     }
 
-    public String processMethodCall(MethodCall methodCall) {
+    public String processMethodCall(MethodCall methodCall) throws GeneralException{
 
         try {
 
@@ -124,10 +124,10 @@ public class SdEditDataRenderer {
 
         } catch (IOException e) {
             Main.getInstance().processException(e);
-            throw new RuntimeException(e);
+            throw new GeneralException();
         } catch (DaoException e) {
             Main.getInstance().processException(e);
-            throw new RuntimeException(e);
+            throw new GeneralException();
         }
 
     }

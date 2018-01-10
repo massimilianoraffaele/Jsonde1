@@ -18,12 +18,12 @@ public class ByteCodeTransformer implements ClassFileTransformer {
 	/**
 	 * transform
 	 */
-    public byte[] transform(ClassLoader loader, String className, Class<?> classBeingRedefined, ProtectionDomain protectionDomain, byte[] classfileBuffer) throws IllegalClassFormatException {
+    public byte[] transform(ClassLoader loader, String className, Class<?> classBeingRedefined, ProtectionDomain protectionDomain, byte[] classfileBuffer) throws IllegalClassFormatException, Error {
 
         className = ClassUtils.getFullyQualifiedName(className);
 
         if (Object.class.getName().equals(className))
-            throw new RuntimeException();
+            throw new Error();
 
         if (
                 className.startsWith("com.jsonde") &&
