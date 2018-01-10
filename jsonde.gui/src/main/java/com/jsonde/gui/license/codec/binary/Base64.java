@@ -813,9 +813,9 @@ public class Base64 extends Base64forSomeMethods implements BinaryEncoder, Binar
      */
     private static boolean isWhiteSpace(byte byteToCheck) {
         final byte a=' ';
-        final byte b='\n';
-        final byte c='\r';
-        final byte d='\t';
+        final byte b='n';
+        final byte c='r';
+        final byte d='t';
     	
     	switch (byteToCheck) {
             case a:
