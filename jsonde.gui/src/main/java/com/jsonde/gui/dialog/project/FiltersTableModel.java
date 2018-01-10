@@ -66,12 +66,12 @@ public class FiltersTableModel extends AbstractTableModel {
                 return String.valueOf(classFilter.isInclusive());
             case 1:
                 return classFilter.getPackageName();
-                default:
-                	return classFilter.toString();
-                	break;
+            default:
+                return classFilter.toString();
+                	
         }
 
-        return classFilter;
+        
     }
 
     @Override

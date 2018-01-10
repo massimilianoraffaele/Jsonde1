@@ -53,6 +53,12 @@ package com.jsonde.gui.license.codec;
  * @since 1.4
  */
 public class CharEncoding {
+	
+	public CharEncoding(){
+		
+	}
+	
+	
     /**
      * CharEncodingISO Latin Alphabet No. 1, a.k.a. ISO-LATIN-1. </p>
      * <p>

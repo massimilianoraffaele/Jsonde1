@@ -2,7 +2,9 @@ package com.jsonde.gui;
 
 import java.awt.AWTEvent;
 import java.awt.EventQueue;
+import java.awt.HeadlessException;
 import java.awt.Toolkit;
+import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Calendar;
 import java.util.Date;
@@ -89,7 +91,7 @@ public class Main {
 
     }
 
-    protected void checkLicense() {
+    protected void checkLicense() throws HeadlessException, IOException {
 
         LicenseManager licenseManager = new LicenseManager();
 

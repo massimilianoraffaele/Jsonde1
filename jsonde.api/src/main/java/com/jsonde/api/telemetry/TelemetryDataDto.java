@@ -8,6 +8,9 @@ import java.io.Serializable;
  */
 public class TelemetryDataDto implements Serializable {
 
+	public TelemetryDataDto(){
+		
+	}
     /**
 	 * 
 	 */

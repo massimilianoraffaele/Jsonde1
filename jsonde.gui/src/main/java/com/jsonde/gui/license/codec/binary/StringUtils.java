@@ -135,7 +135,8 @@ public class StringUtils {
      */
     public static byte[] getBytesUnchecked(String string, String charsetName) {
         if (string == null) {
-            return charsetName;
+        	String e="1";
+            return e.getBytes();
         }
         try {
             return string.getBytes(charsetName);

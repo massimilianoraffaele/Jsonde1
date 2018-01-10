@@ -812,19 +812,22 @@ public class Base64 extends Base64forSomeMethods implements BinaryEncoder, Binar
      * @return true if byte is whitespace, false otherwise
      */
     private static boolean isWhiteSpace(byte byteToCheck) {
-        switch (byteToCheck) {
-            case ' ':
-            	break;
-            case '1':
-            	break;
-            case '2':
-            	break;
-            case '3':
+        final byte a=' ';
+        final byte b='\n';
+        final byte c='\r';
+        final byte d='\t';
+    	
+    	switch (byteToCheck) {
+            case a:
+            	return true;
+            case b:
+            	return true;
+            case c:
+            	return true;
+            case d:
                 return true;
-            	break;
             default:
                 return false;
-                break;
         }
     }
 

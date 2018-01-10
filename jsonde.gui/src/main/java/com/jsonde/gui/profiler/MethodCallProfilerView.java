@@ -7,6 +7,10 @@ import java.util.List;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
+import org.freehep.swing.treetable.AbstractTreeTableModel;
+import org.freehep.swing.treetable.JTreeTable;
+import org.freehep.swing.treetable.TreeTableModel;
+
 import com.jsonde.client.dao.DaoException;
 import com.jsonde.client.dao.DaoFactory;
 import com.jsonde.client.domain.Method;
@@ -175,9 +179,8 @@ public class MethodCallProfilerView extends JPanel {
                     return "Invocation Count";
                 default:
                     return "Invocation Time";
-                    break;
             }
-            return i;
+
         }
 
         public Class getColumnClass(int column) {
@@ -189,9 +192,8 @@ public class MethodCallProfilerView extends JPanel {
                     return Long.class;
                 default:
                     return String.class;
-                    break;
+                  
             }
-            return column;
         }
 
         public String getValueAt(Object o, int i) {
@@ -207,9 +209,9 @@ public class MethodCallProfilerView extends JPanel {
                     return invocationCount1;
                 default:
                     return node.totalTime;
-                    break;
+                    
             }
-            return o,i;
+
         }
 
 
