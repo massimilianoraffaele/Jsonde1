@@ -56,7 +56,7 @@ public class NetworkClientImpl implements NetworkClient {
         try {
             socket = new Socket(address, port);
         } catch (IOException e) {
-            throw new NetworkClientException(e);
+            throw new NetworkClientException("Something was wrong");
         }
 
         setRunning(true);
@@ -131,7 +131,7 @@ public class NetworkClientImpl implements NetworkClient {
         try {
             socket.close();
         } catch (IOException e) {
-            throw new NetworkClientException(e);
+            throw new NetworkClientException("Something was wrong");
         }
         notifyAll();
     }

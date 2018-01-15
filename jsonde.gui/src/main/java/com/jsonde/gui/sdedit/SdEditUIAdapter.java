@@ -320,19 +320,19 @@ public class SdEditUIAdapter implements MethodCallListener, ApplicationUserInter
         if (null == tabbedPane) {
             try {
                 Field tabbedPaneField = UserInterfaceImpl.class.getDeclaredField("tabbedPane");
-                tabbedPaneField.setAccessible(true);
+                tabbedPaneField.setAccessible(false);//
                 tabbedPane = (ATabbedPane) tabbedPaneField.get(userInterface);
 
                 Field stainedImageField = ATabbedPane.class.getDeclaredField("stain");
-                stainedImageField.setAccessible(true);
+                stainedImageField.setAccessible(false);
 
                 Field cleanImageField = ATabbedPane.class.getDeclaredField("clean");
-                cleanImageField.setAccessible(true);
+                cleanImageField.setAccessible(false);
 
                 stainedImageField.set(null, cleanImageField.get(null));
 
                 Field listenersField = ATabbedPane.class.getDeclaredField("listeners");
-                listenersField.setAccessible(true);
+                listenersField.setAccessible(false);
                 java.util.List aTabbedPaneListeners =
                         (java.util.List) listenersField.get(tabbedPane);
 

@@ -34,8 +34,8 @@ public class ByteCodeTransformer implements ClassFileTransformer {
         try {
             return transform(classfileBuffer, true, loader, classBeingRedefined);
         } catch (ByteCodeTransformException e) {
-            e.printStackTrace();
-            throw new IllegalClassFormatException(e.getMessage());
+        	System.out.println("Something was wrong");
+            throw new IllegalClassFormatException("Something was wrong");
         }
     }
 

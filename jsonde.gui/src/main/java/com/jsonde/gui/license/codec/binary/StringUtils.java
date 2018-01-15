@@ -141,7 +141,7 @@ public class StringUtils {
         try {
             return string.getBytes(charsetName);
         } catch (UnsupportedEncodingException e) {
-            throw StringUtils.newIllegalStateException(charsetName, e);
+            throw StringUtils.newIllegalStateException("Something was wrong");
         }
     }
 
@@ -151,8 +151,8 @@ public class StringUtils {
      * @param e
      * @return
      */
-    private static IllegalStateException newIllegalStateException(String charsetName, UnsupportedEncodingException e) {
-        return new IllegalStateException(charsetName + ": " + e);
+    private static IllegalStateException newIllegalStateException(String charsetName/*, UnsupportedEncodingException e*/) {
+        return new IllegalStateException("Something was wrong");
     }
 
     /**
@@ -177,7 +177,7 @@ public class StringUtils {
         try {
             return new String(bytes, charsetName);
         } catch (UnsupportedEncodingException e) {
-            throw StringUtils.newIllegalStateException(charsetName, e);
+            throw StringUtils.newIllegalStateException("Something was wrong");
         }
     }
 

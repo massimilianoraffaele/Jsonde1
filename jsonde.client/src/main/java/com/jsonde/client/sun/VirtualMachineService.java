@@ -113,7 +113,7 @@ public class VirtualMachineService {
             
 
         } catch (Throwable e) {
-            throw new VirtualMachineServiceException(e);
+            throw new VirtualMachineServiceException("Something was wrong");
         }
 
     }
@@ -194,7 +194,7 @@ public class VirtualMachineService {
             return new URL(jdkHome);
 
         } catch (MalformedURLException e) {
-            throw new VirtualMachineServiceException(e);
+            throw new VirtualMachineServiceException("Something was wrong");
         }
 
     }
@@ -227,13 +227,13 @@ public class VirtualMachineService {
             }
 
         } catch (IllegalAccessException e) {
-            throw new VirtualMachineServiceException(e);
+            throw new VirtualMachineServiceException("Something was wrong");
         } catch (InvocationTargetException e) {
-            throw new VirtualMachineServiceException(e);
+            throw new VirtualMachineServiceException("Something was wrong");
         } catch (NoSuchMethodException e) {
-            throw new VirtualMachineServiceException(e);
+            throw new VirtualMachineServiceException("Something was wrong");
         } catch (ClassNotFoundException e) {
-            throw new VirtualMachineServiceException(e);
+            throw new VirtualMachineServiceException("Something was wrong");
         } finally {
             Thread.currentThread().setContextClassLoader(contextClassLoader);
         }
@@ -257,11 +257,11 @@ public class VirtualMachineService {
             loadAgentMethod.invoke(virtualMachine, agentJar, agentParameters);
 
         } catch (NoSuchMethodException e) {
-            throw new VirtualMachineServiceException(e);
+            throw new VirtualMachineServiceException("Something was wrong");
         } catch (InvocationTargetException e) {
-            throw new VirtualMachineServiceException(e);
+            throw new VirtualMachineServiceException("Something was wrong");
         } catch (IllegalAccessException e) {
-            throw new VirtualMachineServiceException(e);
+            throw new VirtualMachineServiceException("Something was wrong");
         } finally {
             Thread.currentThread().setContextClassLoader(contextClassLoader);
         }

@@ -33,7 +33,7 @@ public class MethodCallMessageHandler implements MessageHandler<MethodCallMessag
             methodCall = DaoFactory.getMethodCallDao().
                     persistMethodCallDtos(methodCallDtos);
         } catch (DaoException e) {
-            e.printStackTrace();
+        	System.out.println("Something was wrong");
         }
 
         MethodCallSummaryDto methodCallSummaryDto = methodCallMessage.getMethodCallSummaryDto();
@@ -42,7 +42,7 @@ public class MethodCallMessageHandler implements MessageHandler<MethodCallMessag
             DaoFactory.getMethodCallSummaryDao().processMethodCallSummaryDto(methodCallSummaryDto);
        
         } catch (DaoException e) {
-            e.printStackTrace();
+        	System.out.println("Something was wrong");
         }
 
 	}

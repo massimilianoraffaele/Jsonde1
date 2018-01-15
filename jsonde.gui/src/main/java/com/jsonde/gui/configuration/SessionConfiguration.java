@@ -47,7 +47,7 @@ public class SessionConfiguration {
 
             return sessionConfiguration;
         } catch (JAXBException e) {
-            throw new SessionConfigurationException(e);
+            throw new SessionConfigurationException("Something was wrong");
         }
 
     }
@@ -65,7 +65,7 @@ public class SessionConfiguration {
 
             marshaller.marshal(sessionConfiguration, new File(fileName));
         } catch (JAXBException e) {
-            throw new SessionConfigurationException(e);
+            throw new SessionConfigurationException("Something was wrong");
         }
 
     }

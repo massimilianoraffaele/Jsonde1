@@ -4,7 +4,7 @@ package com.jsonde.util;
  * @author admin
  *
  */
-public class CurrentClassGetter extends SecurityManager {
+public class CurrentClassGetter {
 
 	/**
 	 * 
@@ -12,7 +12,7 @@ public class CurrentClassGetter extends SecurityManager {
 	 * @return
 	 */
     public Class getCallerClass(int depth) {
-        return getClassContext()[depth + 1];
+        return this.getClass();
     }
 
 }

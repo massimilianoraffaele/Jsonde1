@@ -69,9 +69,9 @@ public class LicenseManager {
         System.arraycopy(licenseCode, SALT_SIZE, encodedData, 0, encodedData.length);
 
         DESKeySpec key = new DESKeySpec(salt);
-        SecretKeyFactory keyFactory = SecretKeyFactory.getInstance("DES");
+        SecretKeyFactory keyFactory = SecretKeyFactory.getInstance("AES");
 
-        Cipher cipher = Cipher.getInstance("DES");
+        Cipher cipher = Cipher.getInstance("AES");
         cipher.init(Cipher.DECRYPT_MODE, keyFactory.generateSecret(key));
 
         return cipher.doFinal(encodedData);
@@ -82,12 +82,12 @@ public class LicenseManager {
 
         byte[] salt = new byte[SALT_SIZE];
 
-        saltGenerator.nextBytes(salt);
+        saltGenerator.nextBytes(salt); 
 
         DESKeySpec key = new DESKeySpec(salt);
-        SecretKeyFactory keyFactory = SecretKeyFactory.getInstance("DES");
+        SecretKeyFactory keyFactory = SecretKeyFactory.getInstance("AES");
 
-        Cipher cipher = Cipher.getInstance("DES");
+        Cipher cipher = Cipher.getInstance("AES");
         cipher.init(Cipher.ENCRYPT_MODE, keyFactory.generateSecret(key));
 
         byte[] encodedData = cipher.doFinal(licenseData);

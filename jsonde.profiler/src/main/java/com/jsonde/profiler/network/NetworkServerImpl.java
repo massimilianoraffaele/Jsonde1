@@ -64,7 +64,7 @@ public class NetworkServerImpl implements NetworkServer {
 
             socket = serverSocket.accept();
         } catch (IOException e) {
-            throw new NetworkServerException(e);
+            throw new NetworkServerException("Something was wrong");
         }
 
         setRunning(true);
@@ -139,7 +139,7 @@ public class NetworkServerImpl implements NetworkServer {
             if (null != serverSocket)
                 serverSocket.close();
         } catch (IOException e) {
-            throw new NetworkServerException(e);
+            throw new NetworkServerException("Something was wrong");
         }
         notifyAll();
     }

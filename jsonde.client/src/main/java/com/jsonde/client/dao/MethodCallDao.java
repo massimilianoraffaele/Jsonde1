@@ -83,7 +83,7 @@ public class MethodCallDao extends AbstractEntityDao<MethodCall> {
             connection.commit();
 
         } catch (SQLException e) {
-            throw new DaoException(e);
+            throw new DaoException("Something was wrong");
         } finally {
             DbUtils.close(insertMethodCallPreparedStatement);
             DbUtils.close(connection);

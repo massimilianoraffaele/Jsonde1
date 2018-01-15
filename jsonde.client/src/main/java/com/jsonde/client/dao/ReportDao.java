@@ -69,9 +69,9 @@ public class ReportDao extends AbstractDao {
             }
 
         } catch (DaoException e) {
-            e.printStackTrace();
+            System.out.println("Something was wrong");
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println("Something was wrong");
         } finally {
             DbUtils.close(resultSet);
             DbUtils.close(statement);
@@ -116,9 +116,9 @@ public class ReportDao extends AbstractDao {
             }
 
         } catch (DaoException e) {
-            e.printStackTrace();
+            System.out.println("Something was wrong");
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println("Something was wrong");
         } finally {
             DbUtils.close(resultSet);
             DbUtils.close(statement);
@@ -166,9 +166,9 @@ public class ReportDao extends AbstractDao {
             }
 
         } catch (DaoException e) {
-            e.printStackTrace();
+            System.out.println("Something was wrong");
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println("Something was wrong");
         } finally {
             DbUtils.close(resultSet);
             DbUtils.close(statement);

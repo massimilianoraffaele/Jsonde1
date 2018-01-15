@@ -43,7 +43,7 @@ public abstract class AbstractEntityDao<T extends DomainObject> extends Abstract
         try {
             domainObjectClassBeanInfo = Introspector.getBeanInfo(domainObjectClass);
         } catch (IntrospectionException e) {
-            throw new DaoException(e);
+            throw new DaoException("Something was wrong");
         }
 
     }
@@ -94,7 +94,7 @@ public abstract class AbstractEntityDao<T extends DomainObject> extends Abstract
             preparedStatement = connection.prepareStatement(createTableQueryBuilder.toString());
             preparedStatement.execute();
         } catch (SQLException e) {
-            throw new DaoException(e);
+            throw new DaoException("Something was wrong");
         } finally {
             DbUtils.close(preparedStatement);
             DbUtils.close(connection);
@@ -139,7 +139,7 @@ public abstract class AbstractEntityDao<T extends DomainObject> extends Abstract
                 connection.setAutoCommit(autoCommit);
            
         } catch (Exception e) {
-            throw new DaoException(e);
+            throw new DaoException("Something was wrong");
         } finally {
             DbUtils.close(connection);
         }
@@ -166,11 +166,11 @@ public abstract class AbstractEntityDao<T extends DomainObject> extends Abstract
             insertImpl(preparedStatement, domainObject);
 
         } catch (SQLException e) {
-            throw new DaoException(e);
+            throw new DaoException("Something was wrong");
         } catch (IllegalAccessException e) {
-            throw new DaoException(e);
+            throw new DaoException("Something was wrong");
         } catch (InvocationTargetException e) {
-            throw new DaoException(e);
+            throw new DaoException("Something was wrong");
         } finally {
             DbUtils.close(preparedStatement);
         }
@@ -308,7 +308,7 @@ public abstract class AbstractEntityDao<T extends DomainObject> extends Abstract
         } 
         
      catch (Exception e) {
-        throw new DaoException(e);
+         throw new DaoException("Something was wrong");
         } finally {
             DbUtils.close(preparedStatement);
         }
@@ -337,7 +337,7 @@ public abstract class AbstractEntityDao<T extends DomainObject> extends Abstract
             }
 
         } catch (SQLException e) {
-            throw new DaoException(e);
+            throw new DaoException("Something was wrong");
         } finally {
             DbUtils.close(resultSet);
             DbUtils.close(preparedStatement);
@@ -400,7 +400,7 @@ public abstract class AbstractEntityDao<T extends DomainObject> extends Abstract
         } 
         
         catch (Exception e) {
-            throw new DaoException(e);
+            throw new DaoException("Something was wrong");
         }
         finally {
             DbUtils.close(resultSet);
@@ -527,7 +527,7 @@ public abstract class AbstractEntityDao<T extends DomainObject> extends Abstract
         } 
         
         catch (Exception e) {
-            throw new DaoException(e);        
+            throw new DaoException("Something was wrong");        
         } finally {
             DbUtils.close(resultSet);
             DbUtils.close(preparedStatement);
@@ -572,7 +572,7 @@ public abstract class AbstractEntityDao<T extends DomainObject> extends Abstract
 
         }
         }        catch (Exception e) {
-            throw new DaoException(e);        
+            throw new DaoException("Something was wrong");        
         }
     }
 
@@ -581,9 +581,9 @@ public abstract class AbstractEntityDao<T extends DomainObject> extends Abstract
         try {
             return (T) domainObjectClass.newInstance();
         } catch (InstantiationException e) {
-            throw new DaoException(e);
+            throw new DaoException("Something was wrong");
         } catch (IllegalAccessException e) {
-            throw new DaoException(e);
+            throw new DaoException("Something was wrong");
         }
     }
 

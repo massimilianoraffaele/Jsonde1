@@ -106,7 +106,7 @@ public class DaoFactory {
         try {
             return instance.dataSource.getConnection();
         } catch (SQLException e) {
-            throw new DaoException(e);
+            throw new DaoException("Something was wrong");
         }
     }
 

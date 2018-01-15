@@ -26,7 +26,7 @@ public class RegisterClassMessageHandler implements MessageHandler<RegisterClass
         try {
             DaoFactory.getClazzDao().insert(clazz);
         } catch (DaoException e) {
-            e.printStackTrace();
+        	System.out.println("Something was wrong");
         }
 
         Client.fireRegisterClassEvent(clazz);

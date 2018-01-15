@@ -35,7 +35,7 @@ public class ServerInputWorker implements Runnable, Closeable {
         try {
             this.inputStream = socket.getInputStream();
         } catch (IOException e) {
-            e.printStackTrace();
+        	System.out.println("Something was wrong");
         }
     }
 

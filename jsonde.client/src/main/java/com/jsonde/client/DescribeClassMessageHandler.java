@@ -92,7 +92,7 @@ public class DescribeClassMessageHandler implements MessageHandler<DescribeClass
             clazzDao.update(clazz);
 
         } catch (DaoException e) {
-            e.printStackTrace();
+        	System.out.println("Something was wrong");
         }
 		
 	}

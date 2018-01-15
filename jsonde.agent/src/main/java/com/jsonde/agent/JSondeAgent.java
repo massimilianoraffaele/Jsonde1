@@ -100,11 +100,11 @@ public class JSondeAgent implements MessageListener, ClassFileTransformer {
                             loadClass("com.jsonde.instrumentation.ByteCodeTransformer").
                             newInstance();
         } catch (InstantiationException e) {
-            e.printStackTrace();
+        	System.out.println("Something was wrong");
         } catch (IllegalAccessException e) {
-            e.printStackTrace();
+        	System.out.println("Something was wrong");
         } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+        	System.out.println("Something was wrong");
         }
     	return byteCodeTransformer ;
     }
@@ -132,7 +132,7 @@ public class JSondeAgent implements MessageListener, ClassFileTransformer {
                 redefineLoadedClass(clazz);
             } catch (Exception e) {
                 System.out.println("Error while transforming class " + clazz);
-                e.printStackTrace();
+            	System.out.println("Something was wrong");
             }
 
         }
@@ -182,7 +182,7 @@ public class JSondeAgent implements MessageListener, ClassFileTransformer {
             }
            
             catch (Exception e) {
-                e.printStackTrace();
+            	System.out.println("Something was wrong");
             } 
 
         }

@@ -43,6 +43,7 @@ import com.jsonde.profiler.telemetry.TelemetryDataProvider;
 import com.jsonde.util.ClassUtils;
 import com.jsonde.util.ObjectIdGenerator;
 import com.jsonde.util.ObjectIsAbsentException;
+import com.jsonde.util.Pair;
 import com.jsonde.util.log.Log;
 /**
  * 
@@ -77,8 +78,8 @@ public class ProfilerImpl extends Profiler implements MessageListener {
     private final ObjectIdGenerator<ClassLoader> classLoaderIdGenerator =
             new ObjectIdGenerator<ClassLoader>();
 
-    private final ObjectIdGenerator<ObjectIdGenerator.Pair<String, ClassLoader>> classIdGenerator =
-            new ObjectIdGenerator<ObjectIdGenerator.Pair<String, ClassLoader>>();
+    private final ObjectIdGenerator<Pair<String, ClassLoader>> classIdGenerator =
+            new ObjectIdGenerator<Pair<String, ClassLoader>>();
 
     private NetworkServer networkServer;
     private HeapAnalyzer heapAnalyzer;
@@ -399,7 +400,7 @@ public class ProfilerImpl extends Profiler implements MessageListener {
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
             log.error("stopServer", e);
-            throw new NetworkServerException(e);
+            throw new NetworkServerException("Something was wrong");
         }
     }
 
@@ -437,9 +438,9 @@ public class ProfilerImpl extends Profiler implements MessageListener {
                     instrumentation.redefineClasses(new ClassDefinition[]{classDefinition});
 
                 } catch (ClassNotFoundException e) {
-                    e.printStackTrace();
+                	System.out.println("Something was wrong");
                 } catch (UnmodifiableClassException e) {
-                    e.printStackTrace();
+                	System.out.println("Something was wrong");
                 }
             }
         });

@@ -12,24 +12,24 @@ public abstract class DomainObject implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private long id;
+	private long aa;
 
 	/**
 	 * 
 	 * @return
 	 */
     public long getId() {
-        return id;
+        return aa;
     }
 
     public void setId(long id) {
-        this.id = id;
+        this.aa = id;
     }
 
     @Override
     public String toString() {
         return "DomainObject{" +
-                "id=" + id +
+                "id=" + aa +
                 '}';
     }
 }

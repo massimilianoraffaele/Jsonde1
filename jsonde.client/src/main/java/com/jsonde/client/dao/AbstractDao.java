@@ -39,7 +39,7 @@ public class AbstractDao {
             Connection connection = dataSource.getConnection();
             return connection;
         } catch (SQLException e) {
-            throw new DaoException(e);
+            throw new DaoException("Something was wrong");
         }
     }
 
@@ -53,7 +53,7 @@ public class AbstractDao {
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.execute();
         } catch (SQLException e) {
-            throw new DaoException(e);
+            throw new DaoException("Something was wrong");
         } finally {
             DbUtils.close(preparedStatement);
             DbUtils.close(connection);

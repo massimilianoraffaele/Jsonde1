@@ -40,8 +40,7 @@ public class Main {
         try {
             sdEditUIAdapter.processException(e);
         } catch (Exception ex) {
-            e.printStackTrace();
-            ex.printStackTrace();
+        	System.out.println("Something was wrong");
         }
     }
 

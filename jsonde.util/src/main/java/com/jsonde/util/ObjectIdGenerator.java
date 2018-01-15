@@ -50,7 +50,7 @@ public class ObjectIdGenerator<T> {
      * @param object
      * @return
      */
-    private ObjectWrapper<T> wrap(T object) {
+    public ObjectWrapper<T> wrap(T object) {
         if (object instanceof ObjectWrapper) {
             return (ObjectWrapper<T>) object;
         } else {
@@ -67,33 +67,20 @@ public class ObjectIdGenerator<T> {
         return new Pair<M, N>(m, n);
     }
 
-    /**
-     * 
-     * @author admin
-     *
-     * @param <M>
-     * @param <N>
-     */
+    /*
+
+     
     public static class Pair<M, N> extends ObjectWrapper<Pair<M, N>> {
 
         private final M m;
         private final N n;
 
-        /**
-         * 
-         * @param m
-         * @param n
-         */
         private Pair(M m, N n) {
             this.m = m;
             this.n = n;
         }
 
-        @Override
-        
-        /**
-         * equals
-         */
+
         public boolean equals(Object o) {
             if (this == o) return true;
             if (o == null || getClass() != o.getClass()) return false;
@@ -101,18 +88,14 @@ public class ObjectIdGenerator<T> {
             return true;
         }
 
-        @Override
-        
-        /**
-         * hashCode
-         */
+
         public int hashCode() {
             int result = m != null ? System.identityHashCode(m) : 0;
             result = 31 * result + (n != null ? System.identityHashCode(n) : 0);
             return result;
         }
 
-    }
+    }     */
 
     /**
      * 
@@ -120,7 +103,7 @@ public class ObjectIdGenerator<T> {
      * ObjectWrapper
      * @param <T>
      */
-    private static class ObjectWrapper<T> {
+    protected static class ObjectWrapper<T> {
 
         private final T object;
         

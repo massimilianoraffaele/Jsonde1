@@ -52,9 +52,9 @@ public class ObjectPool<T> {
         try {
             return elementsClass.newInstance();
         } catch (InstantiationException e) {
-            throw new ObjectPoolException(e);
+            throw new ObjectPoolException("Something was wrong");
         } catch (IllegalAccessException e) {
-            throw new ObjectPoolException(e);
+            throw new ObjectPoolException("Something was wrong");
         }
     }
 

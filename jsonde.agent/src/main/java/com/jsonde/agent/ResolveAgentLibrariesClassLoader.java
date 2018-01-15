@@ -54,17 +54,17 @@ public class ResolveAgentLibrariesClassLoader extends URLClassLoader {
 
                     urls.add(o);
                 } catch (MalformedURLException e) {
-                    e.printStackTrace();
+                	System.out.println("Something was wrong");
                 }
             }
 
             return urls.toArray(new URL[urls.size()]);
 
         } catch (IOException e) {
-            e.printStackTrace();
+        	System.out.println("Something was wrong");
             return new URL[]{};
         } catch (URISyntaxException e) {
-            e.printStackTrace();
+        	System.out.println("Something was wrong");
             return new URL[]{};
         }
 

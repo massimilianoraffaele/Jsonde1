@@ -30,7 +30,7 @@ public class MethodCallDtoFactory extends ObjectPool<MethodCallDto> {
         try {
             return instance.takeFromPool();
         } catch (ObjectPoolException e) {
-            e.printStackTrace();
+        	System.out.println("Something was wrong");
             throw new Error();
         }
     }

@@ -86,7 +86,7 @@ public class Reports {
                 instance.processReports();
 
             } catch (JAXBException e) {
-                throw new ReportException(e);
+                throw new ReportException("Something was wrong");
             }
 
         }

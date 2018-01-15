@@ -49,7 +49,7 @@ public class MethodCallSummaryDao extends AbstractEntityDao<MethodCallSummary> {
             connection.commit();
 
         } catch (SQLException e) {
-            throw new DaoException(e);
+            throw new DaoException("Something was wrong");
         } finally {
             DbUtils.close(connection);
         }
@@ -154,7 +154,7 @@ public class MethodCallSummaryDao extends AbstractEntityDao<MethodCallSummary> {
             return methodCalls;
 
         } catch (SQLException e) {
-            throw new DaoException(e);
+            throw new DaoException("Something was wrong");
         } finally {
             DbUtils.close(resultSet);
             DbUtils.close(preparedStatement);

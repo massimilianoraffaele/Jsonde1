@@ -87,7 +87,7 @@ public class Client implements MessageListener {
                 );
             }
         } catch (DaoException e) {
-            e.printStackTrace();
+            System.out.println("Something was wrong");
         }
 
     }
@@ -118,9 +118,9 @@ public class Client implements MessageListener {
             }
 
         } catch (InterruptedException e) {
-            e.printStackTrace();
+        	System.out.println("Something was wrong");
         } catch (DaoException e) {
-            e.printStackTrace();
+        	System.out.println("Something was wrong");
         }
 
     }
@@ -150,7 +150,7 @@ public class Client implements MessageListener {
             DaoFactory.createSchema();
 
         } catch (DaoException e) {
-            e.printStackTrace();
+        	System.out.println("Something was wrong");
         }
         networkClient = new NetworkClientImpl(address, port);
     }
@@ -172,7 +172,7 @@ public class Client implements MessageListener {
             );
 
         } catch (DaoException e) {
-            e.printStackTrace();
+        	System.out.println("Something was wrong");
         }
     }
 
@@ -187,7 +187,7 @@ public class Client implements MessageListener {
         try {
             networkClient.start();
         } catch (NetworkClientException e) {
-            e.printStackTrace();
+        	System.out.println("Something was wrong");
         }
 
     }
@@ -197,7 +197,7 @@ public class Client implements MessageListener {
         try {
             networkClient.stop();
         } catch (NetworkClientException e) {
-            e.printStackTrace();
+        	System.out.println("Something was wrong");
         }
 
         networkClient.removeMessageListener(this);
@@ -212,7 +212,7 @@ public class Client implements MessageListener {
         try {
             return DaoFactory.getClazzDao().count();
         } catch (DaoException e) {
-            e.printStackTrace();
+        	System.out.println("Something was wrong");
             return 0;
         }
     }
@@ -239,9 +239,9 @@ public class Client implements MessageListener {
         try {
             builder.visitMethodCall(methodCall);
         } catch (DaoException e) {
-            e.printStackTrace();
+        	System.out.println("Something was wrong");
         } catch (IOException e) {
-            e.printStackTrace();
+        	System.out.println("Something was wrong");
         }
 
         try {
@@ -268,7 +268,7 @@ public class Client implements MessageListener {
             }
 
         } catch (DaoException e) {
-            e.printStackTrace();
+        	System.out.println("Something was wrong");
         }
 
     }
