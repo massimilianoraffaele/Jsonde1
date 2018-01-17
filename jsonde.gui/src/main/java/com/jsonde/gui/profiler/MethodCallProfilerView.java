@@ -204,7 +204,7 @@ public class MethodCallProfilerView extends JPanel {
                 case 0:
                     return node.name;
                 case 1:
-                    String invocationCount1 = new String(); 
+                    String invocationCount1 = "String"; 
                     invocationCount1 = String.valueOf(node.invocationCount);
                     return invocationCount1;
                 default:

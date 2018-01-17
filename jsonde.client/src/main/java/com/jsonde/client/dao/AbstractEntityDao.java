@@ -308,7 +308,13 @@ public abstract class AbstractEntityDao<T extends DomainObject> extends Abstract
         } 
         
      catch (Exception e) {
+<<<<<<< .mine
+        throw new DaoException("Something was wrong");
+||||||| .r95
+        throw new DaoException(e);
+=======
          throw new DaoException("Something was wrong");
+>>>>>>> .r98
         } finally {
             DbUtils.close(preparedStatement);
         }

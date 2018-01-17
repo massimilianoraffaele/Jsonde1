@@ -44,11 +44,7 @@ public class JSondeMethodTransformer extends AdviceAdapter {
         this.parentClassName = parentClassName;
     }
 
-    @Override
-    public void visitCode() {
-        super.visitCode();
 
-    }
 
     @Override
     public void visitMaxs(int maxStack, int maxLocals) {

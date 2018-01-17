@@ -40,7 +40,15 @@ public class Main {
         try {
             sdEditUIAdapter.processException(e);
         } catch (Exception ex) {
+<<<<<<< .mine
+            e.printStackTrace();
+            System.out.println("Something was wrong");
+||||||| .r95
+            e.printStackTrace();
+            ex.printStackTrace();
+=======
         	System.out.println("Something was wrong");
+>>>>>>> .r98
         }
     }
 

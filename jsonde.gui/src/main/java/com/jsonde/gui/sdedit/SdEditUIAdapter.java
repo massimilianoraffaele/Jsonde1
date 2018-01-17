@@ -227,7 +227,7 @@ public class SdEditUIAdapter implements MethodCallListener, ApplicationUserInter
             }
 
             public void actionPerformed(ActionEvent e) {
-                System.gc();
+               // System.gc();
             }
 
         });

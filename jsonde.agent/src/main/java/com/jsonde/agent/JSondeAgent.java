@@ -132,7 +132,13 @@ public class JSondeAgent implements MessageListener, ClassFileTransformer {
                 redefineLoadedClass(clazz);
             } catch (Exception e) {
                 System.out.println("Error while transforming class " + clazz);
+<<<<<<< .mine
+                System.out.println("Something was wrong");
+||||||| .r95
+                e.printStackTrace();
+=======
             	System.out.println("Something was wrong");
+>>>>>>> .r98
             }
 
         }
