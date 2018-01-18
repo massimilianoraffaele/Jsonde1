@@ -1,6 +1,7 @@
 package com.jsonde.gui.profiler;
 
 import java.awt.BorderLayout;
+import java.sql.SQLException;
 
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -38,16 +39,19 @@ public class HeapProfilerView extends JPanel {
 
         try {
 
-            for (Clazz clazz : DaoFactory.getClazzDao().getByCondition("CREATECOUNTER > 0 ORDER BY TOTALCURRENTSIZE DESC")) {
+            try {
+				for (Clazz clazz : DaoFactory.getClazzDao().getByCondition("CREATECOUNTER > 0 ORDER BY TOTALCURRENTSIZE DESC")) {
 
-                tableModel.addRow(new Object[]{
-                        clazz.getName(),
-                        clazz.getCreateCounter() - clazz.getCollectCounter(),
-                        clazz.getCollectCounter(),
-                        clazz.getTotalCurrentSize()
-                });
+				    tableModel.addRow(new Object[]{
+				            clazz.getName(),
+				            clazz.getCreateCounter() - clazz.getCollectCounter(),
+				            clazz.getCollectCounter(),
+				            clazz.getTotalCurrentSize()
+				    });
 
-            }
+				}
+			} catch (SQLException e) {
+			}
 
         } catch (DaoException e) {
             Main.getInstance().processException(e);

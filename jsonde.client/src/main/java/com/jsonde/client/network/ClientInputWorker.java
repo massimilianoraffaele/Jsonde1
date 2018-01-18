@@ -51,7 +51,8 @@ public class ClientInputWorker implements Runnable {
 
             log.info("[ClientInputWorker] ready");
 
-            while (client.isRunning()) {
+            boolean b1 = client.isRunning(); 
+            while (b1) {
 
                 log.info("[ClientInputWorker] running");
 
@@ -66,11 +67,12 @@ public class ClientInputWorker implements Runnable {
                 client.processMessage(message);
 
                 log.info("[ClientInputWorker] running");
-
+                b1 = client.isRunning();
             }
 
             log.info("[ClientInputWorker] stopped");
-
+            objectInput.close();
+            
         } catch (SocketException e) {
             log.info("[ClientInputWorker] SocketException catched");
             if (client.isRunning()) {

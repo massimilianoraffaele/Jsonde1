@@ -1,6 +1,7 @@
 package com.jsonde.gui.profiler;
 
 import java.awt.BorderLayout;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -70,19 +71,31 @@ public class MethodCallProfilerView extends JPanel {
 
                 try {
                   
-                    List<MethodCallSummary> methodCallSummaries =
-                            DaoFactory.getMethodCallSummaryDao().getCpuProfilerData(id);
+                    List<MethodCallSummary> methodCallSummaries;
+                    methodCallSummaries = null;
+					try {
+						methodCallSummaries = DaoFactory.getMethodCallSummaryDao().getCpuProfilerData(id);
+					} catch (SQLException e) {
+					}
 
                     childNodes = new ArrayList<MethodCallProfilerNode>(methodCallSummaries.size());
 
                     for (MethodCallSummary methodCallSummary : methodCallSummaries) {
 
-                        Method method = DaoFactory.getMethodDao().get(methodCallSummary.getMethodId());
+                        Method method = null;
+						try {
+							method = DaoFactory.getMethodDao().get(methodCallSummary.getMethodId());
+						} catch (SQLException e) {
+						}
 
-                        String name =
-                                DaoFactory.getClazzDao().get(method.getClassId()).getName() +
-                                        "." +
-                                        method.getName();
+                        String name = null;
+						try {
+							name = DaoFactory.getClazzDao().get(method.getClassId()).getName() +
+							        "." +
+							        method.getName();
+						} catch (SQLException e) {
+
+						}
 
                         long time = methodCallSummary.getExecutionTime();
                         final int bSize = 128;

@@ -29,8 +29,9 @@ public class ReportDao extends AbstractDao {
     /**
      * 
      * @return
+     * @throws SQLException 
      */
-    public Map<Long, Set<Long>> getDependencies() {
+    public Map<Long, Set<Long>> getDependencies() throws SQLException {
 
         Connection connection = null;
         PreparedStatement statement = null;
@@ -71,12 +72,15 @@ public class ReportDao extends AbstractDao {
                     dependencies.get(callerCodeSourceId).add(calleeCodeSourceId);
 
             }
-
+            connection.close();
+            resultSet.close();
         } catch (DaoException e) {
             System.out.println("Something was wrong");
         } catch (SQLException e) {
             System.out.println("Something was wrong");
         } finally {
+            connection.close();
+            resultSet.close();
             DbUtils.close(resultSet);
             DbUtils.close(statement);
             DbUtils.close(connection);
@@ -86,7 +90,7 @@ public class ReportDao extends AbstractDao {
 
     }
 
-    public Map<String, Long> getTopCodeSourcesByExecutionTime() {
+    public Map<String, Long> getTopCodeSourcesByExecutionTime() throws SQLException {
 
         Connection connection = null;
         PreparedStatement statement = null;
@@ -118,12 +122,15 @@ public class ReportDao extends AbstractDao {
                 topCodeSourcesByExecutionTime.put(codeSource, totalExecutionTime);
 
             }
-
+            connection.close();
+            resultSet.close();
         } catch (DaoException e) {
             System.out.println("Something was wrong");
         } catch (SQLException e) {
             System.out.println("Something was wrong");
         } finally {
+            connection.close();
+            resultSet.close();
             DbUtils.close(resultSet);
             DbUtils.close(statement);
             DbUtils.close(connection);
@@ -133,7 +140,7 @@ public class ReportDao extends AbstractDao {
 
     }
 
-    public Map<String, Long> getTopMethodsThrowingExcetion() {
+    public Map<String, Long> getTopMethodsThrowingExcetion() throws SQLException {
 
         Connection connection = null;
         PreparedStatement statement = null;
@@ -168,12 +175,15 @@ public class ReportDao extends AbstractDao {
                 topCodeSourcesByExecutionTime.put(name, exceptionCounter);
 
             }
-
+            connection.close();
+            resultSet.close();
         } catch (DaoException e) {
             System.out.println("Something was wrong");
         } catch (SQLException e) {
             System.out.println("Something was wrong");
         } finally {
+            connection.close();
+            resultSet.close();
             DbUtils.close(resultSet);
             DbUtils.close(statement);
             DbUtils.close(connection);

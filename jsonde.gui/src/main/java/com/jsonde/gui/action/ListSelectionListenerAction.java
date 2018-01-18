@@ -62,11 +62,16 @@ public abstract class ListSelectionListenerAction
 
     private int getSelectedId(ListSelectionModel mod, ListSelectionEvent e) {
         int result = -1;
-        for (int i = e.getFirstIndex(); i <= e.getLastIndex(); i++) {
+        int a = e.getFirstIndex();
+        boolean b1 = a <= e.getLastIndex();
+        
+        for (int i=a; b1; i++) {
             if (mod.isSelectedIndex(i)) {
                 result = i;
                 break;
             }
+            i = e.getFirstIndex();
+            b1 = i <= e.getLastIndex();
         }
         return result;
     }

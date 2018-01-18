@@ -150,13 +150,16 @@ public class NetworkServerImpl implements NetworkServer {
     	synchronized (this){
         final String METHOD_NAME = "waitForInitialization()";
 
-        while (!areWorkersReady()) {
-            try {
+        boolean b1 = !areWorkersReady();
+        try {
+        while (b1) {
+            
                 wait();
-            } catch (InterruptedException e) {
-                log.error(METHOD_NAME, e);
-                Thread.currentThread().interrupt();
-            }
+            } 
+            b1 = !areWorkersReady();
+        }catch (InterruptedException e) {
+            log.error(METHOD_NAME, e);
+            Thread.currentThread().interrupt();
         }
         notifyAll();
       }
@@ -185,8 +188,10 @@ public class NetworkServerImpl implements NetworkServer {
 
     protected boolean isMessageInQueue() throws InterruptedException {
     	synchronized (this){
-        while (isRunning() && 0 == messageQueue.size()) {
+        	boolean b2 = isRunning() && 0 == messageQueue.size();
+        while (b2) {
             wait();
+            b2 = isRunning() && 0 == messageQueue.size();
         }
         return 0 != messageQueue.size();
       }

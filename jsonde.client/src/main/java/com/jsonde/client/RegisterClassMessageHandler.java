@@ -1,5 +1,7 @@
 package com.jsonde.client;
 
+import java.sql.SQLException;
+
 import com.jsonde.api.methodCall.RegisterClassMessage;
 import com.jsonde.client.dao.DaoException;
 import com.jsonde.client.dao.DaoFactory;
@@ -15,8 +17,9 @@ public class RegisterClassMessageHandler implements MessageHandler<RegisterClass
 	/**
 	 * 
 	 * @param message
+	 * @throws SQLException 
 	 */
-	public void onMessage(RegisterClassMessage message){
+	public void onMessage(RegisterClassMessage message) throws SQLException{
 		RegisterClassMessage registerClassMessage = (RegisterClassMessage) message;
 
         Clazz clazz = new Clazz();

@@ -10,6 +10,7 @@ import com.jsonde.util.file.FileUtils;
 import java.io.IOException;
 import java.io.StringWriter;
 import java.io.Writer;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -36,14 +37,19 @@ public class SdEditDataRenderer {
      */
     private String getClassName(MethodCall methodCall, Method method) throws DaoException {
 
-        String fullClassName =
-                null == methodCall.getActualClassId() ?
-                        DaoFactory.getClazzDao().get(method.getClassId()).getName() :
-                        DaoFactory.getClazzDao().get(methodCall.getActualClassId()).getName();
+        String fullClassName = null;
+        String shortClassName = null;
+		try {
+			fullClassName = null == methodCall.getActualClassId() ?
+			        DaoFactory.getClazzDao().get(method.getClassId()).getName() :
+			        DaoFactory.getClazzDao().get(methodCall.getActualClassId()).getName();
+		
 
-        String shortClassName = fullClassName.substring(
+		shortClassName = fullClassName.substring(
                 fullClassName.lastIndexOf('.') + 1
-        );
+        );} 
+        catch (SQLException e) {
+		}
 
         if (classesWithAmbigousNames.contains(shortClassName)) {
             return fullClassName;
@@ -55,18 +61,29 @@ public class SdEditDataRenderer {
 
     private void fillShortClassNamesMap(MethodCall methodCall) throws DaoException {
 
-        Method method = DaoFactory.getMethodDao().get(
-                methodCall.getMethodId()
-        );
+        Method method = null;
+		try {
+			method = DaoFactory.getMethodDao().get(
+			        methodCall.getMethodId()
+			);
+		} catch (SQLException e1) {
+		}
 
-        String fullClassName =
-                null == methodCall.getActualClassId() ?
-                        DaoFactory.getClazzDao().get(method.getClassId()).getName() :
-                        DaoFactory.getClazzDao().get(methodCall.getActualClassId()).getName();
+        String fullClassName = null;
+        String shortClassName = null;
+		try {
+			fullClassName = null == methodCall.getActualClassId() ?
+			        DaoFactory.getClazzDao().get(method.getClassId()).getName() :
+			        DaoFactory.getClazzDao().get(methodCall.getActualClassId()).getName();
 
-        String shortClassName = fullClassName.substring(
+
+			    shortClassName = fullClassName.substring(
                 fullClassName.lastIndexOf('.') + 1
         );
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 
         if (shortClassNamesMap.containsKey(shortClassName)) {
 
@@ -80,10 +97,14 @@ public class SdEditDataRenderer {
             shortClassNamesMap.put(shortClassName, fullClassName);
         }
 
-        for (MethodCall callee :
-                DaoFactory.getMethodCallDao().getByCondition("CALLERID = ?", methodCall.getId())) {
-            fillShortClassNamesMap(callee);
-        }
+        try {
+			for (MethodCall callee :
+			        DaoFactory.getMethodCallDao().getByCondition("CALLERID = ?", methodCall.getId())) {
+			    fillShortClassNamesMap(callee);
+			}
+		} catch (SQLException e) {
+
+		}
 
     }
 
@@ -99,9 +120,13 @@ public class SdEditDataRenderer {
 
             fillShortClassNamesMap(methodCall);
 
-            Method method = DaoFactory.getMethodDao().get(
-                    methodCall.getMethodId()
-            );
+            Method method = null;
+			try {
+				method = DaoFactory.getMethodDao().get(
+				        methodCall.getMethodId()
+				);
+			} catch (SQLException e) {
+			}
 
             String methodName = method.getName();
 
@@ -140,9 +165,13 @@ public class SdEditDataRenderer {
 
     protected void writeObjectNames(MethodCall methodCall, Writer diagramWriter) throws IOException, DaoException {
 
-        Method method = DaoFactory.getMethodDao().get(
-                methodCall.getMethodId()
-        );
+        Method method = null;
+		try {
+			method = DaoFactory.getMethodDao().get(
+			        methodCall.getMethodId()
+			);
+		} catch (SQLException e1) {
+		}
 
         String className = getClassName(methodCall, method);
 
@@ -157,54 +186,64 @@ public class SdEditDataRenderer {
                     append(FileUtils.LINE_SEPARATOR);
         }
 
-        for (MethodCall callee :
-                DaoFactory.getMethodCallDao().getByCondition("CALLERID = ?", methodCall.getId())) {
-            writeObjectNames(callee, diagramWriter);
-        }
+        try {
+			for (MethodCall callee :
+			        DaoFactory.getMethodCallDao().getByCondition("CALLERID = ?", methodCall.getId())) {
+			    writeObjectNames(callee, diagramWriter);
+			}
+		} catch (SQLException e) {
+		}
 
     }
 
     protected void writeMethodNames(MethodCall methodCall, Writer diagramWriter) throws IOException, DaoException {
 
-        Method method = DaoFactory.getMethodDao().get(
-                methodCall.getMethodId()
-        );
+        Method method = null;
+		try {
+			method = DaoFactory.getMethodDao().get(
+			        methodCall.getMethodId()
+			);
+		} catch (SQLException e1) {
+		}
 
         String callerClassName = getClassName(methodCall, method);
 
         classLevelMap.put(callerClassName, 0);
 
-        for (MethodCall callee :
-                DaoFactory.getMethodCallDao().getByCondition("CALLERID = ?", methodCall.getId())) {
+        try {
+			for (MethodCall callee :
+			        DaoFactory.getMethodCallDao().getByCondition("CALLERID = ?", methodCall.getId())) {
 
-            Method calleeMethod = DaoFactory.getMethodDao().get(
-                    callee.getMethodId()
-            );
+			    Method calleeMethod = DaoFactory.getMethodDao().get(
+			            callee.getMethodId()
+			    );
 
-            String calleeClassName = getClassName(callee, calleeMethod);
+			    String calleeClassName = getClassName(callee, calleeMethod);
 
-            int level = classLevelMap.get(callerClassName);
+			    int level = classLevelMap.get(callerClassName);
 
-            diagramWriter.
-                    append(callerClassName).
-                    append('[').
-                    append(Integer.toString(level)).
-                    append(']').
-                    append(':').
-                    append(calleeClassName.replaceAll("\\.", "\\\\.")).
-                    append('.').
-                    append(calleeMethod.getName()).
-                    append(FileUtils.LINE_SEPARATOR);
+			    diagramWriter.
+			            append(callerClassName).
+			            append('[').
+			            append(Integer.toString(level)).
+			            append(']').
+			            append(':').
+			            append(calleeClassName.replaceAll("\\.", "\\\\.")).
+			            append('.').
+			            append(calleeMethod.getName()).
+			            append(FileUtils.LINE_SEPARATOR);
 
-            classLevelMap.put(callerClassName, 0);
+			    classLevelMap.put(callerClassName, 0);
 
-            writeMethodNames(callee, diagramWriter);
+			    writeMethodNames(callee, diagramWriter);
 
-            if (callerClassName.equals(calleeClassName)) {
-                classLevelMap.put(callerClassName, 1 + classLevelMap.get(callerClassName));
-            }
+			    if (callerClassName.equals(calleeClassName)) {
+			        classLevelMap.put(callerClassName, 1 + classLevelMap.get(callerClassName));
+			    }
 
-        }
+			}
+		} catch (SQLException e) {
+		}
 
     }
 

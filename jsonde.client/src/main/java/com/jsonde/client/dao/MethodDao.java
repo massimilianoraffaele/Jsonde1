@@ -2,6 +2,8 @@ package com.jsonde.client.dao;
 
 import com.jsonde.client.domain.Method;
 
+import java.sql.SQLException;
+
 import javax.sql.DataSource;
 /**
  * 
@@ -24,7 +26,10 @@ public class MethodDao extends AbstractEntityDao<Method> {
      * createTable
      */
     public void createTable() throws DaoException {
-        super.createTable();
-        execute("CREATE INDEX METHOD_CLASSID_IDX ON METHOD (CLASSID);");
+     
+        try {   super.createTable();
+			execute("CREATE INDEX METHOD_CLASSID_IDX ON METHOD (CLASSID);");
+		} catch (SQLException e) {
+		}
     }
 }

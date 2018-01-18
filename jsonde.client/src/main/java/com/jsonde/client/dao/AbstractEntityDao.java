@@ -55,8 +55,9 @@ public abstract class AbstractEntityDao<T extends DomainObject> extends Abstract
     /**
      * 
      * @throws DaoException
+     * @throws SQLException 
      */
-    public void createTable() throws DaoException {
+    public void createTable() throws DaoException, SQLException {
 
         StringBuilder createTableQueryBuilder = new StringBuilder();
 
@@ -93,11 +94,14 @@ public abstract class AbstractEntityDao<T extends DomainObject> extends Abstract
             connection = connection();
             preparedStatement = connection.prepareStatement(createTableQueryBuilder.toString());
             preparedStatement.execute();
+            
+            connection.close();
         } catch (SQLException e) {
         	
             throw new DaoException("Something was wrong");
             
         } finally {
+            connection.close();
             DbUtils.close(preparedStatement);
             DbUtils.close(connection);
         }
@@ -108,17 +112,21 @@ public abstract class AbstractEntityDao<T extends DomainObject> extends Abstract
      * 
      * @param domainObject
      * @throws DaoException
+     * @throws SQLException 
      */
-    public void insert(T domainObject) throws DaoException {
+    public void insert(T domainObject) throws DaoException, SQLException {
         Connection connection = connection();
         try {
             insert(connection, domainObject);
+            
         } finally {
             DbUtils.close(connection);
+            connection.close();
         }
+        
     }
 
-    public void insert(Collection<T> domainObjects) throws DaoException {
+    public void insert(Collection<T> domainObjects) throws DaoException, SQLException {
         Connection connection = connection();
 
         boolean autoCommit;
@@ -144,21 +152,25 @@ public abstract class AbstractEntityDao<T extends DomainObject> extends Abstract
                 connection.rollback();
            
                 connection.setAutoCommit(autoCommit);
+                connection.close();
            
         } catch (Exception e) {
 
         	throw new DaoException("Something was wrong");
 
         } finally {
+        	connection.close();
             DbUtils.close(connection);
         }
     }
 
-    public void update(T domainObject) throws DaoException {
+    public void update(T domainObject) throws DaoException, SQLException {
         Connection connection = connection();
         try {
             update(connection, domainObject);
+            connection.close();
         } finally {
+        	connection.close();
             DbUtils.close(connection);
         }
     }
@@ -187,6 +199,7 @@ public abstract class AbstractEntityDao<T extends DomainObject> extends Abstract
             throw new DaoException("Something was wrong");
 
         } finally {
+        	
             DbUtils.close(preparedStatement);
         }
 
@@ -331,7 +344,7 @@ public abstract class AbstractEntityDao<T extends DomainObject> extends Abstract
         }
     }
 
-    public long count() throws DaoException {
+    public long count() throws DaoException, SQLException {
 
         String query = "SELECT COUNT(*) FROM " + getTableName();
 
@@ -348,16 +361,23 @@ public abstract class AbstractEntityDao<T extends DomainObject> extends Abstract
             resultSet = preparedStatement.getResultSet();
 
             if (resultSet.next()) {
-                return resultSet.getLong(1);
+            	connection.close();
+            	long l1 = resultSet.getLong(1);
+            	resultSet.close();
+                return l1;
             } else {
+            	connection.close();
+            	resultSet.close();
                 throw new DaoException("Unable to get count of entries in table " + getTableName());
             }
-
+            
         } catch (SQLException e) {
         	
             throw new DaoException("Something was wrong");
 
         } finally {
+            connection.close();
+            resultSet.close();
             DbUtils.close(resultSet);
             DbUtils.close(preparedStatement);
             DbUtils.close(connection);
@@ -365,7 +385,7 @@ public abstract class AbstractEntityDao<T extends DomainObject> extends Abstract
 
     }
 
-    public T get(long id) throws DaoException {
+    public T get(long id) throws DaoException, SQLException {
 
         T domainObject = createDomainObject();
         StringBuilder getQueryBuilder = new StringBuilder();
@@ -415,7 +435,8 @@ public abstract class AbstractEntityDao<T extends DomainObject> extends Abstract
 
             } 
               
-
+            connection.close();
+            resultSet.close();
         } 
         
         catch (Exception e) {
@@ -424,6 +445,8 @@ public abstract class AbstractEntityDao<T extends DomainObject> extends Abstract
 
         }
         finally {
+            connection.close();
+            resultSet.close();
             DbUtils.close(resultSet);
             DbUtils.close(preparedStatement);
             DbUtils.close(connection);
@@ -471,7 +494,11 @@ public abstract class AbstractEntityDao<T extends DomainObject> extends Abstract
 
     public T getUniqueByCondition(String condition, Object... parameters) throws DaoException {
 
-        List<T> result = getByCondition(condition, parameters);
+        List<T> result = null;
+		try {
+			result = getByCondition(condition, parameters);
+		} catch (SQLException e) {
+		}
     
         if (1 < result.size()) {
             throw new DaoException("Not uique result");
@@ -484,10 +511,14 @@ public abstract class AbstractEntityDao<T extends DomainObject> extends Abstract
     }
 
     public List<T> getAll() throws DaoException {
-        return getByCondition(null);
+        try {
+			return getByCondition(null);
+		} catch (SQLException e) {
+		} finally{
+        return null;}
     }
 
-    public List<T> getByCondition(String condition, Object... parameters) throws DaoException {
+    public List<T> getByCondition(String condition, Object... parameters) throws DaoException, SQLException {
 
         List<T> resultList = new LinkedList<T>();
 
@@ -543,7 +574,8 @@ public abstract class AbstractEntityDao<T extends DomainObject> extends Abstract
                     preparedStatement.getResultSet();
 
             getByConditionWhile(resultSet, resultList);
-            
+            connection.close();
+            resultSet.close();
         } 
         
         catch (Exception e) {
@@ -551,6 +583,8 @@ public abstract class AbstractEntityDao<T extends DomainObject> extends Abstract
             throw new DaoException("Something was wrong");        
 
         } finally {
+            connection.close();
+            resultSet.close();
             DbUtils.close(resultSet);
             DbUtils.close(preparedStatement);
             DbUtils.close(connection);

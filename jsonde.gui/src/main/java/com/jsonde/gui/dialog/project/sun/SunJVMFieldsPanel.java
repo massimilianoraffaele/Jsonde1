@@ -63,10 +63,13 @@ public class SunJVMFieldsPanel extends JPanel {
         TableModel tableModel = virtualMachineTable.getModel();
         ListSelectionModel tableSelectionModel = virtualMachineTable.getSelectionModel();
 
-        for (int i = 0; i < tableModel.getRowCount(); i++) {
+        int i = 0;
+        boolean b1 = i < tableModel.getRowCount();
+        for (i = 0; b1; i++) {
             if (tableSelectionModel.isSelectedIndex(i)) {
                 return (String) tableModel.getValueAt(i, 0);
             }
+            b1 = i < tableModel.getRowCount();
         }
 
         return "1";

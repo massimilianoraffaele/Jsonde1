@@ -2,6 +2,8 @@ package com.jsonde.client.dao;
 
 import com.jsonde.client.domain.TopMethodCall;
 
+import java.sql.SQLException;
+
 import javax.sql.DataSource;
 /**
  * 
@@ -24,9 +26,15 @@ public class TopMethodCallDao extends AbstractEntityDao<TopMethodCall> {
      * createTable
      */
     public void createTable() throws DaoException {
-        super.createTable();
-        execute("CREATE INDEX TOPMETHODCALL_HASHCODE_IDX ON TOPMETHODCALL (HASHCODE);");
-        execute("CREATE INDEX TOPMETHODCALL_COUNT_IDX ON TOPMETHODCALL (COUNT);");
+ 
+        try {       super.createTable();
+			execute("CREATE INDEX TOPMETHODCALL_HASHCODE_IDX ON TOPMETHODCALL (HASHCODE);");
+		} catch (SQLException e) {
+		}
+        try {
+			execute("CREATE INDEX TOPMETHODCALL_COUNT_IDX ON TOPMETHODCALL (COUNT);");
+		} catch (SQLException e) {
+		}
     }
 
 

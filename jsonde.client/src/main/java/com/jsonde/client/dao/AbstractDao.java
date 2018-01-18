@@ -47,7 +47,7 @@ public class AbstractDao {
         }
     }
 
-    public void execute(String sql) throws DaoException {
+    public void execute(String sql) throws DaoException, SQLException {
 
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -56,9 +56,11 @@ public class AbstractDao {
             connection = connection();
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.execute();
+            connection.close();
         } catch (SQLException e) {
             throw new DaoException("Something was wrong");
         } finally {
+        	connection.close();
             DbUtils.close(preparedStatement);
             DbUtils.close(connection);
         }

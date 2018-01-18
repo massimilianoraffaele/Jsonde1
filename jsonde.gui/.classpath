@@ -27,6 +27,6 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/milel/Desktop/MMRS IT Studios/trunk/freehep-swing-2.0.9.jar"/>
+	<classpathentry kind="lib" path="D:/Users/Emanuele/Documents/Development Workspace/Java/MMQS/freehep-swing-2.0.9.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

@@ -1,5 +1,6 @@
 package com.jsonde.gui.reports.custom;
 
+import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.LinkedHashSet;
 import java.util.Map;
@@ -29,7 +30,11 @@ public class DependencyReport implements ReportGenerator {
 	 */
     public JComponent generateReport() {
 
-        Map<Long, Set<Long>> dependencies = DaoFactory.getReportDao().getDependencies();
+        Map<Long, Set<Long>> dependencies = null;
+		try {
+			dependencies = DaoFactory.getReportDao().getDependencies();
+		} catch (SQLException e1) {
+		}
 
         JTree dependencyTree = new JTree();
 
@@ -37,12 +42,17 @@ public class DependencyReport implements ReportGenerator {
         DefaultTreeModel dependencyTreeModel = new DefaultTreeModel(rootNode);
 
         int i = 0;
-
+        try {
         for (Long codeSourceId : dependencies.keySet()) {
 
-            try {
+            
 
-                CodeSource codeSource = DaoFactory.getCodeSourceDao().get(codeSourceId);
+                CodeSource codeSource = null;
+				try {
+					codeSource = DaoFactory.getCodeSourceDao().get(codeSourceId);
+				} catch (SQLException e) {
+
+				}
 
                 MutableTreeNode dependencyNode = new DefaultMutableTreeNode(codeSource.getSource());
                 dependencyTreeModel.insertNodeInto(dependencyNode, rootNode, i);
@@ -54,13 +64,13 @@ public class DependencyReport implements ReportGenerator {
                         dependencies.get(codeSourceId),
                         new LinkedHashSet<Long>(Arrays.asList(codeSourceId)));
 
-            } catch (DaoException e) {
-                Main.getInstance().processException(e);
+            
             }
 
             i++;
 
-        }
+        } catch (DaoException e) {
+            Main.getInstance().processException(e);}
 
         dependencyTree.setModel(dependencyTreeModel);
 
@@ -70,6 +80,7 @@ public class DependencyReport implements ReportGenerator {
         scrollPane.setViewportView(dependencyTree);
 
         return scrollPane;
+    
     }
 
     /**
@@ -88,12 +99,17 @@ public class DependencyReport implements ReportGenerator {
             Set<Long> shownSourceIds) {
 
         int i = 0;
-
+        try {
         for (Long codeSourceId : codeSourceIds) {
 
-            try {
+            
 
-                CodeSource codeSource = DaoFactory.getCodeSourceDao().get(codeSourceId);
+                CodeSource codeSource = null;
+				try {
+					codeSource = DaoFactory.getCodeSourceDao().get(codeSourceId);
+				} catch (SQLException e) {
+
+				}
 
                 MutableTreeNode dependencyNode = new DefaultMutableTreeNode(codeSource.getSource());
                 dependencyTreeModel.insertNodeInto(dependencyNode, parent, i);
@@ -103,12 +119,12 @@ public class DependencyReport implements ReportGenerator {
                     createTree(dependencies, dependencyTreeModel, dependencyNode, dependencies.get(codeSourceId), shownSourceIds);
                 }
 
-            } catch (DaoException e) {
-                Main.getInstance().processException(e);
-            }
+            } 
 
             i++;
 
+        }catch (DaoException e) {
+            Main.getInstance().processException(e);
         }
 
     }

@@ -46,11 +46,13 @@ public class ServerOutputWorker implements Runnable, Closeable {
 
             log.info("[ServerOutputWorker] ready");
 
-            while (server.isRunning() || server.isMessageInQueue()) {
+            boolean b1 = server.isRunning() || server.isMessageInQueue();
+            boolean b2 = server.isMessageInQueue();
+            while (b1) {
 
                 log.info("[ServerOutputWorker] running");
 
-                while (server.isMessageInQueue()) {
+                while (b2) {
 
                     log.info("[ServerOutputWorker] message is in queue");
 
@@ -61,15 +63,15 @@ public class ServerOutputWorker implements Runnable, Closeable {
                     message.returnToPool();
 
                     log.info("[ServerOutputWorker] message was sent");
-
+                    b2 = server.isMessageInQueue();
                 }
 
                 log.info("[ServerOutputWorker] running");
-
+                b1 = server.isRunning() || server.isMessageInQueue();
             }
 
             log.info("[ServerOutputWorker] stopped");
-
+            objectOutputStream.close();
         } catch (IOException e) {
             log.error(METHOD_NAME, e);
         } catch (InterruptedException e) {

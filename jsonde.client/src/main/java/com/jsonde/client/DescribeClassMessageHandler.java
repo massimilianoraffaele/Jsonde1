@@ -1,5 +1,6 @@
 package com.jsonde.client;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import com.jsonde.api.methodCall.DescribeClassMessage;
@@ -23,8 +24,9 @@ public class DescribeClassMessageHandler implements MessageHandler<DescribeClass
 	/**
 	 * 
 	 * @param message
+	 * @throws SQLException 
 	 */
-	public void onMessage(DescribeClassMessage message){
+	public void onMessage(DescribeClassMessage message) throws SQLException{
 		DescribeClassMessage describeClassMessage =
                 (DescribeClassMessage) message;
 

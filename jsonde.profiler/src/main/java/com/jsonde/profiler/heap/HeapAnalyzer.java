@@ -62,20 +62,20 @@ public class HeapAnalyzer extends ReferenceQueue<Object> implements Runnable {
     }
 
     public void run() {
-
+    	try {
         while (running) {
 
-            try {
+            
                 Reference reference = remove(50);
                 if (null != reference) {
                     HeapAnalyzerReference heapAnalyzerReference = (HeapAnalyzerReference) reference;
                     Long constructorId = heapAnalyzerReference.getConstructorId();
                     heapData.get(constructorId).collectObject(heapAnalyzerReference.getObjectSize());
                 }
-            } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
-            }
+            } 
 
+        }catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
         }
 
     }

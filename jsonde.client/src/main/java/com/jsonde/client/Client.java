@@ -2,6 +2,7 @@ package com.jsonde.client;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -90,9 +91,12 @@ public class Client implements MessageListener {
         try {
             for (TopMethodCall topMethodCall :
                     DaoFactory.getTopMethodCallDao().getAll()) {
-                fireMethodCallEvent(
-                        DaoFactory.getMethodCallDao().get(topMethodCall.getMethodCallId())
-                );
+                try {
+					fireMethodCallEvent(
+					        DaoFactory.getMethodCallDao().get(topMethodCall.getMethodCallId())
+					);
+				} catch (SQLException e) {
+					}
             }
         } catch (DaoException e) {
             System.out.println("Something was wrong");
@@ -129,7 +133,10 @@ public class Client implements MessageListener {
         	System.out.println("Something was wrong");
         } catch (DaoException e) {
         	System.out.println("Something was wrong");
-        }
+        } catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
     }
 
@@ -219,7 +226,7 @@ public class Client implements MessageListener {
     public long getClassCount() {
         try {
             return DaoFactory.getClazzDao().count();
-        } catch (DaoException e) {
+        } catch (Exception e) {
         	System.out.println("Something was wrong");
             return 0;
         }
@@ -238,8 +245,9 @@ public class Client implements MessageListener {
     /**
      * 
      * @param methodCall
+     * @throws SQLException 
      */
-    public void createTopMethodCall(MethodCall methodCall) {
+    public void createTopMethodCall(MethodCall methodCall) throws SQLException {
 
         //todo move this logic to thread local profiler
 
@@ -323,10 +331,14 @@ public class Client implements MessageListener {
 
             writeByte(bytes);
 
-            for (MethodCall callee :
-                    DaoFactory.getMethodCallDao().getByCondition("CALLERID = ?", methodCall.getMethodId())) {
-                visitMethodCall(callee);
-            }
+            try {
+				for (MethodCall callee :
+				        DaoFactory.getMethodCallDao().getByCondition("CALLERID = ?", methodCall.getMethodId())) {
+				    visitMethodCall(callee);
+				}
+			} catch (SQLException e) {
+
+			}
 
             // traverse children
 

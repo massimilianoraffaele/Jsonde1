@@ -183,12 +183,15 @@ public class JListPane extends JList {
          */
         public void mouseClicked(MouseEvent e) {
             if ((MouseEvent.BUTTON1 == e.getButton()) && (2 == e.getClickCount())) {
-                for (int i = 0; i < listPaneModel.getSize(); i++) {
+            	int i = 0;
+            	boolean b1 = i < listPaneModel.getSize();
+                for (i = 0; b1; i++) {
                     if (isSelectedIndex(i)) {
                         ActionEvent actionEvent =
                                 new ActionEvent(JListPane.this, ActionEvent.ACTION_PERFORMED, "listPaneItemDoubleClicked");
                         fireActionEvent(i, actionEvent);
                     }
+                    b1 = i < listPaneModel.getSize();
                 }
             }
         }

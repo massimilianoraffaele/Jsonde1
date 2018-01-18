@@ -15,8 +15,9 @@ public class StringUtils {
         StringBuffer s = new StringBuffer(wildcard.length() + 6);
         s.append('^');
         
-        
-        for (int i = 0; i < wildcard.length(); i++) {
+        int i = 0;
+        boolean b1 = i < wildcard.length();
+        for (i = 0; b1; i++) {
             char c = wildcard.charAt(i);
             switch (c) {
                 case '*':
@@ -35,6 +36,7 @@ public class StringUtils {
                     s.append(c);
                     break;
             }
+            b1 = i < wildcard.length();
         }
         s.append('$');
         return (s.toString());

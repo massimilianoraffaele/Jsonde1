@@ -30,13 +30,21 @@ public class MethodCallDao extends AbstractEntityDao<MethodCall> {
      * createTable
      */
     public void createTable() throws DaoException {
-        super.createTable();
-        execute("CREATE INDEX METHODCALL_CALLERID_IDX ON METHODCALL (CALLERID);");
-        execute("CREATE INDEX METHODCALL_METHODID_IDX ON METHODCALL (METHODID);");
+       
+        try {
+        	 super.createTable();
+			execute("CREATE INDEX METHODCALL_CALLERID_IDX ON METHODCALL (CALLERID);");
+		} catch (SQLException e) {
+
+		}
+        try {
+			execute("CREATE INDEX METHODCALL_METHODID_IDX ON METHODCALL (METHODID);");
+		} catch (SQLException e) {
+		}
     }
 
     public MethodCall persistMethodCallDtos(
-            MethodCallDto[] methodCallDtos) throws DaoException {
+            MethodCallDto[] methodCallDtos) throws DaoException, SQLException {
 
         long topMethodCallId = -1;
 
@@ -84,10 +92,11 @@ public class MethodCallDao extends AbstractEntityDao<MethodCall> {
 
             insertMethodCallPreparedStatement.executeBatch();
             connection.commit();
-
+            connection.close();
         } catch (SQLException e) {
             throw new DaoException("Something was wrong");
         } finally {
+        	connection.close();
             DbUtils.close(insertMethodCallPreparedStatement);
             DbUtils.close(connection);
         }

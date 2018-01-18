@@ -33,13 +33,20 @@ public class MethodCallSummaryDao extends AbstractEntityDao<MethodCallSummary> {
      * createTable
      */
     public void createTable() throws DaoException {
-        super.createTable();
-        execute("CREATE INDEX METHODCALLSUMMARY_CALLERID_IDX ON METHODCALLSUMMARY (CALLERID);");
-        execute("CREATE INDEX METHODCALLSUMMARY_METHODID_IDX ON METHODCALLSUMMARY (METHODID);");
+     
+        try {
+        	   super.createTable();
+			execute("CREATE INDEX METHODCALLSUMMARY_CALLERID_IDX ON METHODCALLSUMMARY (CALLERID);");
+		} catch (SQLException e) {
+		}
+        try {
+			execute("CREATE INDEX METHODCALLSUMMARY_METHODID_IDX ON METHODCALLSUMMARY (METHODID);");
+		} catch (SQLException e) {
+		}
     }
 
     public void processMethodCallSummaryDto(MethodCallSummaryDto methodCallSummaryDto)
-            throws DaoException {
+            throws DaoException, SQLException {
 
         Connection connection = null;
 
@@ -50,10 +57,11 @@ public class MethodCallSummaryDao extends AbstractEntityDao<MethodCallSummary> {
             processMethodCallSummaryDto(methodCallSummaryDto, null, connection);
 
             connection.commit();
-
+            connection.close();
         } catch (SQLException e) {
             throw new DaoException("Something was wrong");
         } finally {
+        	connection.close();
             DbUtils.close(connection);
         }
 
@@ -97,7 +105,7 @@ public class MethodCallSummaryDao extends AbstractEntityDao<MethodCallSummary> {
 
     }
 
-    public List<MethodCallSummary> getCpuProfilerData(Long callerId) throws DaoException {
+    public List<MethodCallSummary> getCpuProfilerData(Long callerId) throws DaoException, SQLException {
 
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -153,12 +161,15 @@ public class MethodCallSummaryDao extends AbstractEntityDao<MethodCallSummary> {
                 methodCalls.add(methodCall);
 
             }
-
+            connection.close();
+            resultSet.close();
             return methodCalls;
 
         } catch (SQLException e) {
             throw new DaoException("Something was wrong");
         } finally {
+            connection.close();
+            resultSet.close();
             DbUtils.close(resultSet);
             DbUtils.close(preparedStatement);
             DbUtils.close(connection);

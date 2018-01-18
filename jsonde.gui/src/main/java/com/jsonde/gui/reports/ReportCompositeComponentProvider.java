@@ -67,10 +67,16 @@ public class ReportCompositeComponentProvider implements CompositeComponentProvi
 
         switch (report.getChartType()) {
             case PIE:
-                return createPieChart();
+			try {
+				return createPieChart();
+			} catch (SQLException e1) {
+			}
                
             case TIME:
-                return createTimeChart();
+			try {
+				return createTimeChart();
+			} catch (SQLException e) {
+			}
             case CUSTOM:
                 return createCustomChart();
                 default:
@@ -106,7 +112,7 @@ public class ReportCompositeComponentProvider implements CompositeComponentProvi
 
     }
 
-    private JComponent createTimeChart() {
+    private JComponent createTimeChart() throws SQLException {
 
         String sql = report.getSql();
 
@@ -159,17 +165,20 @@ public class ReportCompositeComponentProvider implements CompositeComponentProvi
 
                 RegularTimePeriod timePeriod = new Millisecond(new java.util.Date(time));
 
-                for (int i = 0; i < timeSeriesList.size(); i++) {
+                int i = 0;
+                boolean b1 = i < timeSeriesList.size();
+                for (i = 0; b1; i++) {
 
                     TimeSeries timeSeries = timeSeriesList.get(i);
 
                     double value = resultSet.getDouble(i + 2);
                     timeSeries.add(timePeriod, value);
-
+                    b1 = i < timeSeriesList.size();
                 }
 
             }
-
+            resultSet.close();
+            connection.close();
             return new PannableTimeChartPanel(startTime, endTime, dataset);
 
         } catch (DaoException e) {
@@ -179,6 +188,8 @@ public class ReportCompositeComponentProvider implements CompositeComponentProvi
             Main.getInstance().processException(e);
             return new JLabel("Failed to create report");
         } finally {
+        	resultSet.close();
+            connection.close();
             DbUtils.close(resultSet);
             DbUtils.close(preparedStatement);
             DbUtils.close(connection);
@@ -186,7 +197,7 @@ public class ReportCompositeComponentProvider implements CompositeComponentProvi
 
     }
 
-    private JComponent createPieChart() {
+    private JComponent createPieChart() throws SQLException {
 
         String sql = report.getSql();
 
@@ -221,7 +232,8 @@ public class ReportCompositeComponentProvider implements CompositeComponentProvi
             scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
             scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
             scrollPane.setViewportView(new ChartPanel(pieChart));
-
+            resultSet.close();
+            connection.close();
             return scrollPane;
 
         } catch (DaoException e) {
@@ -231,6 +243,8 @@ public class ReportCompositeComponentProvider implements CompositeComponentProvi
             Main.getInstance().processException(e);
             return new JLabel("Failed to create report");
         } finally {
+        	resultSet.close();
+            connection.close();
             DbUtils.close(resultSet);
             DbUtils.close(preparedStatement);
             DbUtils.close(connection);

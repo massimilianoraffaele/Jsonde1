@@ -53,7 +53,8 @@ public class ServerInputWorker implements Runnable, Closeable {
 
             log.info("[ServerInputWorker] ready");
 
-            while (server.isRunning()) {
+            boolean b1 = server.isRunning();
+            while (b1) {
 
                 log.info("[ServerInputWorker] running");
 
@@ -68,11 +69,11 @@ public class ServerInputWorker implements Runnable, Closeable {
                 server.processMessage(message);
 
                 log.info("[ServerInputWorker] running");
-
+                b1 = server.isRunning();
             }
 
             log.info("[ServerInputWorker] stopped");
-
+            objectInputStream.close();
         } catch (SocketException e) {
             log.info("[ServerInputWorker] SocketException catched");
             if (server.isRunning()) {

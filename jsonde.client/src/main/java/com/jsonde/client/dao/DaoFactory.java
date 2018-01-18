@@ -115,9 +115,14 @@ public class DaoFactory {
     }
 
     public static void createSchema() throws DaoException {
-        for (AbstractEntityDao dao : instance.daoList) {
-            dao.createTable();
-        }
+      
+            try {
+            	 for (AbstractEntityDao dao : instance.daoList) {
+				dao.createTable();}
+			} catch (SQLException e) {
+
+			}
+        
     }
 
 }

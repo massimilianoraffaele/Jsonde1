@@ -130,14 +130,15 @@ public class JSondeAgent implements MessageListener, ClassFileTransformer {
     }
 
     private void redefineLoadedClasses() {
+    	   try {
         for (Class clazz : instrumentation.getAllLoadedClasses()) {
 
-            try {
+            
                 redefineLoadedClass(clazz);
-            } catch (Exception e) {
-                System.out.println("Error while transforming class " + clazz);
+            }} catch (Exception e) {
+                System.out.println("Error while transforming class");
             	System.out.println("Something was wrong");
-            }
+            
 
         }
     }
@@ -166,9 +167,11 @@ public class JSondeAgent implements MessageListener, ClassFileTransformer {
             try {
 
                 byteCodeInputStream = classFileResourceURL.openStream();
-
-                while (byteCodeInputStream.available() > 0) {
+                
+                boolean b1 = byteCodeInputStream.available() > 0;
+                while (b1) {
                     originalByteArrayOutputStream.write(byteCodeInputStream.read());
+                    b1 = byteCodeInputStream.available() > 0;
                 }
 
                 byte[] bytecode = originalByteArrayOutputStream.toByteArray();
@@ -280,14 +283,14 @@ public class JSondeAgent implements MessageListener, ClassFileTransformer {
 
         profiler.addMessageListener(this);
         profiler.start();
-
+        try {
         while (null == agentConfigurationMessage) {
-            try {
+            
                 wait();
-            } catch (InterruptedException e) {
-                log.error(METHOD_NAME, e);
-                Thread.currentThread().interrupt();
-            }
+           
+        } } catch (InterruptedException e) {
+            log.error(METHOD_NAME, e);
+            Thread.currentThread().interrupt();
         }
 
         profiler.removeMessageListener(this);

@@ -1,5 +1,7 @@
 package com.jsonde.client;
 
+import java.sql.SQLException;
+
 import com.jsonde.api.methodCall.MethodCallDto;
 import com.jsonde.api.methodCall.MethodCallMessage;
 import com.jsonde.api.methodCall.MethodCallSummaryDto;
@@ -30,8 +32,11 @@ public class MethodCallMessageHandler implements MessageHandler<MethodCallMessag
         MethodCall methodCall = null;
 
         try {
-            methodCall = DaoFactory.getMethodCallDao().
-                    persistMethodCallDtos(methodCallDtos);
+            try {
+				methodCall = DaoFactory.getMethodCallDao().
+				        persistMethodCallDtos(methodCallDtos);
+			} catch (SQLException e) {
+			}
         } catch (DaoException e) {
         	System.out.println("Something was wrong");
         }
@@ -39,7 +44,10 @@ public class MethodCallMessageHandler implements MessageHandler<MethodCallMessag
         MethodCallSummaryDto methodCallSummaryDto = methodCallMessage.getMethodCallSummaryDto();
 
         try {
-            DaoFactory.getMethodCallSummaryDao().processMethodCallSummaryDto(methodCallSummaryDto);
+            try {
+				DaoFactory.getMethodCallSummaryDao().processMethodCallSummaryDto(methodCallSummaryDto);
+			} catch (SQLException e) {
+			}
        
         } catch (DaoException e) {
         	System.out.println("Something was wrong");

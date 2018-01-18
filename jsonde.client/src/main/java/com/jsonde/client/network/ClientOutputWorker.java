@@ -48,11 +48,12 @@ public class ClientOutputWorker implements Runnable {
 
             log.info("[ClientOutputWorker] ready");
 
-            while (client.isRunning() || client.isMessageInQueue()) {
+            boolean b1 = client.isRunning() || client.isMessageInQueue();
+            boolean b2 = client.isMessageInQueue();
+            while (b1) {
 
                 log.info("[ClientOutputWorker] running");
-
-                while (client.isMessageInQueue()) {
+                while (b2) {
 
                     log.info("[ClientOutputWorker] message is in queue");
 
@@ -61,14 +62,15 @@ public class ClientOutputWorker implements Runnable {
                     objectOutputStream.flush();
 
                     log.info("[ClientOutputWorker] message was sent");
-
+                    b2 = client.isMessageInQueue();
                 }
 
                 log.info("[ClientOutputWorker] running");
-
+                b1 = client.isRunning() || client.isMessageInQueue();
             }
 
             log.info("[ClientOutputWorker] stopped");
+            objectOutputStream.close();
 
         } catch (IOException e) {
             log.error(METHOD_NAME, e);

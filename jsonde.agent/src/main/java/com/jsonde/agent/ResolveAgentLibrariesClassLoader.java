@@ -50,15 +50,15 @@ public class ResolveAgentLibrariesClassLoader extends URLClassLoader {
             jSondeLibrariesRegexp = agentManifestAttributes.getValue("JSonde-Libraries-Regexp");
 
             List<URL> urls = new LinkedList<URL>();
-
+            try {
             for (String jar : jSondeClassPath.split("\\s")) {
-                try {
+                
                     URL o = new URL(agentJarLocation, jar);
 
                     urls.add(o);
-                } catch (MalformedURLException e) {
-                	System.out.println("Something was wrong");
-                }
+                } 
+            }catch (MalformedURLException e) {
+            	System.out.println("Something was wrong");
             }
 
             return urls.toArray(new URL[urls.size()]);
