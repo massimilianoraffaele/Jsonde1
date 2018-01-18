@@ -34,7 +34,7 @@ public class JListPane extends JList {
     private final MouseListener mouseListener = new JListPaneMouseListener();
 
     /**
-     * 
+     * JListPane
      */
     public JListPane() {
         this(new DefaultListPaneModel());
@@ -46,14 +46,17 @@ public class JListPane extends JList {
         addMouseListener(mouseListener);
     }
 
-    public synchronized void addActionListener(ActionListener actionListener) {
-        actionListeners.add(actionListener);
+    public void addActionListener(ActionListener actionListener) {
+    	synchronized (this){
+    	actionListeners.add(actionListener);
+    	}
     }
 
-    public synchronized void removeActionListener(ActionListener actionListener) {
-        actionListeners.remove(actionListener);
+    public void removeActionListener(ActionListener actionListener) {
+    	synchronized (this){
+    	actionListeners.remove(actionListener);
+    	}
     }
-
     public ListPaneModel getListPaneModel() {
         return listPaneModel;
     }
@@ -93,7 +96,8 @@ public class JListPane extends JList {
     private class JListPaneListCellRenderer implements ListCellRenderer {
 
     	/**
-    	 * 
+    	 * @author albertomadio
+    	 * getListCellRendererComponent
     	 */
         public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
 
@@ -152,7 +156,8 @@ public class JListPane extends JList {
     private class JListPaneListModel extends AbstractListModel {
 
         /**
-         * 
+         * @author albertomadio
+         * getSize
          */
         public int getSize() {
             return listPaneModel.getSize();
@@ -171,7 +176,11 @@ public class JListPane extends JList {
      */
     private class JListPaneMouseListener extends MouseAdapter {
 
-        @Override
+        @Override     
+        /**
+         * @author albertomadio
+         * mouseClicked
+         */
         public void mouseClicked(MouseEvent e) {
             if ((MouseEvent.BUTTON1 == e.getButton()) && (2 == e.getClickCount())) {
                 for (int i = 0; i < listPaneModel.getSize(); i++) {

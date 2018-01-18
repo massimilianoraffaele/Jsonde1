@@ -27,7 +27,10 @@ public class JAccordionPanel extends JPanel {
     private JPanel headerPanel;
     private JPanel contentPanel;
     private JPanel buttonsPanel;
-
+   
+    /**
+     * JAccordionPanel
+     */
     public JAccordionPanel() {
 
         setLayout(new BorderLayout());
@@ -123,7 +126,11 @@ public class JAccordionPanel extends JPanel {
             putValue(NAME, accordionPane.getTitle());
             putValue(SMALL_ICON, accordionPane.getIcon());
         }
-
+        
+        /**
+         * 
+         * @param e
+         */
         public void actionPerformed(ActionEvent e) {
             selectPane();
         }

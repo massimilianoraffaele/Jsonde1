@@ -29,6 +29,11 @@ public class NewLocalSunJVMProjectAction extends AbstractAction {
 
     private SdEditUIAdapter sdEditUIAdapter;
     final private String path1 =  "./lib/jsonde.agent-1.1.0.jar";
+    
+    /**
+     * 
+     * @param sdEditUIAdapter
+     */
     public NewLocalSunJVMProjectAction(SdEditUIAdapter sdEditUIAdapter) {
         this.sdEditUIAdapter = sdEditUIAdapter;
     }

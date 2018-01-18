@@ -62,10 +62,12 @@ public class ProfilerImpl extends Profiler implements MessageListener {
             new ThreadLocal<ThreadLocalProfiler>() {
 
                 @Override
-                protected synchronized ThreadLocalProfiler initialValue() {
+                protected ThreadLocalProfiler initialValue() {
+                	synchronized (this){
                     ThreadLocalProfiler threadLocalProfiler = new ThreadLocalProfiler(ProfilerImpl.this);
                     threadLocalProfilers.add(threadLocalProfiler);
                     return threadLocalProfiler;
+                	}
                 }
 
             };
@@ -104,6 +106,9 @@ public class ProfilerImpl extends Profiler implements MessageListener {
         networkServer.addMessageListener(this);
     }
     
+    /**
+     * ProfilerImp
+     */
     public ProfilerImpl() {
         instrumentation = null;
     }
@@ -287,7 +292,7 @@ public class ProfilerImpl extends Profiler implements MessageListener {
             return classId;
 
         } catch (Throwable e) {
-            e.printStackTrace();
+        	System.out.println("Something was wrong");
             log.error(METHOD_NAME, e);
             return UNDEFINED_CLASS_ID;
         } finally {

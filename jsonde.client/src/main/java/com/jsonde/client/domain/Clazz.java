@@ -24,6 +24,10 @@ public class Clazz extends DomainObject {
         return superClassId;
     }
 
+    /**
+     * 
+     * @param superClassId
+     */
     public void setSuperClassId(Long superClassId) {
         this.superClassId = superClassId;
     }

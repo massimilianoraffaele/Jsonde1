@@ -202,7 +202,7 @@ public class JSondeMethodTransformer extends AdviceAdapter {
 
             }
         } catch (Throwable e) {
-            e.printStackTrace();
+        	System.out.println("Something was wrong");
         }
 
     }

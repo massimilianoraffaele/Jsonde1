@@ -20,7 +20,10 @@ public class OpenMemoryHeapViewAction extends AbstractAction {
 
     private ApplicationUserInterface applicationUserInterface;
 
-
+    /**
+     * 
+     * @param applicationUserInterface
+     */
     public OpenMemoryHeapViewAction(ApplicationUserInterface applicationUserInterface) {
         super(
                 "Heap",

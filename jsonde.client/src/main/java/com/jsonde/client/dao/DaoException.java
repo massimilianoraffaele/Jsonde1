@@ -12,6 +12,10 @@ public class DaoException extends Exception {
     public DaoException() {
     }
 
+    /**
+     * 
+     * @param message
+     */
     public DaoException(String message) {
         super(message);
     }

@@ -22,6 +22,10 @@ public class NewProjectDialog extends JSondeDialog {
     private FiltersPanelImpl filtersPanel;
     private ButtonsPanel buttonsPanel;
 
+    /**
+     * 
+     * @throws HeadlessException
+     */
     public NewProjectDialog() throws HeadlessException {
 
         super();
@@ -86,11 +90,15 @@ public class NewProjectDialog extends JSondeDialog {
     private class ButtonsPanel extends JPanel {
 
         private boolean ok;
-
+        
+        /**
+         * 
+         * @return
+         */
         public boolean isOk() {
             return ok;
         }
-
+        
         public ButtonsPanel() {
             this("Ok");
         }

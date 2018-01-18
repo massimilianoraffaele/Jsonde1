@@ -19,6 +19,10 @@ public class VirtualMachineData {
         this.description = description;
     }
 
+    /**
+     * 
+     * @return
+     */
     public String getId() {
         return id;
     }

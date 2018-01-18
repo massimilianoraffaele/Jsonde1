@@ -35,11 +35,13 @@ public class ObjectPool<T> {
         this.elementsClass = elementsClass;
     }
 
-    public final synchronized void returnToPool(T element) {
-        passivate(element);
+    public final void returnToPool(T element) {
+    	synchronized (this){
+    	passivate(element);
         if (!persistentPool.offer(element) && pool.size() < 4000) {
             pool.add(new SoftReference<T>(element));
         }
+      }
     }
 
     protected void passivate(T element) {
@@ -58,12 +60,12 @@ public class ObjectPool<T> {
         }
     }
 
-    public final synchronized T takeFromPool() throws ObjectPoolException {
-
+    public final T takeFromPool() throws ObjectPoolException {
+    	synchronized (this){
         T element = takeFromPoolOrCreateImpl();
         activate(element);
         return element;
-
+    	}
     }
 
     /**

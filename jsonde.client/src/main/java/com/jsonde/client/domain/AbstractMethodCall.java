@@ -20,6 +20,10 @@ public abstract class AbstractMethodCall extends DomainObject {
         return callerId;
     }
 
+    /**
+     * 
+     * @param callerId
+     */
     public void setCallerId(Long callerId) {
         this.callerId = callerId;
     }

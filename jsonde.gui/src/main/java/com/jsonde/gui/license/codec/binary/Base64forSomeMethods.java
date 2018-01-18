@@ -12,6 +12,11 @@ package com.jsonde.gui.license.codec.binary;
 
 public class Base64forSomeMethods {
 
+	/**
+	 * 
+	 * @param binaryData
+	 * @return
+	 */
 	public static byte[] encodeBase64(byte[] binaryData) {
 
 		return encodeBase64(binaryData, false);

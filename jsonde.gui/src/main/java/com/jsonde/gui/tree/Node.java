@@ -13,6 +13,9 @@ public class Node extends DefaultMutableTreeNode {
     private String value;
     private MethodCall rootMethodCall;
 
+    /**
+     * Node
+     */
     public Node() {
     }
 

@@ -26,6 +26,10 @@ public class ClassFilterDto implements Serializable {
         this.packageName = packageName;
     }
 
+    /**
+     * 
+     * @return
+     */
     public boolean isInclusive() {
         return inclusive;
     }

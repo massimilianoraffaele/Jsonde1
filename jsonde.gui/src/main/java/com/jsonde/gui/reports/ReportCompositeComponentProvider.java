@@ -39,6 +39,10 @@ public class ReportCompositeComponentProvider implements CompositeComponentProvi
 
     private Report report;
 
+    /**
+     * 
+     * @param report
+     */
     public ReportCompositeComponentProvider(Report report) {
         this.report = report;
     }

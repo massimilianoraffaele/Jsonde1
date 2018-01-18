@@ -20,6 +20,9 @@ public class ClazzDao extends AbstractEntityDao<Clazz> {
     }
 
     @Override
+    /**
+     * createTable
+     */
     public void createTable() throws DaoException {
         super.createTable();
         execute("CREATE INDEX CLAZZ_CLASSLOADERID_IDX ON CLAZZ (CLASSLOADERID);");

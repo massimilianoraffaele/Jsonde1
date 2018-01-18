@@ -20,6 +20,9 @@ public class MethodDao extends AbstractEntityDao<Method> {
     }
 
     @Override
+    /**
+     * createTable
+     */
     public void createTable() throws DaoException {
         super.createTable();
         execute("CREATE INDEX METHOD_CLASSID_IDX ON METHOD (CLASSID);");

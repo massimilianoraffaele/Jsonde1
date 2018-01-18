@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Built-By: admin
+Build-Jdk: 1.8.0_101
+Agent-Class: com.jsonde.agent.JSondeAgent
+Boot-Class-Path: jsonde.util-1.1.0.jar jsonde.api-1.1.0.jar
+                                 jsonde.profiler-1.1.0.jar
+Can-Redefine-Classes: true
+Can-Retransform-Classes: true
+Can-Set-Native-Method-Prefix: true
+Created-By: Maven Integration for Eclipse
+JSonde-Class-Path: jsonde.instrumentation-1.1.0.jar asm-commons-5.0.3.
+ jar
+                                 asm-tree-5.0.3.jar asm-util-5.0.3.jar
+  asm-5.0.3.jar
+JSonde-Libraries-Regexp: ^org\.objectweb\.asm.*|com\.jsonde.*$
+Premain-Class: com.jsonde.agent.JSondeAgent
+

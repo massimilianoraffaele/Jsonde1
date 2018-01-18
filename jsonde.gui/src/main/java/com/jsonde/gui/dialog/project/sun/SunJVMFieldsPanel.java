@@ -38,6 +38,10 @@ public class SunJVMFieldsPanel extends JPanel {
     JTextField projectFilesLocationField;
     JTable virtualMachineTable;
 
+    /**
+     * 
+     * @return
+     */
     public String getProjectName() {
         return projectNameField.getText();
     }

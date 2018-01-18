@@ -45,6 +45,9 @@ public class JSondeMethodTransformerOld extends AdviceAdapter {
     }
 
     @Override
+    /**
+     * visitCode
+     */
     public void visitCode() {
         super.visitCode();
         mv.visitLabel(startFinallyLabel);
@@ -192,7 +195,7 @@ public class JSondeMethodTransformerOld extends AdviceAdapter {
 
             }
         } catch (Throwable e) {
-            e.printStackTrace();
+        	System.out.println("Something was wrong");
         }
 
     }

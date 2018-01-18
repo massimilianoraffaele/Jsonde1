@@ -18,7 +18,10 @@ public class OpenMethodCallProfilerViewAction extends AbstractAction {
 
     private ApplicationUserInterface applicationUserInterface;
 
-
+    /**
+     * 
+     * @param applicationUserInterface
+     */
     public OpenMethodCallProfilerViewAction(ApplicationUserInterface applicationUserInterface) {
         super(
                 "Method Calls",

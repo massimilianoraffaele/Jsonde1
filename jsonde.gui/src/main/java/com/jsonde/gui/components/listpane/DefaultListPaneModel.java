@@ -16,6 +16,9 @@ public class DefaultListPaneModel implements ListPaneModel {
     private List<Icon> iconsList;
     private List<Action> actionsList;
 
+    /**
+     * DefaultListPaneModel
+     */
     public DefaultListPaneModel() {
         this.labelsList = new LinkedList<String>();
         this.iconsList = new LinkedList<Icon>();

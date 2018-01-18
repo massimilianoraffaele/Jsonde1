@@ -14,15 +14,18 @@ public class ClassHeapData {
      * 
      * @param objectSize
      */
-    public synchronized void newObject(long objectSize) {
-        totalCurrentSize += objectSize;
+    public void newObject(long objectSize) {
+    	synchronized (this){
+    	totalCurrentSize += objectSize;
         createCounter++;
+    	}
     }
-
-    public synchronized void collectObject(long objectSize) {
-        totalCurrentSize -= objectSize;
+    public void collectObject(long objectSize) {
+    	synchronized (this){
+    	totalCurrentSize -= objectSize;
         collectCounter++;
-    }
+    	}
+    }	
 
     public long getCreateCounter() {
         return createCounter;

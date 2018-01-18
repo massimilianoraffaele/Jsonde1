@@ -66,6 +66,10 @@ public class DaoFactory {
         daoList.add(telemetryDataDao);
     }
 
+    /**
+     * 
+     * @return
+     */
     public static ClazzLoaderDao getClazzLoaderDao() {
         return instance.clazzLoaderDao;
     }

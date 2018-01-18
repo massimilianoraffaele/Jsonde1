@@ -56,6 +56,10 @@ public class RegisterMethodMessage extends Message {
         this.exceptions = exceptions;
     }
 
+    /**
+     * 
+     * @return
+     */
     public long getMethodId() {
         return methodId;
     }

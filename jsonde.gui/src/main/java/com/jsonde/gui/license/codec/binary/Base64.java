@@ -674,7 +674,12 @@ public class Base64 extends Base64forSomeMethods implements BinaryEncoder, Binar
         throw new DecoderException("Parameter supplied to Base64 decode is not a byte[]");
     }
         
-        
+    /**
+     *     
+     * @param pObject
+     * @return
+     * @throws DecoderException
+     */
     public String decode1(Object pObject) throws DecoderException {
         if (pObject instanceof String) {
             return decode1((String) pObject);

@@ -17,7 +17,11 @@ public class EchoFunctionRequest extends FunctionRequest<EchoFunctionResponse> {
     public EchoFunctionRequest(String message) {
         this.message = message;
     }
-
+    
+    /**
+     * 
+     * @return
+     */
     public String getMessage() {
         return message;
     }

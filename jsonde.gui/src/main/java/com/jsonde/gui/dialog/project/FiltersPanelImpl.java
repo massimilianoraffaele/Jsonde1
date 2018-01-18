@@ -20,6 +20,10 @@ public class FiltersPanelImpl extends JPanel implements ChangeListener, FiltersP
 
     private FiltersPanel concreteFiltersPanel;
 
+    /**
+     * 
+     * @param classFilters
+     */
     public void setClassFilters(List<ClassFilterDto> classFilters) {
         concreteFiltersPanel.setClassFilters(classFilters);
     }

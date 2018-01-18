@@ -29,7 +29,11 @@ public class CustomFiltersPanel extends JPanel implements FiltersPanel {
     public void setClassFilters(List<ClassFilterDto> classFilters) {
         filtersTableModel.setClassFilters(classFilters);
     }
-
+    
+    /**
+     * 
+     * @return
+     */
     public List<ClassFilterDto> getClassFilters() {
         return filtersTableModel.getClassFilters();
     }
@@ -212,6 +216,10 @@ public class CustomFiltersPanel extends JPanel implements FiltersPanel {
         }
 
         @Override
+        /**
+         * 
+         * @return
+         */
         public boolean isEnabled() {
             return super.isEnabled() && selectedId > 0;
         }
@@ -248,6 +256,10 @@ public class CustomFiltersPanel extends JPanel implements FiltersPanel {
         }
 
         @Override
+        /**
+         * 
+         * @return
+         */
         public boolean isEnabled() {
             return super.isEnabled() && selectedId < filtersTableModel.getRowCount() - 1;
         }

@@ -20,6 +20,9 @@ public class TopMethodCallDao extends AbstractEntityDao<TopMethodCall> {
     }
 
     @Override
+    /**
+     * createTable
+     */
     public void createTable() throws DaoException {
         super.createTable();
         execute("CREATE INDEX TOPMETHODCALL_HASHCODE_IDX ON TOPMETHODCALL (HASHCODE);");

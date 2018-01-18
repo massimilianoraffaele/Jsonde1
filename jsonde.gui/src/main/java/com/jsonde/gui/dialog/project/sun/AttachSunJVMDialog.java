@@ -25,6 +25,10 @@ public class AttachSunJVMDialog extends JSondeDialog {
     private FiltersPanelImpl filtersPanel;
     private ButtonsPanel buttonsPanel;
 
+    /**
+     * 
+     * @throws HeadlessException
+     */
     public AttachSunJVMDialog() throws HeadlessException {
 
         super();
@@ -88,6 +92,10 @@ public class AttachSunJVMDialog extends JSondeDialog {
 
         private boolean ok;
 
+        /**
+         * 
+         * @return
+         */
         public boolean isOk() {
             return ok;
         }

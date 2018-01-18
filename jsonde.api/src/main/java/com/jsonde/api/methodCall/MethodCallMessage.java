@@ -19,6 +19,9 @@ public class MethodCallMessage extends Message implements Externalizable {
 
     private transient MethodCallSummaryDto methodCallSummaryDto;
 
+    /**
+     * MethodCallMessage
+     */
     public MethodCallMessage() {
     }
 

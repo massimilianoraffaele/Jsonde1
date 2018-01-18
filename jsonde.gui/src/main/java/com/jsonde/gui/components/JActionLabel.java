@@ -17,6 +17,10 @@ public class JActionLabel extends JLabel implements MouseListener {
 
     private Action action;
 
+    /**
+     * 
+     * @param action
+     */
     public JActionLabel(Action action) {
 
         super();

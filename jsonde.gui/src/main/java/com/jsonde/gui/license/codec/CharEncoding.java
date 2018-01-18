@@ -54,6 +54,9 @@ package com.jsonde.gui.license.codec;
  */
 public class CharEncoding {
 	
+	/**
+	 * CharEncoding
+	 */
 	public CharEncoding(){
 		
 	}

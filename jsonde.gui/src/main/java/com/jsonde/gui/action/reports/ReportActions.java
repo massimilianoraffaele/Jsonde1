@@ -44,6 +44,12 @@ public class ReportActions {
 
     }
 
+    /**
+     * 
+     * @param applicationUserInterface
+     * @return
+     * @throws ReportException
+     */
     public static ReportActions getInstance(ApplicationUserInterface applicationUserInterface)
             throws ReportException {
         if (null == instance) {

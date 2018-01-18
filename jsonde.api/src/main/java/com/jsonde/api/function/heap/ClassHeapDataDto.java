@@ -31,6 +31,10 @@ public class ClassHeapDataDto implements Serializable {
         this.totalCurrentSize = totalCurrentSize;
     }
 
+    /**
+     * 
+     * @return
+     */
     public long getConstructorId() {
         return constructorId;
     }

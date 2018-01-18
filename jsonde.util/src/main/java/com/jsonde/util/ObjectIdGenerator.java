@@ -19,8 +19,8 @@ public class ObjectIdGenerator<T> {
      * @param object
      * @return
      */
-    public synchronized long getId(T object) {
-
+    public long getId(T object) {
+    	synchronized (this){
         ObjectWrapper<T> objectWrapper = wrap(object);
 
         if (!objectIds.containsKey(objectWrapper)) {
@@ -29,10 +29,17 @@ public class ObjectIdGenerator<T> {
 
         return objectIds.get(objectWrapper);
 
-    }
-
-    public synchronized long pollId(T object) throws ObjectIsAbsentException {
-
+    	}
+    }	
+    
+    /**
+     * 
+     * @param object
+     * @return
+     * @throws ObjectIsAbsentException
+     */
+    public long pollId(T object) throws ObjectIsAbsentException {
+    	synchronized (this){
         ObjectWrapper<T> objectWrapper = wrap(object);
 
         if (objectIds.containsKey(objectWrapper)) {
@@ -41,7 +48,8 @@ public class ObjectIdGenerator<T> {
             throw new ObjectIsAbsentException();
         }
 
-    }
+    	}
+    }	
 
     @SuppressWarnings("unchecked")
     
@@ -67,35 +75,6 @@ public class ObjectIdGenerator<T> {
         return new Pair<M, N>(m, n);
     }
 
-    /*
-
-     
-    public static class Pair<M, N> extends ObjectWrapper<Pair<M, N>> {
-
-        private final M m;
-        private final N n;
-
-        private Pair(M m, N n) {
-            this.m = m;
-            this.n = n;
-        }
-
-
-        public boolean equals(Object o) {
-            if (this == o) return true;
-            if (o == null || getClass() != o.getClass()) return false;
-
-            return true;
-        }
-
-
-        public int hashCode() {
-            int result = m != null ? System.identityHashCode(m) : 0;
-            result = 31 * result + (n != null ? System.identityHashCode(n) : 0);
-            return result;
-        }
-
-    }     */
 
     /**
      * 
@@ -127,14 +106,16 @@ public class ObjectIdGenerator<T> {
 
         @Override
         public boolean equals(Object obj) {
-
+        	if (getClass() != obj.getClass()){      	
+        		if(obj instanceof ObjectWrapper){
             if (null == object) {
                 return null == obj;
             } else {
                 return object == obj;
-            }
-
-        }
+            }		      
+        }return false;
+      }
+      return false;
     }
-
+  }
 }

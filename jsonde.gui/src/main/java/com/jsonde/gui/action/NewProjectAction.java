@@ -25,6 +25,10 @@ public class NewProjectAction extends AbstractAction {
 
     private SdEditUIAdapter sdEditUIAdapter;
 
+    /**
+     * 
+     * @param sdEditUIAdapter
+     */
     public NewProjectAction(SdEditUIAdapter sdEditUIAdapter) {
         this.sdEditUIAdapter = sdEditUIAdapter;
     }

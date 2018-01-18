@@ -20,6 +20,10 @@ public class JActionIcon extends JLabel implements MouseListener {
     private Border emptyBorder = BorderFactory.createEmptyBorder(2, 2, 2, 2);
     private Action action;
 
+    /**
+     * 
+     * @param action
+     */
     public JActionIcon(Action action) {
 
         super();

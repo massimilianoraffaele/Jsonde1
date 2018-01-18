@@ -17,6 +17,10 @@ public class Method extends DomainObject {
         return classId;
     }
 
+    /**
+     * 
+     * @param classId
+     */
     public void setClassId(long classId) {
         this.classId = classId;
     }

@@ -6,6 +6,9 @@ package com.jsonde.gui.reports;
  */
 public class ReportException extends Exception {
 
+	/**
+	 * ReportException
+	 */
     public ReportException() {
     }
 

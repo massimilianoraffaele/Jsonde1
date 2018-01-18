@@ -35,9 +35,9 @@ import com.jsonde.client.network.NetworkClientImpl;
 public class Client implements MessageListener {
 	
 	
-/**
- * public
- */
+	/**
+	 * public
+	 */
     public NetworkClient networkClient;
 
     /**
@@ -56,11 +56,19 @@ public class Client implements MessageListener {
     public void addMethodCallListener(MethodCallListener methodCallListener) {
         methodCallListeners.add(methodCallListener);
     }
-
+    
+    /**
+     * 
+     * @param classListener
+     */
     public void addClassListener(ClassListener classListener) {
         classListeners.add(classListener);
     }
-
+    
+    /**
+     * 
+     * @param methodCall
+     */
     public void fireMethodCallEvent(MethodCall methodCall) {
 
         for (MethodCallListener listener : methodCallListeners) {
@@ -342,7 +350,11 @@ public class Client implements MessageListener {
                 writeByte(b);
             }
         }
-
+        
+        /**
+         * 
+         * @return
+         */
         public int getHashCode() {
             return hashCode;
         }

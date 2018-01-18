@@ -12,6 +12,10 @@ public class NetworkClientException extends Exception {
     public NetworkClientException() {
     }
 
+    /**
+     * 
+     * @param message
+     */
     public NetworkClientException(String message) {
         super(message);
     }

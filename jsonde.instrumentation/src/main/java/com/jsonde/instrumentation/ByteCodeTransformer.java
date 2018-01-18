@@ -39,6 +39,15 @@ public class ByteCodeTransformer implements ClassFileTransformer {
         }
     }
 
+    /**
+     * 
+     * @param originalBytes
+     * @param instrumentClass
+     * @param loader
+     * @param classBeingRedefined
+     * @return
+     * @throws ByteCodeTransformException
+     */
     public byte[] transform(byte[] originalBytes, boolean instrumentClass, ClassLoader loader, Class<?> classBeingRedefined) throws ByteCodeTransformException {
 
         return transform(

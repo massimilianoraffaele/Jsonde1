@@ -22,6 +22,9 @@ public abstract class ObjectInputDecorator implements ObjectInput {
         target.readFully(b);
     }
 
+    /**
+     * readObject
+     */
     public ObjectInput readObject() throws ClassNotFoundException, IOException {
         return (ObjectInput) target.readObject();
     }

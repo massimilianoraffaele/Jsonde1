@@ -29,6 +29,9 @@ public class MethodCallSummaryDao extends AbstractEntityDao<MethodCallSummary> {
     }
 
     @Override
+    /**
+     * createTable
+     */
     public void createTable() throws DaoException {
         super.createTable();
         execute("CREATE INDEX METHODCALLSUMMARY_CALLERID_IDX ON METHODCALLSUMMARY (CALLERID);");

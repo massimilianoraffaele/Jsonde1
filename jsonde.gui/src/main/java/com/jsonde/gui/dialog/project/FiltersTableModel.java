@@ -15,6 +15,9 @@ public class FiltersTableModel extends AbstractTableModel {
 
     private List<ClassFilterDto> classFilters;
 
+    /**
+     * FiltersTableMode
+     */
     public FiltersTableModel() {
         this(Collections.<ClassFilterDto>emptyList());
     }

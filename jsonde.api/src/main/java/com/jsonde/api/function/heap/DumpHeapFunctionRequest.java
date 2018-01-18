@@ -8,6 +8,9 @@ import com.jsonde.api.function.FunctionRequest;
  */
 public class DumpHeapFunctionRequest extends FunctionRequest<DumpHeapFunctionResponse> {
     
+	/**
+	 * DumpHeapFunctionRequest
+	 */
 	public DumpHeapFunctionRequest(){
 		super();
 	}

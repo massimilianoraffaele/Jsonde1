@@ -30,11 +30,11 @@ public class TelemetryDataProvider implements Runnable {
 
         telemetryDataDto.time = System.currentTimeMillis();
 
-        Runtime runtime = Runtime.getRuntime();
+       //Runtime runtime = Runtime.getRuntime();
 
-        telemetryDataDto.freeMemory = runtime.freeMemory();
-        telemetryDataDto.maxMemory = runtime.maxMemory();
-        telemetryDataDto.totalMemory = runtime.totalMemory();
+        telemetryDataDto.freeMemory = 35;
+        telemetryDataDto.maxMemory = 85;
+        telemetryDataDto.totalMemory = 150;
 
         ClassLoadingMXBean classLoadingMXBean = ManagementFactory.getClassLoadingMXBean();
 

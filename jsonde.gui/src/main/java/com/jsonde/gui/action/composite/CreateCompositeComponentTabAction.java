@@ -26,6 +26,11 @@ public class CreateCompositeComponentTabAction extends AbstractAction implements
      */
     JPanel panel = new JPanel(new BorderLayout());
 
+    /**
+     * 
+     * @param applicationUserInterface
+     * @param compositeComponentProvider
+     */
     public CreateCompositeComponentTabAction(
             ApplicationUserInterface applicationUserInterface,
             CompositeComponentProvider compositeComponentProvider) {

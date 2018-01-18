@@ -28,7 +28,6 @@ import javax.crypto.spec.DESKeySpec;
 import com.jsonde.gui.Main;
 import com.jsonde.gui.license.codec.binary.Base64;
 import com.jsonde.util.file.FileUtils;
-import com.jsonde.util.io.IO;
 /**
  * 
  * @author admin
@@ -78,6 +77,17 @@ public class LicenseManager {
 
     }
 
+    /**
+     * 
+     * @param licenseData
+     * @return
+     * @throws InvalidKeyException
+     * @throws NoSuchAlgorithmException
+     * @throws NoSuchPaddingException
+     * @throws InvalidKeySpecException
+     * @throws IllegalBlockSizeException
+     * @throws BadPaddingException
+     */
     public byte[] createLicenseCode(byte[] licenseData) throws InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeySpecException, IllegalBlockSizeException, BadPaddingException {
 
         byte[] salt = new byte[SALT_SIZE];

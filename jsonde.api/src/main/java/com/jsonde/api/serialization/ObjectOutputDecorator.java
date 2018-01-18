@@ -23,6 +23,9 @@ public abstract class ObjectOutputDecorator implements ObjectOutput {
         target.writeObject(obj);
     }
 
+    /**
+     * write
+     */
     public void write(int b) throws IOException {
         target.write(b);
     }

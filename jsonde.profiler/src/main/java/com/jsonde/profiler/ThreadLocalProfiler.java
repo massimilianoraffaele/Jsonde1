@@ -123,6 +123,9 @@ public class ThreadLocalProfiler {
 
     }
 
+    /**
+     * dump
+     */
     public void dump() {
 
         System.out.println(Thread.currentThread().getId() + " thread level is " + level);

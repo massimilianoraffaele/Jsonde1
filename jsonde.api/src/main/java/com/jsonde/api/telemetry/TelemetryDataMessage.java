@@ -18,6 +18,10 @@ public class TelemetryDataMessage extends Message {
         this.telemetryDataDto = telemetryDataDto;
     }
 
+    /**
+     * 
+     * @return
+     */
     public TelemetryDataDto getTelemetryData() {
         return telemetryDataDto;
     }

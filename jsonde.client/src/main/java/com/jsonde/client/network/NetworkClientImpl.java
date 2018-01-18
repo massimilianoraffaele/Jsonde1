@@ -51,6 +51,9 @@ public class NetworkClientImpl implements NetworkClient {
         this.port = port;
     }
 
+    /**
+     * start
+     */
     public void start() throws NetworkClientException {
 
         try {
@@ -127,7 +130,8 @@ public class NetworkClientImpl implements NetworkClient {
      * 
      * @throws NetworkClientException
      */
-    private synchronized void closeSockets() throws NetworkClientException {
+    private void closeSockets() throws NetworkClientException {
+    	synchronized(this){
         try {
             socket.close();
         } catch (IOException e) {
@@ -135,9 +139,10 @@ public class NetworkClientImpl implements NetworkClient {
         }
         notifyAll();
     }
+  }
 
-    private synchronized void waitForInitialization() {
-
+    private void waitForInitialization() {
+    	synchronized (this){
         final String METHOD_NAME = "waitForInitialization()";
 
         while (!areWorkersReady()) {
@@ -150,9 +155,10 @@ public class NetworkClientImpl implements NetworkClient {
         }
         notifyAll();
     }
+  }
 
-    public synchronized void sendMessage(Message message) {
-
+    public void sendMessage(Message message) {	
+    	synchronized (this){
         final String METHOD_NAME = "sendMessage(Message)";
 
         try {
@@ -170,6 +176,7 @@ public class NetworkClientImpl implements NetworkClient {
             Thread.currentThread().interrupt();
         }
     }
+  }
 
     public <T extends FunctionResponse> T invokeFunction(final FunctionRequest<T> functionRequest)
             throws InterruptedException {
@@ -202,17 +209,21 @@ public class NetworkClientImpl implements NetworkClient {
     }
 
 
-    protected synchronized boolean isMessageInQueue() throws InterruptedException {
+    protected  boolean isMessageInQueue() throws InterruptedException {
+    	synchronized (this){
         while (isRunning() && 0 == messageQueue.size()) {
             wait();
         }
         return 0 != messageQueue.size();
+      }
     }
 
-    protected synchronized Message takeMessageFromQueue() {
+    protected  Message takeMessageFromQueue() {
+    	synchronized (this){
         Message message = messageQueue.poll();
         notifyAll();
         return message;
+    	}
     }
 
     private ExecutorService processMessageExecutorService = Executors.newSingleThreadExecutor();
@@ -242,27 +253,37 @@ public class NetworkClientImpl implements NetworkClient {
     }
 
 
-    public synchronized boolean isRunning() {
+    public  boolean isRunning() {
+    	synchronized (this){
         return running;
+    	}
     }
 
-    public synchronized void setRunning(boolean running) {
+    public void setRunning(boolean running) {
+    	synchronized (this){
         this.running = running;
         notifyAll();
-    }
+    	}
+    }	
 
-    private synchronized boolean areWorkersReady() {
+    private  boolean areWorkersReady() {	
+    	synchronized (this){
         return inputWorkerReady && outputWorkerReady;
-    }
+    	}
+    }	
 
-    public synchronized void setOutputWorkerReady(boolean outputWorkerReady) {
+    public void setOutputWorkerReady(boolean outputWorkerReady) {
+    	synchronized (this){
         this.outputWorkerReady = outputWorkerReady;
         notifyAll();
-    }
+    	}
+    }	
 
-    public synchronized void setInputWorkerReady(boolean inputWorkerReady) {
+    public void setInputWorkerReady(boolean inputWorkerReady) {
+    	synchronized (this){
         this.inputWorkerReady = inputWorkerReady;
         notifyAll();
+    	}
     }
 
 }

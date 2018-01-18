@@ -25,6 +25,10 @@ public class TelemetryData extends DomainObject {
         return time;
     }
 
+    /**
+     * 
+     * @param time
+     */
     public void setTime(long time) {
         this.time = time;
     }

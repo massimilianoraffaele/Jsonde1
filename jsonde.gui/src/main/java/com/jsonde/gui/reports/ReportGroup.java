@@ -24,6 +24,10 @@ public class ReportGroup {
     @XmlElement(name = "report")
     private List<Report> reports;
 
+    /**
+     * 
+     * @return
+     */
     public String getId() {
         return id;
     }

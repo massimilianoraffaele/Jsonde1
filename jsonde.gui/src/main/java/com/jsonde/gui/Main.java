@@ -22,10 +22,10 @@ import com.jsonde.gui.sdedit.SdEditUIAdapter;
 public class Main {
 
     private static Main instance;
-/**
- * 
- * @return
- */
+    /**
+     * 
+     * @return
+ 	*/
     public static Main getInstance() {
         if (null == instance) {
             instance = new Main();
@@ -35,20 +35,16 @@ public class Main {
 
     private String[] arguments;
     private ApplicationUserInterface sdEditUIAdapter;
-
+    
+    /**
+     * 
+     * @param e
+     */
     public void processException(Throwable e) {
         try {
             sdEditUIAdapter.processException(e);
         } catch (Exception ex) {
-<<<<<<< .mine
-            e.printStackTrace();
-            System.out.println("Something was wrong");
-||||||| .r95
-            e.printStackTrace();
-            ex.printStackTrace();
-=======
         	System.out.println("Something was wrong");
->>>>>>> .r98
         }
     }
 
@@ -82,7 +78,12 @@ public class Main {
      * MyEventQueue
      */
     private static class MyEventQueue extends EventQueue implements Thread.UncaughtExceptionHandler {
-
+    	
+    	/**
+    	 * 
+    	 * @param t
+    	 * @param e
+    	 */
         public void uncaughtException(Thread t, Throwable e) {
             instance.processException(e);
         }

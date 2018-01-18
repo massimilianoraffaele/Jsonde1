@@ -32,6 +32,10 @@ public class FieldsPanel extends JPanel {
     JTextField agentHostField;
     JTextField agentPortField;
 
+    /**
+     *  
+     * @return
+     */
     public String getProjectName() {
         return projectNameField.getText();
     }

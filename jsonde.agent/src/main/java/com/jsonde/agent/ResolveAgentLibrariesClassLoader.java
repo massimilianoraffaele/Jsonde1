@@ -21,6 +21,9 @@ public class ResolveAgentLibrariesClassLoader extends URLClassLoader {
 
     private static String jSondeLibrariesRegexp;
 
+    /**
+     * ResolveAgentLibrariesClassLoader
+     */
     public ResolveAgentLibrariesClassLoader() {
         super(getUrls(), null);
     }

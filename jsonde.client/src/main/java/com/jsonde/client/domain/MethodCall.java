@@ -16,7 +16,11 @@ public class MethodCall extends AbstractMethodCall {
     public Long getActualClassId() {
         return actualClassId;
     }
-
+    
+    /**
+     * 
+     * @param actualClassId
+     */
     public void setActualClassId(Long actualClassId) {
         this.actualClassId = actualClassId;
     }

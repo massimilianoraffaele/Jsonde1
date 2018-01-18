@@ -23,6 +23,10 @@ public class SessionConfiguration {
     @XmlElement(name = "database-file-name")
     private String databaseFileName;
 
+    /**
+     * 
+     * @return
+     */
     public String getDatabaseFileName() {
         return databaseFileName;
     }

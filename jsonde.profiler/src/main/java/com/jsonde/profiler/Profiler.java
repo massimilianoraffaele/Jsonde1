@@ -46,6 +46,10 @@ public abstract class Profiler extends ProfilerAbstractClassForSomeMethods {
         return profiler;
     }
 
+    /**
+     * 
+     * @param profiler12
+     */
     public static void initializeProfiler(Profiler profiler12) {
         Profiler.profiler = profiler12;
     }
@@ -311,15 +315,7 @@ public abstract class Profiler extends ProfilerAbstractClassForSomeMethods {
 						    try {
 								Thread.sleep(500);
 							} catch (InterruptedException e) {
-<<<<<<< .mine
-								// TODO Auto-generated catch block
-								System.out.println("Something was wrong");
-||||||| .r95
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-=======
 					        	System.out.println("Something was wrong");
->>>>>>> .r98
 							}
 						}
                     }

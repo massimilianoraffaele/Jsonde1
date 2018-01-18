@@ -23,6 +23,10 @@ public class DumpHeapFunctionResponse extends FunctionResponse<DumpHeapFunctionR
         classHeapDataDtos = new HashSet<ClassHeapDataDto>();
     }
 
+    /**
+     * 
+     * @return
+     */
     public Set<ClassHeapDataDto> getClassHeapDataDtos() {
         return classHeapDataDtos;
     }

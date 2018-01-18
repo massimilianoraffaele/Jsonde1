@@ -18,6 +18,9 @@ public class RegisterClassMessage extends Message {
     private String superName;
     private String[] interfaces;
 
+    /**
+     * RegisterClassMessage
+     */
     public RegisterClassMessage() {
     }
 

@@ -18,6 +18,9 @@ public class PoolableObjectInput extends ObjectInputDecorator {
     }
 
     @Override    
+    /**
+     * readObject
+     */
     public ObjectInput readObject() throws ClassNotFoundException, IOException {
         boolean isPoolableExternalizable = super.readBoolean();
         if (isPoolableExternalizable) {

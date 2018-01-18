@@ -20,6 +20,9 @@ public class DaemonThreadFactory implements ThreadFactory {
         return threadGroup;
     }
 
+    /**
+     * newThread
+     */
     public Thread newThread(Runnable r) {
 
         Thread thread = new Thread(

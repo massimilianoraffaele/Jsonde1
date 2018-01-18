@@ -32,6 +32,12 @@ public class Reports {
     private Map<String,Report> reportsMap = new HashMap<String,Report>();
     private Map<String,ReportGroup> reportGroupsMap = new HashMap<String,ReportGroup>();
 
+    /**
+     * 
+     * @param groupId
+     * @return
+     * @throws ReportException
+     */
     public static List<Report> getReportsByGroupId(String groupId) throws ReportException {
         return getInstance().reportGroupsMap.get(groupId).getReports();
     }

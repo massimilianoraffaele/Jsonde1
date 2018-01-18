@@ -87,6 +87,12 @@ public class SdEditDataRenderer {
 
     }
 
+    /**
+     * 
+     * @param methodCall
+     * @return
+     * @throws GeneralException
+     */
     public String processMethodCall(MethodCall methodCall) throws GeneralException{
 
         try {

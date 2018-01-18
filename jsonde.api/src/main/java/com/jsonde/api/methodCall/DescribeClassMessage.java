@@ -25,6 +25,10 @@ public class DescribeClassMessage extends Message {
         this.classRedefined = classRedefined;
     }
 
+    /**
+     * 
+     * @return
+     */
     public long getMethodId() {
         return methodId;
     }

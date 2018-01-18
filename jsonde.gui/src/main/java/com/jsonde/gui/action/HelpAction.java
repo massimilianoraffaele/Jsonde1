@@ -27,6 +27,10 @@ public class HelpAction extends AbstractAction {
 
     private ApplicationUserInterface applicationUserInterface;
 
+    /**
+     * 
+     * @param sdEditUIAdapter
+     */
     public HelpAction(SdEditUIAdapter sdEditUIAdapter) {
         this.applicationUserInterface = sdEditUIAdapter;
     }

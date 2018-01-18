@@ -30,6 +30,10 @@ public class LicenseDialog extends JSondeDialog {
     private boolean licenseValid;
     private String license;
 
+    /**
+     * 
+     * @return
+     */
     public boolean isEvaluate() {
         return evaluate;
     }

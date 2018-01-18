@@ -19,6 +19,10 @@ public class TopMethodCall extends DomainObject {
         return methodCallId;
     }
 
+    /**
+     * 
+     * @param methodCallId
+     */
     public void setMethodCallId(long methodCallId) {
         this.methodCallId = methodCallId;
     }

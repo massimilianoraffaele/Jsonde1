@@ -13,6 +13,12 @@ public class JAccordionPane {
     private Icon icon;
     private JComponent component;
 
+    /**
+     * 
+     * @param title
+     * @param icon
+     * @param component
+     */
     public JAccordionPane(String title, Icon icon, JComponent component) {
         this.title = title;
         this.icon = icon;

@@ -21,7 +21,11 @@ public abstract class DomainObject implements Serializable {
     public long getId() {
         return aa;
     }
-
+    
+    /**
+     * 
+     * @param id
+     */
     public void setId(long id) {
         this.aa = id;
     }

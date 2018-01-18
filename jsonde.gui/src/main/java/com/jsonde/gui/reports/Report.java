@@ -37,6 +37,10 @@ public class Report {
     @XmlAttribute(name = "report-generator")
     private String reportGenerator;
 
+    /**
+     * 
+     * @return
+     */
     public String getId() {
         return id;
     }

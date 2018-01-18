@@ -6,6 +6,9 @@ package com.jsonde.gui.configuration;
  */
 public class SessionConfigurationException extends Exception {
 
+	/**
+	 * SessionConfigurationException
+	 */
     public SessionConfigurationException() {
     }
 

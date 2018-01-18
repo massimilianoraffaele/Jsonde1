@@ -42,6 +42,10 @@ public class MethodCallProfilerView extends JPanel {
         List<MethodCallProfilerNode> childNodes;
 
         @Override
+        /**
+         * 
+         * @return
+         */
         public String toString() {
             return name;
         }
@@ -81,8 +85,8 @@ public class MethodCallProfilerView extends JPanel {
                                         method.getName();
 
                         long time = methodCallSummary.getExecutionTime();
-
-                        StringBuilder timeStringBuilder = new StringBuilder();
+                        final int bSize = 128;
+                        StringBuilder timeStringBuilder = new StringBuilder(bSize);
 
                         time /= 1000L;
 
@@ -121,6 +125,9 @@ public class MethodCallProfilerView extends JPanel {
 
     }
 
+    /**
+     * MethodCallProfilerView
+     */
     public MethodCallProfilerView() {
 
         MethodCallProfilerNode rootNode = new MethodCallProfilerNode(
@@ -155,12 +162,23 @@ public class MethodCallProfilerView extends JPanel {
         private MethodCallProfilerViewTreeTableModel(MethodCallProfilerNode root) {
             super(root);
         }
-
+        
+        /**
+         * 
+         * @param parent
+         * @param index
+         * @return
+         */
         public MethodCallProfilerNode getChild(Object parent, int index) {
             MethodCallProfilerNode parentNode = (MethodCallProfilerNode) parent;
             return parentNode.getChildNodes().get(index);
         }
-
+        
+        /**
+         * 
+         * @param parent
+         * @return
+         */
         public int getChildCount(Object parent) {
             MethodCallProfilerNode parentNode = (MethodCallProfilerNode) parent;
             return parentNode.getChildNodes().size();
@@ -170,6 +188,11 @@ public class MethodCallProfilerView extends JPanel {
             return 3;
         }
 
+        /**
+         * 
+         * @param i
+         * @return
+         */
         public String getColumnName(int i) {
         	
             switch (i) {
@@ -182,7 +205,12 @@ public class MethodCallProfilerView extends JPanel {
             }
 
         }
-
+        
+        /**
+         * 
+         * @param column
+         * @return
+         */
         public Class getColumnClass(int column) {
         	
             switch (column) {

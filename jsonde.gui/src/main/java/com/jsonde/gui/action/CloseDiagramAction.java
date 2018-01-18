@@ -14,6 +14,10 @@ public class CloseDiagramAction extends AbstractAction {
 
     private SdEditUIAdapter sdEditUIAdapter;
 
+    /**
+     * 
+     * @param sdEditUIAdapter
+     */
     public CloseDiagramAction(SdEditUIAdapter sdEditUIAdapter) {
         this.sdEditUIAdapter = sdEditUIAdapter;
     }

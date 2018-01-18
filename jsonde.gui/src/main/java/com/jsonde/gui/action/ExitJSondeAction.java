@@ -18,6 +18,10 @@ public class ExitJSondeAction extends AbstractAction {
 
     private ApplicationUserInterface sdEditUIAdapter;
 
+    /**
+     * 
+     * @param sdEditUIAdapter
+     */
     public ExitJSondeAction(ApplicationUserInterface sdEditUIAdapter) {
         this.sdEditUIAdapter = sdEditUIAdapter;
     }

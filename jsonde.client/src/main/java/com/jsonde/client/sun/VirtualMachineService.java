@@ -127,8 +127,11 @@ public class VirtualMachineService {
         return null != getToolsJarURL();
     }
 
-    
-    
+    /**
+     * 
+     * @return
+     * @throws VirtualMachineServiceException
+     */
     public URL getToolsJarURL() throws VirtualMachineServiceException {
 
         try {

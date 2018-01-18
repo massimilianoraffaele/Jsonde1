@@ -18,6 +18,9 @@ public class PoolableObjectOutput extends ObjectOutputDecorator {
     }
 
     @Override
+    /**
+     * writeObject
+     */
     public void writeObject(Object obj) throws IOException {
         if (obj instanceof PoolableExternalizable) {
             writeBoolean(true);

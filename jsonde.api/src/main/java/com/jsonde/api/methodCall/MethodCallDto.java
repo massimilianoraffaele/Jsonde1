@@ -28,9 +28,9 @@ public class MethodCallDto implements Serializable {
      * actual
      */
     public static final byte ACTUAL_CLASS_ID_SET_FLAG = 3;
-/**
- * flags
- */
+    /**
+     * flags
+ 	*/
     public byte flags;
 
     /**
@@ -62,6 +62,9 @@ public class MethodCallDto implements Serializable {
     }
 
     @Override
+    /**
+     * toString
+     */
     public String toString() {
         return "MethodCallDto{" +
                 "flags=" + flags +

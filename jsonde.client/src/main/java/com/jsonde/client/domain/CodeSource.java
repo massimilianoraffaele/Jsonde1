@@ -16,6 +16,10 @@ public class CodeSource extends DomainObject {
         return source;
     }
 
+    /**
+     * 
+     * @param source
+     */
     public void setSource(String source) {
         this.source = source;
     }

@@ -21,6 +21,10 @@ public class HeapProfilerView extends JPanel {
 
     private Client client;
 
+    /**
+     * 
+     * @param client
+     */
     public HeapProfilerView(Client client) {
 
         this.client = client;

@@ -20,6 +20,10 @@ public class AboutAction extends AbstractAction {
 
     private ApplicationUserInterface applicationUserInterface;
 
+    /**
+     * 
+     * @param sdEditUIAdapter
+     */
     public AboutAction(SdEditUIAdapter sdEditUIAdapter) {
         this.applicationUserInterface = sdEditUIAdapter;
     }

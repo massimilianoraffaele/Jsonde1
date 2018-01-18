@@ -22,6 +22,10 @@ public abstract class FunctionRequest<T extends FunctionResponse> extends Messag
         this.requestId = requestIdSequence.getAndIncrement();
     }
 
+    /**
+     * 
+     * @return
+     */
     public long getRequestId() {
         return requestId;
     }

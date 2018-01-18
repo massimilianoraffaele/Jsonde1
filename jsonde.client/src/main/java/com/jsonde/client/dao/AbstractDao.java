@@ -26,6 +26,10 @@ public class AbstractDao {
         this.dataSource = dataSource;
     }
 
+    /**
+     * 
+     * @return
+     */
     public DataSource getDataSource() {
         return dataSource;
     }

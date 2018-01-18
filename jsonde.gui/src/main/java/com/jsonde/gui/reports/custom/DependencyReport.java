@@ -23,6 +23,10 @@ import com.jsonde.gui.Main;
  */
 public class DependencyReport implements ReportGenerator {
 
+	/**
+	 * 
+	 * @return
+	 */
     public JComponent generateReport() {
 
         Map<Long, Set<Long>> dependencies = DaoFactory.getReportDao().getDependencies();

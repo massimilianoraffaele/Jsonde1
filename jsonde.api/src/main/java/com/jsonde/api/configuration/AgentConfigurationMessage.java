@@ -21,6 +21,10 @@ public class AgentConfigurationMessage extends Message {
         return version;
     }
 
+    /**
+     * 
+     * @param version
+     */
     public void setVersion(String version) {
         this.version = version;
     }

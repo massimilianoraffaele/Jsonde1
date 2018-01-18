@@ -12,6 +12,10 @@ public class ByteCodeTransformException extends Exception {
     public ByteCodeTransformException() {
     }
 
+    /**
+     * 
+     * @param message
+     */
     public ByteCodeTransformException(String message) {
         super(message);
     }

@@ -28,6 +28,12 @@ public class PannableTimeChartPanel extends JPanel  implements ChangeListener {
     private XYPlot plot;
     private BoundedRangeModel rangeModel;
 
+    /**
+     * 
+     * @param startTime
+     * @param endTime
+     * @param dataset
+     */
     public PannableTimeChartPanel(long startTime, long endTime, TimeSeriesCollection dataset) {
 
         double interval = ((endTime - startTime) / (30000.));

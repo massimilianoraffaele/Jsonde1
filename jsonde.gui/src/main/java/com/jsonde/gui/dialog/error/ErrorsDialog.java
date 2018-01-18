@@ -22,6 +22,10 @@ public class ErrorsDialog extends JSondeDialog {
 
     private StringBuffer stringBuffer;
 
+    /**
+     * 
+     * @param stringBuffer
+     */
     public ErrorsDialog(StringBuffer stringBuffer) {
 
         this.stringBuffer = stringBuffer;

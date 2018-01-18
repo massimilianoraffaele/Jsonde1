@@ -27,6 +27,10 @@ public class MethodCallSummary extends AbstractMethodCall {
         return executionTime;
     }
 
+    /**
+     * 
+     * @param executionTime
+     */
     public void setExecutionTime(Long executionTime) {
         this.executionTime = executionTime;
     }

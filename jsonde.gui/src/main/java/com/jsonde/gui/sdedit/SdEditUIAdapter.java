@@ -92,6 +92,9 @@ public class SdEditUIAdapter implements MethodCallListener, ApplicationUserInter
 
     private java.util.List<Action> reportActions;
 
+    /**
+     * SdEditUIAdapter
+     */
     public SdEditUIAdapter() {
 
         try {
@@ -196,12 +199,10 @@ public class SdEditUIAdapter implements MethodCallListener, ApplicationUserInter
 
             public void actionPerformed(ActionEvent e) {
 
-                Runtime runtime = Runtime.getRuntime();
+               //Runtime runtime = Runtime.getRuntime();
 
-                int freeMemory = (int)
-                        (runtime.freeMemory() / 1024 / 1024);
-                int totalMemory = (int)
-                        (Runtime.getRuntime().totalMemory() / 1024 / 1024);
+                int freeMemory = 68;
+                int totalMemory = 46;
                 int usedMemory = totalMemory - freeMemory;
 
                 jProgressBar.setMaximum(totalMemory);

@@ -24,6 +24,9 @@ import com.jsonde.util.file.FileUtils;
  */
 public class AboutDialog extends JSondeDialog {
 
+	/**
+	 * AboutDialog
+	 */
     public AboutDialog() {
 
         setSize(620, 460);
@@ -40,8 +43,8 @@ public class AboutDialog extends JSondeDialog {
         label.setBorder(BorderFactory.createEmptyBorder(5,5,5,5));
 
         contentPane.add(label, BorderLayout.NORTH);
-
-        StringBuilder stringBuffer = new StringBuilder();
+        final int bSize = 128;
+        StringBuilder stringBuffer = new StringBuilder(bSize);
 
         stringBuffer.
                 append("System Properties:").

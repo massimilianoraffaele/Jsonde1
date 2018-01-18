@@ -20,6 +20,10 @@ public class SimpleFiltersPanel extends JPanel implements FiltersPanel {
 
     private JTextField packageFilter;
 
+    /**
+     * 
+     * @param classFilters
+     */
     public void setClassFilters(List<ClassFilterDto> classFilters) {
 
     }

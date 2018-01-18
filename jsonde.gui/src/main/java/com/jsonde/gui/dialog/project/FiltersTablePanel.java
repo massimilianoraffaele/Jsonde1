@@ -16,6 +16,11 @@ public class FiltersTablePanel extends JPanel {
 
     private JTable filtersTable;
 
+    /**
+     * 
+     * @param filtersTableModel
+     * @param title
+     */
     public FiltersTablePanel(FiltersTableModel filtersTableModel, String title) {
 
         setLayout(new BorderLayout());

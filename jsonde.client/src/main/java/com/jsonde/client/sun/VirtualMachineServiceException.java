@@ -12,6 +12,10 @@ public class VirtualMachineServiceException extends Exception {
     public VirtualMachineServiceException() {
     }
 
+    /**
+     * 
+     * @param message
+     */
     public VirtualMachineServiceException(String message) {
         super(message);
     }

@@ -26,6 +26,9 @@ public class MethodCallDao extends AbstractEntityDao<MethodCall> {
     }
 
     @Override
+    /**
+     * createTable
+     */
     public void createTable() throws DaoException {
         super.createTable();
         execute("CREATE INDEX METHODCALL_CALLERID_IDX ON METHODCALL (CALLERID);");

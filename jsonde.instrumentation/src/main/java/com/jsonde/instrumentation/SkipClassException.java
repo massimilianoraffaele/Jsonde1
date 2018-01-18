@@ -12,6 +12,10 @@ public class SkipClassException extends Exception {
     public SkipClassException() {
     }
 
+    /**
+     * 
+     * @param message
+     */
     public SkipClassException(String message) {
         super(message);
     }

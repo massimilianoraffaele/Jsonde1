@@ -141,13 +141,7 @@ public class StringUtils {
         try {
             return string.getBytes(charsetName);
         } catch (UnsupportedEncodingException e) {
-<<<<<<< .mine
-            throw StringUtils.newIllegalStateException(charsetName, "Something was wrong");
-||||||| .r95
-            throw StringUtils.newIllegalStateException(charsetName, e);
-=======
             throw StringUtils.newIllegalStateException("Something was wrong");
->>>>>>> .r98
         }
     }
 
@@ -183,13 +177,7 @@ public class StringUtils {
         try {
             return new String(bytes, charsetName);
         } catch (UnsupportedEncodingException e) {
-<<<<<<< .mine
-            throw StringUtils.newIllegalStateException(charsetName, "Something was wrong");
-||||||| .r95
-            throw StringUtils.newIllegalStateException(charsetName, e);
-=======
             throw StringUtils.newIllegalStateException("Something was wrong");
->>>>>>> .r98
         }
     }
 

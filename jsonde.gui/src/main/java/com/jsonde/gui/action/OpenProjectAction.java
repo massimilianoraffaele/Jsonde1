@@ -26,6 +26,10 @@ public class OpenProjectAction extends AbstractAction {
 
     private ApplicationUserInterface applicationUserInterface;
 
+    /**
+     * 
+     * @param sdEditUIAdapter
+     */
     public OpenProjectAction(SdEditUIAdapter sdEditUIAdapter) {
         this.applicationUserInterface = sdEditUIAdapter;
     }
