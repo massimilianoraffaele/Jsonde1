@@ -134,8 +134,7 @@ public class Client implements MessageListener {
         } catch (DaoException e) {
         	System.out.println("Something was wrong");
         } catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+        	System.out.println("Something was wrong");
 		}
 
     }

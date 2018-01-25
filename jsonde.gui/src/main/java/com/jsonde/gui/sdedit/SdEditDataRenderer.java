@@ -81,8 +81,7 @@ public class SdEditDataRenderer {
                 fullClassName.lastIndexOf('.') + 1
         );
 		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
+			System.out.println("Something was wrong");
 		}
 
         if (shortClassNamesMap.containsKey(shortClassName)) {

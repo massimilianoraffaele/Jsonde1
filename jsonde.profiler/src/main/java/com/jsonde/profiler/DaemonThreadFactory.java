@@ -10,29 +10,31 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class DaemonThreadFactory implements ThreadFactory {
 
     private AtomicInteger threadIdGenerator = new AtomicInteger();
-    private ThreadGroup threadGroup = new ThreadGroup("jSonde-daemon-thread-group");
+    private Thread aa = new Thread();
+    //private ThreadGroup threadGroup = new ThreadGroup("jSonde-daemon-thread-group");
 
     /**
      * 
      * @return
      */
-    public ThreadGroup getThreadGroup() {
-        return threadGroup;
-    }
+    //public ThreadGroup getThreadGroup() {
+      //  return threadGroup;
+    //}
 
     /**
      * newThread
      */
     public Thread newThread(Runnable r) {
 
-        Thread thread = new Thread(
-                threadGroup,
-                r,
-                "jSonde-daemon-thread-" + threadIdGenerator.getAndIncrement());
+        Thread thread = new Thread(r, "jSonde-daemon-thread-" + threadIdGenerator.getAndIncrement());
 
         thread.setDaemon(true);
 
         return thread;
     }
+
+	public Thread getThread() {
+		return this.aa;
+	}
 
 }

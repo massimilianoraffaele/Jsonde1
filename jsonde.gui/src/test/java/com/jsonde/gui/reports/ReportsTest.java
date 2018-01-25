@@ -5,8 +5,6 @@ import junit.framework.TestCase;
 import java.net.URI;
 import java.util.List;
 
-//
-
 public class ReportsTest extends TestCase {
 
     public void testGetReports() throws Exception {
